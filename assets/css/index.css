@@ -19,7 +19,7 @@
 }
 
 @media screen and (max-width: 575px) {
-    .navbar-brand {
+    .Logo-index {
         display: none;
     }
 
