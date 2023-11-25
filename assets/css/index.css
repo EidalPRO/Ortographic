@@ -5,6 +5,9 @@
     margin: 0;
     font-size: 18px;
     /* background: #f5f6f7; */
+}
+
+body {
     background: rgb(240, 240, 255);
 }
 
@@ -18,20 +21,6 @@
     justify-content: space-between;
 }
 
-@media screen and (max-width: 575px) {
-    .Logo-index {
-        display: none;
-    }
-
-    .grammi {
-        display: none;
-    }
-
-    .queest {
-        display: none;
-    }
-}
-
 @media screen and (max-width: 992px) {
     .grammi {
         display: none;
@@ -42,8 +31,13 @@
     }
 }
 
+@media screen and (max-width: 767px) {
+    .Logo-index {
+        display: none;
+    }
+}
+
 .hero {
-    background: #f5f6f7;
     min-height: 450px;
     text-align: center;
 }
