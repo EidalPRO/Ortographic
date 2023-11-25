@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Arsenal&display=swap');
+
+
+* {
+    padding: 0;
+    margin: 0;
+    font-size: 18px;
+    /* background: #f5f6f7; */
+}
+
+body {
+    background: rgb(240, 240, 255);
+}
+
+h2 {
+    font-weight: bold;
+    font-family: 'Arsenal', sans-serif;
+}
+
+.regresar i {
+
+    color: black;
+    cursor: pointer;
+    margin: 20px;
+    font-size: 2.5rem;
+}
+
+.regresar i:hover {
+    color: red;
+}
+
+.card {
+    margin: 10px;
+}
+
+.card img {
+    margin: auto;
+    max-width: 200px;
+}
+
+.card h5 {
+    user-select: none;
+    text-align: center;
+    font-weight: bold;
+    font-size: 2rem;
+    font-family: 'Arsenal', sans-serif;
+}
+
+.card a {
+    margin: auto;
+    margin-bottom: 5px;
+}
+
+.btn {
+    font-family: 'Arsenal', sans-serif;
+    margin: 10px;
+    background: rgb(240, 240, 255);
+}
+
+@media screen and (min-width: 575px) and (max-width: 991px) {
+    h2 {
+        margin: 30px;
+    }
+
+    .card {
+        min-width: 300px;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    h2 {
+        margin: 30px;
+    }
+
+    .card {
+        margin: 20px;
+    }
+}
