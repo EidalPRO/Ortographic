@@ -6,10 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--Boostrap-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.0/dist/sweetalert2.min.css" rel="stylesheet">
+    <!-- sweetalert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="assets/css/alertas-presonalizadas.css">
     <!--CSS-->
-    <link rel="stylesheet" href="assets/css/registro.css">
+    <link rel="stylesheet" href="assets/css/registro_usuario.css">
     <link rel="shortcut icon" href="assets/imagenes/logoOrtographic.webp" type="image/x-icon">
     <title>Ortographic game</title>
 </head>
@@ -61,7 +64,6 @@
     </div>
 
     <script src="assets/js/registro.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const form = document.querySelector('.formulario');
@@ -81,12 +83,7 @@
                             Swal.fire({
                                 icon: 'success',
                                 title: 'Registro exitoso',
-                                text: '¡Usuario registrado correctamente!',
-                                customClass: {
-                                    popup: 'custom-popup-class',
-                                    title: 'custom-title-class',
-                                    content: 'custom-content-class',
-                                }
+                                text: '¡Usuario registrado correctamente!'
                             }).then(() => {
                                 window.location.href = 'login.html';
                             });
@@ -94,23 +91,13 @@
                             Swal.fire({
                                 icon: 'error',
                                 title: 'Error',
-                                text: '¡El usuario ya existe!',
-                                customClass: {
-                                    popup: 'custom-popup-class',
-                                    title: 'custom-title-class',
-                                    content: 'custom-content-class',
-                                }
+                                text: '¡El usuario ya existe!'
                             });
                         } else {
                             Swal.fire({
                                 icon: 'error',
                                 title: 'Error',
-                                text: '¡No se pudo completar el registro!',
-                                customClass: {
-                                    popup: 'custom-popup-class',
-                                    title: 'custom-title-class',
-                                    content: 'custom-content-class',
-                                }
+                                text: '¡No se pudo completar el registro!'
                             }).then(() => {
                                 window.location.href = 'index.html';
                             });

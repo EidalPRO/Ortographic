@@ -42,20 +42,3 @@ label {
 .nueva-cuenta a {
     text-decoration: none;
 }
-
-/* 
-Estilos específicos para SweetAlert
-.custom-popup-class {
-    background-color: white;
-    Color de fondo deseado para la alerta
-}
-
-.custom-title-class {
-    color: #615151;
-    Color de texto del título
-}
-
-.custom-content-class {
-    color: #615151;
-    Color de texto del contenido
-} */
