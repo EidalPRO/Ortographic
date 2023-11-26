@@ -5,10 +5,10 @@
     margin: 0;
     font-size: 18px;
     /* background: #f5f6f7; */
-    background: rgb(240, 240, 255);
 }
 
 body {
+    background: rgb(240, 240, 255);
     overflow: hidden;
 }
 
@@ -17,6 +17,7 @@ body {
     justify-content: center;
     align-items: center;
 }
+
 h3 {
     text-align: center;
     margin-top: 10px;
@@ -25,17 +26,36 @@ h3 {
     font-family: 'Lancelot', sans-serif;
     /* color: #615151; */
 }
+
 /*FORMULARIO*/
 label {
     font-weight: bold;
 }
+
 .btn {
     width: 100%;
     /* background: rgb(240, 240, 255); */
     margin-top: 10px;
     margin-bottom: 10px;
 }
+
 .nueva-cuenta a {
     text-decoration: none;
 }
 
+/* 
+Estilos específicos para SweetAlert
+.custom-popup-class {
+    background-color: white;
+    Color de fondo deseado para la alerta
+}
+
+.custom-title-class {
+    color: #615151;
+    Color de texto del título
+}
+
+.custom-content-class {
+    color: #615151;
+    Color de texto del contenido
+} */
