@@ -72,7 +72,7 @@
     </div>
 
     <div class="regresar text-center">
-        <a href="index.php">
+        <a href="selecionar_sala.php">
             <i class="bi bi-box-arrow-left"></i>
         </a>
     </div>
