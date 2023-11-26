@@ -5,18 +5,23 @@
     margin: 0;
     font-size: 18px;
     /* background: #f5f6f7; */
+}
+
+body {
     background: rgb(240, 240, 255);
 }
 
 .app {
     overflow-x: hidden;
 }
+
 .imagen {
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 10px;
 }
+
 h3 {
     text-align: center;
     margin: 10px;
@@ -25,21 +30,25 @@ h3 {
     font-family: 'Lancelot', sans-serif;
     /* color: #615151; */
 }
+
 /*FORMULARIO*/
 .formulario {
     margin: 10px;
 }
+
 .form {
     margin-top: 70px;
 }
+
 label {
     font-weight: bold;
 }
+
 .btn {
     width: 100%;
     /* background: rgb(240, 240, 255); */
 }
+
 .nueva-cuenta a {
     text-decoration: none;
 }
-
