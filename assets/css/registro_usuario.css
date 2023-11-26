@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Lancelot&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    font-size: 18px;
+    /* background: #f5f6f7; */
+}
+
+body {
+    background: rgb(240, 240, 255);
+    overflow: hidden;
+}
+
+.imagen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h3 {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 2rem;
+    font-weight: bold;
+    font-family: 'Lancelot', sans-serif;
+    /* color: #615151; */
+}
+
+/*FORMULARIO*/
+label {
+    font-weight: bold;
+}
+
+.btn {
+    width: 100%;
+    /* background: rgb(240, 240, 255); */
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.nueva-cuenta a {
+    text-decoration: none;
+}

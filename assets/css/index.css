@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Edu+TAS+Beginner&family=Rubik+Dirt&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Arsenal&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    font-size: 18px;
+    /* background: #f5f6f7; */
+}
+
+body {
+    background: rgb(240, 240, 255);
+}
+
+.navbar {
+    font-family: 'Arsenal', sans-serif;
+    padding: 0.5rem;
+    background-color: rgb(240, 240, 255);
+}
+
+.navbar-collapse {
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar a{
+    font-weight: bold;
+}
+
+@media screen and (max-width: 992px) {
+    .grammi {
+        display: none;
+    }
+
+    .queest {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .Logo-index {
+        display: none;
+    }
+}
+
+.hero {
+    min-height: 450px;
+    text-align: center;
+}
+
+.hero-principal {
+    padding: 2rem;
+}
+
+.hero-imagen {
+    width: 200px;
+    height: 200px;
+    margin: 20px;
+}
+
+.hero-principal h1 {
+    user-select: none;
+    font-family: 'Arsenal', sans-serif;
+    font-size: 3rem;
+}
+
+.hero-principal h2 {
+    font-family: 'Arsenal', sans-serif;
+    font-size: 1.5rem;
+    color: #615151;
+}
+
+.grammi {
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    right: 5rem;
+}
+
+.queest {
+    width: 350px;
+    height: 350px;
+    position: absolute;
+    left: 4rem;
+}
+
+.btn {
+    font-family: 'Arsenal', sans-serif;
+    margin: 10px;
+    width: 200px;
+    background: rgb(240, 240, 255);
+}

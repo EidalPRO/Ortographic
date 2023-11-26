@@ -1,0 +1,11 @@
+.swal2-popup {
+    background-color: #fff; /* Color de fondo deseado para la alerta */
+  }
+  
+  .swal2-title {
+    color: #615151; /* Color de texto del título */
+  }
+  
+  .swal2-content {
+    color: #615151; /* Color de texto del contenido */
+  }
