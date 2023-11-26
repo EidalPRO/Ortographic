@@ -14,6 +14,7 @@
 </head>
 
 <body>
+
     <nav class="navbar navbar-expand-md navbar-light">
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-toggler"
@@ -22,12 +23,26 @@
             </button>
             <div class="collapse navbar-collapse" id="navbar-toggler">
                 <img src="assets/imagenes/logoOrtographic.webp" width="50" alt="Logo Ortographic" class="Logo-index">
+                <?php
+                    session_start();
+                    $session_iniciada = isset($_SESSION['usuario']);
+
+                    $inicio_sesion_display = $session_iniciada ? 'style="display: none;"' : '';
+                    $registro_display = $session_iniciada ? 'style="display: none;"' : '';
+
+
+                    $cerrar_sesion_display = $session_iniciada ? '' : 'style="display: none;"';
+                ?>
                 <ul class="navbar-nav d-flex justify-content-center align-items-center">
-                    <li class="nav-item">
-                        <a class="nav-link " aria-current="page" href="sesion_inicio.html">Iniciar sesión</a>
+                    <li class="nav-item" <?=$inicio_sesion_display ?>>
+                        <a class="nav-link" aria-current="page" href="sesion_inicio.php">Iniciar sesión</a>
+                    </li>
+                    <li class="nav-item" <?=$registro_display ?>>
+                        <a class="nav-link" href="registro_usuario.html">Registrarse</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="registro_usuario.html">Registrarse</a>
+                        <a class="nav-link" href="bd/cerrar_sesion.php" id="logout-link" <?=$cerrar_sesion_display
+                            ?>>Cerrar sesión</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Manuales</a>
@@ -39,7 +54,8 @@
                         <a class="nav-link" href="#">Creditos</a>
                     </li>
                     <li class="nav-link">
-                        <a class="nav-link" href="bd/cerrar_sesion.php" id="logout-link" style="display: none;">Cerrar sesión</a>
+                        <a class="nav-link" href="bd/cerrar_sesion.php" id="logout-link" style="display: none;">Cerrar
+                            sesión</a>
                     </li>
                 </ul>
             </div>
@@ -59,7 +75,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
-        document.getElementById('boton').addEventListener('click', function(event) {
+        document.getElementById('boton').addEventListener('click', function (event) {
             window.location.href = "categoria.php";
         });
     </script>

@@ -14,21 +14,14 @@
    $validar_login = mysqli_query($conexion, "SELECT * FROM usuarios WHERE nombre='$usuario' 
                    and contrasena='$contrasena' ");
 
-                   
-    // if(mysqli_num_rows($validar_login) > 0) {
-    //     $_SESSION['usuario'] = $usuario; // Establecer la variable de sesión
-    //     echo "existe"; // Usuario ya existe en la base de datos
-    //     exit(); 
-    // } else {
-    //     echo "error";
-    // }
     
     if(mysqli_num_rows($validar_login) > 0) {
         $_SESSION['usuario'] = $usuario; //variable de sesion
-        header("location: ../index.html");
+        header("location: ../index.php");
         exit();
     } else {
-        echo "error";
+        // Usuario o contraseña incorrectos, enviar mensaje al JavaScript
+        header("location: ../sesion_inicio.php?error=usuario_no_encontrado");
         exit();
     }
 

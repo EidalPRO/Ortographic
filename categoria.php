@@ -1,3 +1,9 @@
+<?php
+    session_start();
+    if(!isset($_SESSION['usuario'])) {
+        header("location: index.php");
+    }
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +22,6 @@
 </head>
 
 <body>
-
     <div class="titulo-contenedor">
         <h2 class="text-center">Seleccione el tema a practicar.</h2>
     </div>
@@ -59,11 +64,12 @@
     </div>
 
     <div class="regresar text-center">
-        <a href="index.html">
+        <a href="index.php">
             <i class="bi bi-box-arrow-left"></i>
         </a>
     </div>
 
+    <script src="assets/js/categoria.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
         integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
         crossorigin="anonymous"></script>
