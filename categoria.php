@@ -27,36 +27,44 @@
     </div>
 
     <div class="container">
-        <div class="card-group">
-            <div class="card">
-                <img src="assets/imagenes/logoOrtographic.webp" class="card-img-top" alt="...">
+        <div class="card-group ">
+            <div class="card redondo">
+            <div class="imagen-contenedor">
+                <img src="assets/imagenes/acento.webp" class="card-img-top" alt="...">
+            </div>
                 <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text text-center">Descripcion breve.</p>
+                    <h5 class="card-title">Acentuación</h5>
+                    <p class="card-text text-center">Uso de tildes para palabras agudas, graves y esdrújulas según las normativas específicas del idioma.</p>
                 </div>
                 <a href="#" class="btn btn-outline-dark">Comenzar</a>
             </div>
-            <div class="card">
-                <img src="assets/imagenes/logoOrtographic.webp" class="card-img-top" alt="...">
+            <div class="card redondo">
+            <div class="imagen-contenedor">
+                <img src="assets/imagenes/puntuacion.webp" class="card-img-top" alt="...">
+            </div>
                 <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text text-center">Descripcion breve</p>
+                    <h5 class="card-title">Puntuación</h5>
+                    <p class="card-text text-center">Uso adecuado de signos de puntuación como punto, coma, punto y coma, etc., para separar y organizar oraciones y párrafos.</p>
                 </div>
                 <a href="#" class="btn btn-outline-dark">Comenzar</a>
             </div>
-            <div class="card">
-                <img src="assets/imagenes/logoOrtographic.webp" class="card-img-top" alt="...">
+            <div class="card redondo">
+            <div class="imagen-contenedor">
+                <img src="assets/imagenes/cordinacion.webp" class="card-img-top" alt="...">
+            </div>
                 <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text text-center">Descripcion breve</p>
+                    <h5 class="card-title">Concordancia verbal y nominals</h5>
+                    <p class="card-text text-center">Correcta coincidencia en género y número entre sustantivos y adjetivos, así como entre sujetos y verbos.</p>
                 </div>
                 <a href="#" class="btn btn-outline-dark">Comenzar</a>
             </div>
-            <div class="card">
-                <img src="assets/imagenes/logoOrtographic.webp" class="card-img-top" alt="...">
+            <div class="card redondo">
+                <div class="imagen-contenedor">
+                    <img src="assets/imagenes/gramatical.webp" class="card-img-top" alt="...">
+                </div>
                 <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text text-center">Descripcion breve.</p>
+                    <h5 class="card-title">Gramatica</h5>
+                    <p class="card-text text-center">El uso de palabras inexistentes o mal escritas puede clasificarse como errores ortográficos o gramaticales dependiendo del contexto específico en el que se cometan.</p>
                 </div>
                 <a href="#" class="btn btn-outline-dark">Comenzar</a>
             </div>
@@ -69,7 +77,7 @@
         </a>
     </div>
 
-    <script src="assets/js/categoria.js"></script>
+    <!-- <script src="assets/js/categoria.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
         integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
         crossorigin="anonymous"></script>

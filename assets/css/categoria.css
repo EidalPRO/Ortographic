@@ -18,7 +18,6 @@ h2 {
 }
 
 .regresar i {
-
     color: black;
     cursor: pointer;
     margin: 20px;
@@ -30,12 +29,20 @@ h2 {
 }
 
 .card {
+
     margin: 10px;
 }
+.redondo {
+    border-radius: 10%;
+}
 
-.card img {
+.imagen-contenedor {
     margin: auto;
-    max-width: 200px;
+    padding-top: 10px;
+    max-width: 150px;
+}
+.imagen-contenedor img {
+    width: 100%;
 }
 
 .card h5 {
@@ -59,20 +66,23 @@ h2 {
 
 @media screen and (min-width: 575px) and (max-width: 991px) {
     h2 {
-        margin: 30px;
+        margin: 20px;
     }
 
     .card {
         min-width: 300px;
     }
+
 }
 
 @media screen and (min-width: 992px) {
     h2 {
-        margin: 30px;
+        margin: 20px;
     }
 
     .card {
-        margin: 20px;
+        margin: 10px;
     }
+
+    
 }
