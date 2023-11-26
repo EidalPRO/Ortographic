@@ -6,25 +6,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const formData = new FormData(form);
 
-        fetch('bd/registro_usuarios.php', {
+        fetch('bd/login_usuario.php', {
             method: 'POST',
             body: formData,
         })
             .then(response => response.text())
             .then(result => {
-                if (result === 'exito') {
+                if (result === 'error'){
                     Swal.fire({
-                        icon: 'success',
-                        title: 'Inicio de sesión exitosa',
-                        text: '¡Ahora puedes disfrutar de ortographic sin limitaciones!'
-                    }).then(() => {
-                        window.location.href = 'login.html';
+                        icon: 'error',
+                        title: 'Error',
+                        text: '¡Usuario y/o contraseña incorrecta!'
                     });
                 } else {
                     Swal.fire({
                         icon: 'error',
                         title: 'Error',
-                        text: '¡Usuario y/o contraseña incorrecta!'
+                        text: '¡Algo salio mal!'
+                    }).then(() => {
+                        window.location.href = 'index.html';
                     });
                 }
             })

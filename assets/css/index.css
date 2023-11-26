@@ -23,6 +23,10 @@ body {
     justify-content: space-between;
 }
 
+.navbar a{
+    font-weight: bold;
+}
+
 @media screen and (max-width: 992px) {
     .grammi {
         display: none;

@@ -8,13 +8,24 @@
     $contrasena = $_POST['contrasena'];
 
     //buscar contraseña encriptada mismo procedimiento
-    $contrasena = hash('sha512', $contrasena);
+   //buscar contraseña encriptada mismo procedimiento
+   $contrasena = hash('sha512', $contrasena);
 
-    $validar_login = mysqli_query($conexion, "SELECT * FROM usuarios WHERE nombre='$usuario' and contrasena='$contrasena' ");
+   $validar_login = mysqli_query($conexion, "SELECT * FROM usuarios WHERE nombre='$usuario' 
+                   and contrasena='$contrasena' ");
 
+                   
+    // if(mysqli_num_rows($validar_login) > 0) {
+    //     $_SESSION['usuario'] = $usuario; // Establecer la variable de sesión
+    //     echo "existe"; // Usuario ya existe en la base de datos
+    //     exit(); 
+    // } else {
+    //     echo "error";
+    // }
+    
     if(mysqli_num_rows($validar_login) > 0) {
         $_SESSION['usuario'] = $usuario; //variable de sesion
-        echo "exito";
+        header("location: ../index.html");
         exit();
     } else {
         echo "error";
