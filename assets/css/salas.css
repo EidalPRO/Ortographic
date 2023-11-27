@@ -22,7 +22,7 @@ body {
 
 h3 {
     text-align: center;
-    margin-top: 10px;
+    margin: 10px;
     font-size: 2rem;
     font-weight: bold;
     font-family: 'Lancelot', sans-serif;
@@ -40,10 +40,21 @@ label {
     margin-bottom: 10px;
 }
 
-.formulario {
-    margin: 10px;
+.form {
+    margin-top: 50px;
 }
 
-.form {
-    margin-top: 70px;
+.unica h3 {
+    font-size: 1.5rem;
+}
+
+.regresar i {
+    color: black;
+    cursor: pointer;
+    margin: 20px;
+    font-size: 3rem;
+}
+
+.regresar i:hover {
+    color: red;
 }

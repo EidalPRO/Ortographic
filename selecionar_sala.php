@@ -54,11 +54,12 @@
                 <div class="imagen mb-auto">
                     <img src="assets/imagenes/logoOrtographic.webp" alt="Logo Ortographic" width="70px">
                 </div>
-                <div>
+                <div class="unica">
                     <h3>Por ahora es sala unica con ID: A0123</h3>
                 </div>
+
                 <div class="regresar text-center">
-                    <a href="selecionar_sala.php">
+                    <a href="index.php">
                         <i class="bi bi-box-arrow-left"></i>
                     </a>
                 </div>
