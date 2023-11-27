@@ -57,6 +57,11 @@
                 <div>
                     <h3>Por ahora es sala unica con ID: A0123</h3>
                 </div>
+                <div class="regresar text-center">
+                    <a href="selecionar_sala.php">
+                        <i class="bi bi-box-arrow-left"></i>
+                    </a>
+                </div>
             </div>
 
             <div class="col-lg-4 col-md-3">

@@ -10,3 +10,14 @@
 body {
     background: rgb(240, 240, 255);
 }
+
+.regresar i {
+    color: black;
+    cursor: pointer;
+    margin: 20px;
+    font-size: 2.5rem;
+}
+
+.regresar i:hover {
+    color: red;
+}
