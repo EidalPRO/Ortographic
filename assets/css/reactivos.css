@@ -4,9 +4,38 @@
     padding: 0;
     margin: 0;
     font-size: 18px;
+    font-family: 'Arsenal', sans-serif;
     /* background: #f5f6f7; */
 }
 
 body {
     background: rgb(240, 240, 255);
+}
+
+.progress {
+    margin: 20px;
+}
+
+.card {
+    margin: 2rem;
+    
+}
+.card p {
+    text-align: center;
+    font-family: 'Arsenal', sans-serif;
+}
+
+.row {
+    margin-top: 50px;
+   text-align: center;
+}
+
+.row img {
+    max-width: 300px;
+}
+
+@media screen and (max-width: 767px) {
+    .btn {
+        margin: 20px;
+    }
 }

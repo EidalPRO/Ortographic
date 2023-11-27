@@ -36,7 +36,7 @@
                     <h5 class="card-title">Acentuación</h5>
                     <p class="card-text text-center">Uso de tildes para palabras agudas, graves y esdrújulas según las normativas específicas del idioma.</p>
                 </div>
-                <a href="#" class="btn btn-outline-dark">Comenzar</a>
+                <a href="acentos.php" class="btn btn-outline-dark">Comenzar</a>
             </div>
             <div class="card redondo">
             <div class="imagen-contenedor">
