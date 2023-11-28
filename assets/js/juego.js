@@ -76,7 +76,7 @@ var ora;
 var posCorrect
 var id
 let preguntasMostradas = [];
-let acerto = 0;
+
 
 function cargarReactivo() {
     do {
@@ -131,11 +131,13 @@ function cargarReactivo() {
     }
 }
 
+var acerto = 0;
+
 op1.addEventListener("click", ganoI);
 function ganoI() {
     if (posCorrect == 'I') {
-        console.log("Ganaste");
         acerto++;
+        console.log("Ganaste");
         cargarReactivo();
     } else {
         console.log("perdiste");
@@ -158,8 +160,8 @@ function ganoM() {
 op3.addEventListener("click", verificarGano);
 function verificarGano() {
     if (posCorrect == 'D') {
-        console.log("Ganaste");
         acerto++;
+        console.log("Ganaste");
         cargarReactivo();
     } else {
         console.log("perdiste");
@@ -169,12 +171,7 @@ function verificarGano() {
 }
 
 function verificarFinJuego() {
-    if (preguntasMostradas.length === reactivosAcento.length) {
-        // alert("¡Todas las preguntas han sido mostradas!");
-        return true;
-    } else {
-        return false;
-    }
+    return (preguntasMostradas.length === reactivosAcento.length) ? true : false;
 }
 
 let preguntasRespondidas = 0;
@@ -192,8 +189,8 @@ function avanzarBarraProgreso() {
         porcentajeEfectividad = (acerto * 100) / reactivosAcento.length;
         progressBar.style.width = 100 + '%';
         progressBar.setAttribute('aria-valuenow', porcentaje);
-        finalizarJuego()
-        subirDatos()
+        finalizarJuego();
+        subirDatos(tiempoTotal, porcentajeEfectividad);
         Swal.fire({
             icon: 'success',
             title: 'Preguntas completadas',
@@ -211,23 +208,12 @@ function finalizarJuego() {
     tiempoFinal = performance.now(); // Guarda el tiempo de finalización
 
     tiempoTotal = (tiempoFinal - tiempoInicio) / 1000; // Calcula la diferencia de tiempo
-
     // Convierte a segundos: tiempoTotal / 1000
 }
 
-// Función para obtener el valor de un parámetro de la URL por su nombre
-function obtenerParametroURL(nombre) {
-    const parametros = new URLSearchParams(window.location.search);
-    return parametros.get(nombre);
-}
 
-// Obtener el código de la sala de la URL
-const codigoSala = obtenerParametroURL('codigo_sala');
-
-
-
-// Configuración para la solicitud POST
-function subirDatos() {
+// Función para subir datos al servidor
+function subirDatos(tiempoTotal, porcentajeEfectividad) {
     const datos = {
         tiempoTotal: tiempoTotal,
         porcentajeEfectividad: porcentajeEfectividad
@@ -242,15 +228,13 @@ function subirDatos() {
     };
 
     fetch('bd/subir_datos.php', opciones)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Error al enviar los datos.');
-            }
-            return response.json();
-        })
+        .then(response => response.json())
         .then(data => {
-            console.log('Datos enviados exitosamente:', data);
-            // Hacer algo con la respuesta, si es necesario
+            if (data.success) {
+                console.log('Datos actualizados correctamente:', data.message);
+            } else {
+                console.error('Error al actualizar datos:', data.message);
+            }
         })
         .catch(error => {
             console.error('Error:', error);
