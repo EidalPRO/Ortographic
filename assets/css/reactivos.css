@@ -47,6 +47,5 @@ body {
 @media screen and (max-width: 767px) {
     .b {
         margin: 20px;
-        width: 250px;
     }
 }

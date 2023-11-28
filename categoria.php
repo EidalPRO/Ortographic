@@ -51,17 +51,17 @@
             </div>
             <div class="card ">
             <div class="imagen-contenedor">
-                <img src="assets/imagenes/cordinacion.webp" class="card-img-top" alt="...">
+                <img src="assets/imagenes/uso.webp" class="card-img-top" alt="...">
             </div>
                 <div class="card-body">
-                    <h5 class="card-title">Concordancia verbal y nominals</h5>
-                    <p class="card-text text-center">Correcta coincidencia en género y número entre sustantivos y adjetivos, así como entre sujetos y verbos.</p>
+                    <h5 class="card-title">Uso de letras</h5>
+                    <p class="card-text text-center">Normas para el uso adecuado de las letras, como la grafía correcta de las palabras, uso de mayúsculas y minúsculas, etc.</p>
                 </div>
                 <a href="#" class="btn btn-outline-dark ">Comenzar</a>
             </div>
             <div class="card ">
                 <div class="imagen-contenedor">
-                    <img src="assets/imagenes/gramatical.webp" class="card-img-top" alt="...">
+                    <img src="assets/imagenes/grama.webp" class="card-img-top" alt="...">
                 </div>
                 <div class="card-body">
                     <h5 class="card-title">Gramatica</h5>
