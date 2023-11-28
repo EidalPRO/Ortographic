@@ -29,11 +29,7 @@ h2 {
 }
 
 .card {
-
     margin: 10px;
-}
-.redondo {
-    border-radius: 10%;
 }
 
 .imagen-contenedor {
@@ -64,6 +60,7 @@ h2 {
     background: rgb(240, 240, 255);
 }
 
+
 @media screen and (min-width: 575px) and (max-width: 991px) {
     h2 {
         margin: 20px;
@@ -72,7 +69,6 @@ h2 {
     .card {
         min-width: 300px;
     }
-
 }
 
 @media screen and (min-width: 992px) {
@@ -83,6 +79,5 @@ h2 {
     .card {
         margin: 10px;
     }
-
     
 }

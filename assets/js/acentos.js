@@ -88,10 +88,10 @@ function cargarReactivo() {
     var n = Math.floor(Math.random() * 3);
     posCorrect = (n == 1) ? 'I' : (n == 2) ? 'M' : 'D';
 
-    console.log(n);
-    console.log(posCorrect);
+    // console.log(n);
+    // console.log(posCorrect);
 
-    console.log(id);
+    // console.log(id);
 
     preg = reactivosAcento[id].pregunta;
     res = reactivosAcento[id].respuesta;
@@ -131,44 +131,73 @@ function cargarReactivo() {
     }
 }
 
+function mostrarRespuestaCorrecta() {
+    Swal.fire({
+        icon: 'success',
+        title: 'Respuesta correcta. ',
+        html: `<p>${ora}</p>` + '<br>' + `<p>${fed}</p>`,
+        confirmButtonText: 'Continuar',
+        padding: '1rem',
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        showConfirmButton: true,
+    }).then((result) => {
+        if (result.isConfirmed) {
+            cargarReactivo();
+            avanzarBarraProgreso();
+        }
+    });
+}
+
+// Función para mostrar SweetAlert de respuesta incorrecta
+function mostrarRespuestaIncorrecta() {
+    Swal.fire({
+        icon: 'error',
+        title: 'Respuesta incorrecta. ',
+        html: `<p>${ora}</p>` + '<br>' + `<p>${fed}</p>`,
+        confirmButtonText: 'Continuar',
+        padding: '1rem',
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        showConfirmButton: true,
+    }).then((result) => {
+        if (result.isConfirmed) {
+            cargarReactivo();
+            avanzarBarraProgreso();
+        }
+    });
+}
+
 var acerto = 0;
 
 op1.addEventListener("click", ganoI);
 function ganoI() {
     if (posCorrect == 'I') {
         acerto++;
-        console.log("Ganaste");
-        cargarReactivo();
+        mostrarRespuestaCorrecta();
     } else {
-        console.log("perdiste");
-        cargarReactivo();
+        mostrarRespuestaIncorrecta();
     }
-    avanzarBarraProgreso()
 }
 op2.addEventListener("click", ganoM);
 function ganoM() {
     if (posCorrect == 'M') {
         acerto++;
-        console.log("Ganaste");
-        cargarReactivo();
+       mostrarRespuestaCorrecta();
     } else {
-        console.log("perdiste");
-        cargarReactivo();
+        mostrarRespuestaIncorrecta();
     }
-    avanzarBarraProgreso()
 }
 op3.addEventListener("click", verificarGano);
 function verificarGano() {
     if (posCorrect == 'D') {
         acerto++;
-        console.log("Ganaste");
-        cargarReactivo();
+        mostrarRespuestaCorrecta();
     } else {
-        console.log("perdiste");
-        cargarReactivo();
+        mostrarRespuestaIncorrecta();
     }
-    avanzarBarraProgreso()
 }
+
 
 function verificarFinJuego() {
     return (preguntasMostradas.length === reactivosAcento.length) ? true : false;
@@ -192,10 +221,10 @@ function avanzarBarraProgreso() {
         finalizarJuego();
         subirDatos(tiempoTotal, porcentajeEfectividad);
         Swal.fire({
-            icon: 'success',
+            icon: 'info',
             title: 'Preguntas completadas',
             text: `Este fue tu porsentaje de efectividad en Acentuación ${porcentajeEfectividad}% \n
-            Tu tiempo total en responder las preguntas fue de ${tiempoTotal} segundos.`
+            \nTu tiempo total en responder las preguntas fue de ${tiempoTotal} segundos.`
 
         }).then(() => {
             window.location.href = 'categoria.php';
@@ -227,7 +256,7 @@ function subirDatos(tiempoTotal, porcentajeEfectividad) {
         body: JSON.stringify(datos)
     };
 
-    fetch('bd/subir_datos.php', opciones)
+    fetch('bd/subir_datos1.php', opciones)
         .then(response => response.json())
         .then(data => {
             if (data.success) {

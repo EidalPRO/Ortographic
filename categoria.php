@@ -22,13 +22,14 @@
 </head>
 
 <body>
+    <h5 id="sala">Sala: </h5>
     <div class="titulo-contenedor">
-        <h2 class="text-center">Seleccione el tema a practicar.</h2>
+        <h3 class="text-center">Seleccione el tema a practicar.</h3>
     </div>
 
     <div class="container">
         <div class="card-group ">
-            <div class="card redondo">
+            <div class="card">
             <div class="imagen-contenedor">
                 <img src="assets/imagenes/acento.webp" class="card-img-top" alt="...">
             </div>
@@ -38,7 +39,7 @@
                 </div>
                 <a href="acentos.php" class="btn btn-outline-dark">Comenzar</a>
             </div>
-            <div class="card redondo">
+            <div class="card ">
             <div class="imagen-contenedor">
                 <img src="assets/imagenes/puntuacion.webp" class="card-img-top" alt="...">
             </div>
@@ -48,7 +49,7 @@
                 </div>
                 <a href="#" class="btn btn-outline-dark">Comenzar</a>
             </div>
-            <div class="card redondo">
+            <div class="card ">
             <div class="imagen-contenedor">
                 <img src="assets/imagenes/cordinacion.webp" class="card-img-top" alt="...">
             </div>
@@ -58,7 +59,7 @@
                 </div>
                 <a href="#" class="btn btn-outline-dark">Comenzar</a>
             </div>
-            <div class="card redondo">
+            <div class="card ">
                 <div class="imagen-contenedor">
                     <img src="assets/imagenes/gramatical.webp" class="card-img-top" alt="...">
                 </div>
@@ -77,7 +78,7 @@
         </a>
     </div>
 
-    <!-- <script src="assets/js/categoria.js"></script> -->
+    <script src="assets/js/categoria.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
         integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
         crossorigin="anonymous"></script>

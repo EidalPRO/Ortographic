@@ -15,12 +15,20 @@ body {
 .progress {
     margin: 20px;
 }
-
+.btn{
+    width: 100%;
+}
 .card {
-    margin: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-height: 20px;
     
 }
 .card p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
     font-family: 'Arsenal', sans-serif;
 }
@@ -33,6 +41,7 @@ body {
 .row img {
     max-width: 300px;
 }
+
 
 @media screen and (max-width: 767px) {
     .btn {

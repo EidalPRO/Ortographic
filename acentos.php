@@ -25,18 +25,18 @@
                 </div>
             </div>
             <div class="col-12">
-                <div class="card card-body">
+                <div class="card text-center">
                     <p id="mostrar-reactivo"></p>
                 </div>
             </div>
             <div class="col-md-4 col-12">
-                <button type="button" class="btn btn-outline-dark" id="op1"></button>
+                <button type="button" class="btn btn-outline-dark" id="op1" width = "100%"></button>
             </div>
             <div class="col-md-4 col-12">
-                <button type="button" class="btn btn-outline-dark" id="op2"></button>
+                <button type="button" class="btn btn-outline-dark" id="op2" width = "100%"></button>
             </div>
             <div class="col-md-4 col-12">
-                <button type="button" class="btn btn-outline-dark" id="op3"></button>
+                <button type="button" class="btn btn-outline-dark" id="op3" width = "100%"></button>
             </div>
             <div class="col-12">
                 <img src="assets/imagenes/Grammi.webp" alt="Grammi">
@@ -51,7 +51,7 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    <script src="assets/js/juego.js"></script>
+    <script src="assets/js/acentos.js"></script>
 </body>
 
 </html>
