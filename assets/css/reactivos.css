@@ -15,9 +15,7 @@ body {
 .progress {
     margin: 20px;
 }
-.btn{
-    width: 100%;
-}
+
 .card {
     display: flex;
     justify-content: center;
