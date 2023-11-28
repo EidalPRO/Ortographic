@@ -47,24 +47,24 @@
                     <h5 class="card-title">Puntuación</h5>
                     <p class="card-text text-center">Uso adecuado de signos de puntuación como punto, coma, punto y coma, etc., para separar y organizar oraciones y párrafos.</p>
                 </div>
-                <a href="#" class="btn btn-outline-dark">Comenzar</a>
+                <a href="punto.php" class="btn btn-outline-dark">Comenzar</a>
             </div>
             <div class="card ">
-            <div class="imagen-contenedor">
+            <div class="imagen-contenedor let">
                 <img src="assets/imagenes/uso.webp" class="card-img-top" alt="...">
             </div>
                 <div class="card-body">
                     <h5 class="card-title">Uso de letras</h5>
                     <p class="card-text text-center">Normas para el uso adecuado de las letras, como la grafía correcta de las palabras, uso de mayúsculas y minúsculas, etc.</p>
                 </div>
-                <a href="#" class="btn btn-outline-dark ">Comenzar</a>
+                <a href="usoLetras.php" class="btn btn-outline-dark ">Comenzar</a>
             </div>
             <div class="card ">
                 <div class="imagen-contenedor">
                     <img src="assets/imagenes/grama.webp" class="card-img-top" alt="...">
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title">Gramatica</h5>
+                    <h5 class="card-title">Gramatica en general</h5>
                     <p class="card-text text-center">El uso de palabras inexistentes o mal escritas puede clasificarse como errores ortográficos o gramaticales dependiendo del contexto específico en el que se cometan.</p>
                 </div>
                 <a href="#" class="btn btn-outline-dark">Comenzar</a>

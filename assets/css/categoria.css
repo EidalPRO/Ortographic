@@ -59,6 +59,10 @@ h2 {
     margin: 10px;
 }
 
+.let {
+    margin-top: 35px;
+}
+
 
 @media screen and (min-width: 575px) and (max-width: 991px) {
     h2 {

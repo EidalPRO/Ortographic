@@ -33,7 +33,7 @@ let reactivosAcento = [];
 
 // Función para obtener los datos de la tabla desde PHP
 function obtenerDatosTabla() {
-    fetch('bd/reactivos.php')
+    fetch('bd/reactivos-uso.php')
         .then(response => response.json())
         .then(data => {
 
@@ -256,7 +256,7 @@ function subirDatos(tiempoTotal, porcentajeEfectividad) {
         body: JSON.stringify(datos)
     };
 
-    fetch('bd/subir_datos1.php', opciones)
+    fetch('bd/subir_datos3.php', opciones)
         .then(response => response.json())
         .then(data => {
             if (data.success) {

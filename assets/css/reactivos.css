@@ -14,6 +14,7 @@ body {
 
 .progress {
     margin: 20px;
+    background-color: white;
 }
 
 .card {
@@ -21,11 +22,13 @@ body {
     justify-content: center;
     align-items: center;
     height: 40px;
-    margin: 20px;
+    margin: 25px;
 }
 
 .b {
+    background-color: white;
     margin: 20px;
+    width: 200px;
 }
 
 .card p {
@@ -46,6 +49,9 @@ body {
 
 @media screen and (max-width: 767px) {
     .b {
+        margin: 20px;
+    }
+    .card {
         margin: 20px;
     }
 }

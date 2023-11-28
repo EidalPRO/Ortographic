@@ -46,7 +46,7 @@
                 <button type="button" class="btn btn-outline-dark b" id="op3"></button>
             </div>
             <div class="col-12">
-                <img src="assets/imagenes/Grammi.webp" alt="Grammi">
+                <img src="assets/imagenes/Queest.webp" alt="Grammi">
             </div>
             <div class="col-12 icono-contenedor">
                 <a class="btn btn-secondary" href="categoria.php" id="btn">
@@ -58,7 +58,7 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    <script src="assets/js/acentos.js"></script>
+    <script src="assets/js/punto.js"></script>
 </body>
 
 </html>
