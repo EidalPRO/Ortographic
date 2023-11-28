@@ -21,7 +21,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 40px;
-    margin: auto;
+    margin: 20px;
 }
 
 .b {
@@ -47,6 +47,6 @@ body {
 @media screen and (max-width: 767px) {
     .b {
         margin: 20px;
-        width: 100%;
+        width: 250px;
     }
 }
