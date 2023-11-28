@@ -32,6 +32,30 @@ h2 {
     margin: 10px;
 }
 
+.img-c {
+    margin: 0;
+}
+
+.tabla {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+
+.tabla-reg {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+}
+
+.creditos-contenedor {
+    margin: 30px;
+    font-size: 15rem;
+    text-align: center;
+    font-family: 'Arsenal', sans-serif;
+
+}
+
 .imagen-contenedor {
     margin: auto;
     padding-top: 10px;
@@ -45,7 +69,7 @@ h2 {
     user-select: none;
     text-align: center;
     font-weight: bold;
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-family: 'Arsenal', sans-serif;
 }
 
@@ -63,6 +87,9 @@ h2 {
     margin-top: 35px;
 }
 
+.est {
+    margin-top: 10px;
+}
 
 @media screen and (min-width: 575px) and (max-width: 991px) {
     h2 {

@@ -208,7 +208,7 @@ var porcentajeEfectividad;
 
 function avanzarBarraProgreso() {
     preguntasRespondidas++;
-    const porcentaje = (preguntasRespondidas * reactivosAcento.length) / 100;
+    const porcentaje = (preguntasRespondidas / reactivosAcento.length) * 100;
 
     const progressBar = document.querySelector('.progress-bar');
     progressBar.style.width = porcentaje + '%';

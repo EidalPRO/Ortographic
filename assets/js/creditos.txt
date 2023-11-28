@@ -1,0 +1,12 @@
+Proyecto multidisciplinario del CBTis 150,
+Grupo 2 "C" B. T. en Programación 2022-2023,
+ @date   20 de junio 2023,
+ @author M. en E. S. Roberto Ruiz Mendoza - Líder,
+ @author Eidal Márquez Ambrosio - Programador junior,
+ @author Maia - Programador junior,
+ @author Yazmín Maldonado - Programador junior,
+ 		Docentes:,
+ 	Leslie Karelia Rodríguez Sibaja,
+ 	Roberto Ruiz Mendoza,
+ 	Elva Yuridia Morales Luis,
+

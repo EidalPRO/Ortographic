@@ -60,7 +60,7 @@
                         <a class="nav-link" href="#">Galeria de fotos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Creditos</a>
+                        <a class="nav-link" href="creditos.html">Creditos</a>
                     </li>
                     <li class="nav-link">
                         <a class="nav-link" href="bd/cerrar_sesion.php" id="logout-link" style="display: none;">Cerrarsesión</a>

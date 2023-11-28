@@ -37,13 +37,13 @@
                 </div>
             </div>
             <div class="col-md-4 col-12">
-                <button type="button" class="btn btn-secondary bp" id="op1"></button>
+                <button type="button" class="btn btn-outline-dark b" id="op1"></button>
             </div>
             <div class="col-md-4 col-12">
-                <button type="button" class="btn btn-secondary bp" id="op2"></button>
+                <button type="button" class="btn btn-outline-dark b" id="op2"></button>
             </div>
             <div class="col-md-4 col-12">
-                <button type="button" class="btn btn-secondary bp" id="op3"></button>
+                <button type="button" class="btn btn-outline-dark b" id="op3"></button>
             </div>
             <div class="col-12">
                 <img src="assets/imagenes/Queest.webp" alt="Grammi">
@@ -58,7 +58,7 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    <script src="assets/js/punto.js"></script>
+    <script src="assets/js/gramatica.js"></script>
 </body>
 
 </html>

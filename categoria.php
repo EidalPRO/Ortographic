@@ -23,6 +23,14 @@
 
 <body>
     <h5 id="sala">Sala: </h5>
+
+    <div class="tabla">
+        <a href="estadisticas.php" class="btn btn-secondary ">
+            <i class="bi bi-folder2-open"></i>
+            Estadisticas
+        </a>
+    </div>
+
     <div class="titulo-contenedor">
         <h3 class="text-center">Seleccione el tema a practicar.</h3>
     </div>
@@ -67,7 +75,7 @@
                     <h5 class="card-title">Gramatica en general</h5>
                     <p class="card-text text-center">El uso de palabras inexistentes o mal escritas puede clasificarse como errores ortográficos o gramaticales dependiendo del contexto específico en el que se cometan.</p>
                 </div>
-                <a href="#" class="btn btn-outline-dark">Comenzar</a>
+                <a href="gramatica.php" class="btn btn-outline-dark">Comenzar</a>
             </div>
         </div>
     </div>
