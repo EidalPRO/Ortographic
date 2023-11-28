@@ -20,20 +20,23 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    max-height: 20px;
-    
+    height: 40px;
+    margin: auto;
 }
+
+.b {
+    margin: 20px;
+}
+
 .card p {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    margin: auto;
     text-align: center;
     font-family: 'Arsenal', sans-serif;
 }
 
 .row {
     margin-top: 50px;
-   text-align: center;
+    text-align: center;
 }
 
 .row img {
@@ -42,7 +45,8 @@ body {
 
 
 @media screen and (max-width: 767px) {
-    .btn {
+    .b {
         margin: 20px;
+        width: 100%;
     }
 }

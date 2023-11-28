@@ -57,7 +57,7 @@
                     <h5 class="card-title">Concordancia verbal y nominals</h5>
                     <p class="card-text text-center">Correcta coincidencia en género y número entre sustantivos y adjetivos, así como entre sujetos y verbos.</p>
                 </div>
-                <a href="#" class="btn btn-outline-dark">Comenzar</a>
+                <a href="#" class="btn btn-outline-dark ">Comenzar</a>
             </div>
             <div class="card ">
                 <div class="imagen-contenedor">

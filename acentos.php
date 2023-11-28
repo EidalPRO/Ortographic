@@ -30,13 +30,13 @@
                 </div>
             </div>
             <div class="col-md-4 col-12">
-                <button type="button" class="btn btn-outline-dark" id="op1"></button>
+                <button type="button" class="btn btn-outline-dark b" id="op1"></button>
             </div>
             <div class="col-md-4 col-12">
-                <button type="button" class="btn btn-outline-dark" id="op2"></button>
+                <button type="button" class="btn btn-outline-dark b" id="op2"></button>
             </div>
             <div class="col-md-4 col-12">
-                <button type="button" class="btn btn-outline-dark" id="op3"></button>
+                <button type="button" class="btn btn-outline-dark b" id="op3"></button>
             </div>
             <div class="col-12">
                 <img src="assets/imagenes/Grammi.webp" alt="Grammi">
