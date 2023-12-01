@@ -22,18 +22,30 @@
 </head>
 
 <body>
-    <h5 id="sala">Sala: </h5>
-
-    <div class="tabla">
-        <a href="estadisticas.php" class="btn btn-secondary ">
-            <i class="bi bi-folder2-open"></i>
-            Estadisticas
-        </a>
+    <div class="container">
+        <div class="row navx">
+            <div class="col-4"> 
+                <h5  id="sala" class="text-bg-secondary p-3">Sala: </h5>
+            </div>
+            <div class="col-4">
+                <a href="estadisticas.php" class="btn btn-secondary esta">
+                    <i class="bi bi-folder2-open"></i>
+                    Estadisticas
+                </a>
+            </div>
+            <div class="col-4">
+                <div class="regresar text-center">
+                    <a href="selecionar_sala.php">
+                        <i class="bi bi-box-arrow-left"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="titulo-contenedor">
+            <h3 class="text-center">Seleccione el tema a practicar.</h3>
+        </div>
     </div>
-
-    <div class="titulo-contenedor">
-        <h3 class="text-center">Seleccione el tema a practicar.</h3>
-    </div>
+        
 
     <div class="container">
         <div class="card-group ">
@@ -80,11 +92,7 @@
         </div>
     </div>
 
-    <div class="regresar text-center">
-        <a href="selecionar_sala.php">
-            <i class="bi bi-box-arrow-left"></i>
-        </a>
-    </div>
+    
 
     <script src="assets/js/categoria.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"

@@ -38,13 +38,7 @@ h2 {
 
 .tabla {
     position: absolute;
-    top: 5px;
-    right: 5px;
-}
-
-.tabla-reg {
-    position: absolute;
-    bottom: 5px;
+    top: 0px;
     right: 5px;
 }
 
@@ -78,6 +72,14 @@ h2 {
     margin-bottom: 5px;
 }
 
+.navx {
+    text-align: center;
+}
+
+.navx #sala{
+    cursor: auto;
+}
+
 .btn {
     font-family: 'Arsenal', sans-serif;
     margin: 10px;
@@ -91,21 +93,18 @@ h2 {
     margin-top: 10px;
 }
 
-@media screen and (min-width: 575px) and (max-width: 991px) {
-    h2 {
-        margin: 20px;
-    }
 
+/* h3 {
+    margin-top: 20px;
+} */
+
+@media screen and (min-width: 575px) and (max-width: 991px) {
     .card {
         min-width: 300px;
     }
 }
 
 @media screen and (min-width: 992px) {
-    h2 {
-        margin: 20px;
-    }
-
     .card {
         margin: 10px;
     }
