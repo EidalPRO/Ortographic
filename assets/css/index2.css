@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Arsenal&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    font-size: 18px;
+    /* background: #f5f6f7; */
+    box-sizing: border-box;
+}
+
+section {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+/* Hero  */
+
+.img-contenedor {
+    background: #FAF3ED;
+}
+
+h1 {
+    font-family: 'Arsenal', sans-serif;
+    font-size: 3rem;
+    /* font-weight: bold; */
+}
+
+.hero p {
+    font-size: 1rem;
+    font-family: 'Arsenal', sans-serif;
+}
+
+/* Navegacion */
+
+.navegacion p {
+    font-family: 'Arsenal', sans-serif;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.cir i {
+    color: black;
+    font-size: 2rem;
+    transition: all 0.2s ease-in;
+}
+
+.cir a {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px;
+    margin: 10px;
+    border: 2px solid black;
+    border-radius: 50%;
+    transition: all 0.2s ease-in;
+}
+
+.cir a:hover {
+    background-color: black;
+    border: 2px solid #FAF3ED;
+}
+
+.cir i:hover {
+    color: #FAF3ED;
+}
+
+/* Galeria */
+.carousel button {
+    background: transparent;
+    border: none;
+    color: black;
+    font-weight: bold;
+}
+
+.carousel i {
+    margin: 5px;
+}
+
+.carousel button:hover {
+    color: blue;
+}
+
+
+
+.img-galeria {
+    margin: 10px;
+    transform: .5s ease;
+    opacity: .8;
+}
+
+.img-galeria:hover {
+    cursor: crosshair;
+    opacity: 1;
+    filter: contrast(120%);
+}
+
+/* Creditos */
+footer {
+    min-height: 400px;
+    background-color: #FAF3ED;
+}
+
+.footer-icono {
+    height: 80px;
+    width: 80px;
+    margin: 10px;
+}
+
+.creditos-contenedor {
+    margin: 30px;
+    text-align: center;
+    font-family: 'Arsenal', sans-serif;
+
+}
+
+.derechos-autor {
+    font-size: 15px;
+    padding: 20px;
+    color: #aeaeae;
+}

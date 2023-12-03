@@ -1,14 +1,4 @@
-                <?php
-                    session_start();
-                    $session_iniciada = isset($_SESSION['usuario']);
-                    $nombre_usuario = isset($_SESSION['usuario']) ? $_SESSION['usuario'] : '';
 
-                    $inicio_sesion_display = $session_iniciada ? 'style="display: none;"' : '';
-                    $registro_display = $session_iniciada ? 'style="display: none;"' : '';
-
-
-                    $cerrar_sesion_display = $session_iniciada ? '' : 'style="display: none;"';
-                ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,90 +8,193 @@
     <!--Boostrap-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
     <!--CSS-->
-    <link rel="stylesheet" href="assets/css/index.css">
+    <link rel="stylesheet" href="assets/css/index2.css">
     <link rel="shortcut icon" href="assets/imagenes/logoOrtographic.webp" type="image/x-icon">
-    <title>Ortographic game</title>
+    <title>Ortographic - ¿Crees tener buena ortografía?</title>
 </head>
 
 <body>
 
-    <nav class="navbar navbar-expand-md navbar-light">
-        <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-toggler"
-                aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbar-toggler">
-                <img src="assets/imagenes/logoOrtographic.webp" width="50" alt="Logo Ortographic" class="Logo-index">
-                <ul class="navbar-nav d-flex justify-content-center align-items-center">
-                    <!-- Nombre de usuario -->
-                    <li class="nav-item">
-                    <?php if ($nombre_usuario !== '') { ?>
-                        <span class="navbar-text ml-auto">
-                            Bienvenido, <?php echo $nombre_usuario; ?>
-                        </span>
+    <div class="hero">
+        <div class="container-fluid text-center img-contenedor">
+            <img src="assets/imagenes/hero-orto.webp" class="img-fluid" alt="Ortographic">
+        </div>
+        <h1 class="text-center">Ortographic</h1>
+        <p class="text-center">¿Crees tener buena ortografía?</p>
+    </div>
+
+    <section class="navegacion">
+        <div class="container">
+            <div class="row">
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="cir d-flex flex-wrap align-items-center justify-content-center">
+                        <?php
+                        session_start();
+                        if (isset($_SESSION['usuario'])) {
+                            echo '<a href="">
+                                    <i class="bi bi-person"></i>
+                                </a>';
+                        } else {
+                            echo '<a href="sesion_inicio.php"><i class="bi bi-person-check"></i></a>';
+                        }
+                        ?>
+                    </div>
+                    <?php if (!isset($_SESSION['usuario'])) { ?>
+                     <p>Iniciar sesión</p>
+                    <?php } else { ?>
+                        <p><?php echo $_SESSION['usuario']; ?></p>
                     <?php } ?>
-                    </li>
-                    <li class="nav-item" <?=$inicio_sesion_display ?>>
-                        <a class="nav-link" aria-current="page" href="sesion_inicio.php">Iniciar sesión</a>
-                    </li>
-                    <li class="nav-item" <?=$registro_display ?>>
-                        <a class="nav-link" href="registro_usuario.html">Registrarse</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="bd/cerrar_sesion.php" id="logout-link" <?=$cerrar_sesion_display
-                            ?>>Cerrar sesión</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Manuales</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Galeria de fotos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="creditos.html">Creditos</a>
-                    </li>
-                    <li class="nav-link">
-                        <a class="nav-link" href="bd/cerrar_sesion.php" id="logout-link" style="display: none;">Cerrarsesión</a>
-                    </li>
-                </ul>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2">
+                    <?php if (!isset($_SESSION['usuario'])) { ?>
+                        <div class="cir d-flex flex-wrap align-items-center justify-content-center">
+                            <a href="registro_usuario.html">
+                                <i class="bi bi-person-add"></i>
+                            </a>
+                        </div>
+                        <p>Registrarse</p>
+                    <?php } else { ?>
+                        <div class="cir d-flex flex-wrap align-items-center justify-content-center">
+                            <a href="bd/cerrar_sesion.php">
+                                <i class="bi bi-person-dash"></i>
+                            </a>
+                        </div>
+                        <p>Cerrar sesión</p>
+                   <?php } ?>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="cir d-flex flex-wrap align-items-center justify-content-center">
+                        <a type="submit" id="boton_practicar" href="selecionar_sala.php">
+                            <i class="bi bi-controller"></i>
+                        </a>
+                    </div>
+                    <p>Practicar</p>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="cir d-flex flex-wrap align-items-center justify-content-center">
+                        <a href="#galeria">
+                            <i class="bi bi-archive"></i>
+                        </a>
+                    </div>
+                    <p>Galería de fotos</p>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="cir  d-flex flex-wrap align-items-center justify-content-center">
+                        <a href="#manual">
+                            <i class="bi bi-question-lg"></i>
+                        </a>
+                    </div>
+                    <p>Manual de usuario</p>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="cir  d-flex flex-wrap align-items-center justify-content-center">
+                        <a href="#creditos">
+                            <i class="bi bi-credit-card-2-front"></i>
+                        </a>
+                    </div>
+                    <p>Creditos</p>
+                </div>
             </div>
         </div>
-    </nav>
-    <div class="hero align-items-strethc" id="hero">
-        <div class="hero-principal d-flex flex-column justify-content-center align-items-center">
-            <img src="assets/imagenes/logoOrtographic.webp" alt="Logo Ortographic" class="hero-imagen">
-            <h1>Ortographic</h1>
-            <h2>¿Crees tener buena ortografía?</h2>
-            <img src="assets/imagenes/Grammi.webp" alt="Grammi" class="grammi">
-            <img src="assets/imagenes/Queest.webp" alt="Queest" class="queest">
-            <button type="submit" class="btn btn-outline-dark" name="boton_practicar">Empezar a practicar</button>
+    </section>
+
+    <section id="galeria">
+        <div class="container">
+            <h1>Galería de fotos.</h1>
+            <div id="carouselExample" class="carousel carousel-dark slide">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="assets/imagenes/hero-orto.webp" class="d-block w-100 img-fluid" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="assets/imagenes/hero-orto.webp" class="d-block w-100 img-fluid" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="assets/imagenes/hero-orto.webp" class="d-block w-100 img-fluid" alt="...">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
+                    data-bs-slide="prev">
+                    <!-- <span class="carousel-control-prev-icon" aria-hidden="true"></span> -->
+                    <i class="bi bi-arrow-bar-left"></i>
+                    <span class="visually-hidden">Anterior</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample"
+                    data-bs-slide="next">
+                    <!-- <span class="carousel-control-next-icon" aria-hidden="true"></span> -->
+                    <span class="visually-hidden">Siguiente</span>
+                    <i class="bi bi-arrow-bar-right"></i>
+                </button>
+            </div>
         </div>
-    </div>
+    </section>
+
+    <section id="manual">
+        <div class="container">
+            <h1>Manuales de usuario.</h1>
+            <h2>Sección enconstrucción.
+                <div class="spinner-grow text-warning" role="status">
+                    <span class="visually-hidden"></span>
+                </div>
+            </h2>
+        </div>
+    </section>
+
+    <footer id="creditos">
+        <div class="col-12">
+            <div class="creditos-contenedor text-center">
+                <img src="assets/imagenes/logoOrtographic.webp" alt="Logo Ortographic" class="footer-icono">
+                <div id="contenidoArchivo"></div>
+            </div>
+        </div>
+        <div class="derechos-autor text-center">© 2022 Copyright DGETI - CBTis No. 150 - Autores. Derechos de propiedad
+            intelectual del proyecto de software en proceso de registro.</div>
+    </footer>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script>
-       // Escucha el evento click del botón "Empezar a practicar"
-       document.querySelector('[name="boton_practicar"]').addEventListener('click', function (event) {
-            // Evita la acción por defecto del botón (si es un botón dentro de un formulario)
-            event.preventDefault();
-
-            // Verifica si la sesión está iniciada
-            <?php if (isset($_SESSION['usuario'])) { ?>
-                // Si la sesión está iniciada, redirige a categoria.php
-                window.location.href = "selecionar_sala.php";
-            <?php } else { ?>
-                Swal.fire({
-                    icon: "info",
-                    title: "Inicia sesión",
-                    text: "Debes iniciar sesión para tener una mejor experiencia del juego.",
-                }).then(function () {
-                    window.location.href = "sesion_inicio.php";
+        window.addEventListener('load', function () {
+            const contenidoArchivoDiv = document.getElementById('contenidoArchivo');
+            const archivoURL = 'assets/js/creditos.txt';
+            fetch(archivoURL)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('No se pudo cargar el archivo.');
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    // Reemplaza las comas por saltos de línea en el contenido
+                    data = data.replace(/,/g, '<br>');
+                    contenidoArchivoDiv.innerHTML = data;
+                })
+                .catch(error => {
+                    console.error(error);
                 });
-            <?php } ?>
         });
+    </script>
+    <script>
+        //aqui la alerta y verificcion
+        document.getElementById('boton_practicar').addEventListener('click', function (event) {
+        event.preventDefault();
+
+        <?php if (isset($_SESSION['usuario'])) { ?>
+            // Si la sesión está iniciada, redirige a la página de selección de sala
+            window.location.href = "selecionar_sala.php";
+        <?php } else { ?>
+            // Si la sesión no está iniciada, muestra una alerta
+            Swal.fire({
+                icon: "info",
+                title: "Inicia sesión",
+                text: "Debes iniciar sesión para tener una mejor experiencia del juego."
+            }).then(() => {
+                window.location.href = 'sesion_inicio.php';
+            });
+        <?php } ?>
+    });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
         integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
