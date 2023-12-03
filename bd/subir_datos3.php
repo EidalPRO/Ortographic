@@ -13,14 +13,14 @@ $nombreUsuario = $_SESSION['usuario'] ?? null;
 
 if ($nombreUsuario !== null) {
     // Consulta para obtener el código de sala del usuario
-    $consultaCodigoSala = "SELECT codigo_sala FROM Estadisticas WHERE usuario_nombre = '$nombreUsuario'";
+    $consultaCodigoSala = "SELECT codigo_sala FROM estadisticas WHERE usuario_nombre = '$nombreUsuario'";
     $resultadoConsultaCodigo = $conexion->query($consultaCodigoSala);
 
     if ($resultadoConsultaCodigo->num_rows > 0) {
         $fila = $resultadoConsultaCodigo->fetch_assoc();
         $codigoSala = $fila['codigo_sala'];
 
-        $consultaTiempoExistente = "SELECT tiempo_total_practica FROM Estadisticas WHERE usuario_nombre = '$nombreUsuario'";
+        $consultaTiempoExistente = "SELECT tiempo_total_practica FROM estadisticas WHERE usuario_nombre = '$nombreUsuario'";
         $resultadoTiempoExistente = $conexion->query($consultaTiempoExistente);
 
         if ($resultadoTiempoExistente->num_rows > 0) {
@@ -31,7 +31,7 @@ if ($nombreUsuario !== null) {
             $tiempoTotalActualizado = $tiempoTotalExistente + $tiempoTranscurridoNuevo;
 
             // Consulta para actualizar los datos en la tabla Estadisticas
-            $consultaActualizar = "UPDATE Estadisticas SET tiempo_total_practica = $tiempoTotalActualizado, tema_3_porcentaje = $porcentajeEfectividad WHERE codigo_sala = '$codigoSala' AND usuario_nombre = '$nombreUsuario'";
+            $consultaActualizar = "UPDATE estadisticas SET tiempo_total_practica = $tiempoTotalActualizado, tema_3_porcentaje = $porcentajeEfectividad WHERE codigo_sala = '$codigoSala' AND usuario_nombre = '$nombreUsuario'";
             $resultadoActualizar = $conexion->query($consultaActualizar);
 
             if ($resultadoActualizar) {

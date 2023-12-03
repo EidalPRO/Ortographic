@@ -4,7 +4,7 @@ session_start();
 
 include 'conexion_be.php';
 
-$sql = "SELECT * FROM reactivosUso";
+$sql = "SELECT * FROM reactivosuso";
 $resultado = $conexion->query($sql);
 
 $datos_reactivos = array();

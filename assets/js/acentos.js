@@ -40,7 +40,7 @@ function obtenerDatosTabla() {
             // console.log(data);
             reactivosAcento = data;
 
-            console.log(reactivosAcento);
+            // console.log(reactivosAcento);
 
             // console.log(reactivosAcento[3].id);
             // console.log(reactivosAcento[3].pregunta);

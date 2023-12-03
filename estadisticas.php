@@ -17,13 +17,13 @@
     <div class="container est">
         <?php
             session_start();
-            include 'bd/conexion_be.php'; // Archivo de conexión a la base de datos
+            include 'bd/conexion_be.php';
 
             $nombreUsuario = $_SESSION['usuario'] ?? null;
 
             if ($nombreUsuario !== null) {
                 // Consulta para obtener el código de sala del usuario
-                $consultaCodigoSala = "SELECT codigo_sala FROM Estadisticas WHERE usuario_nombre = '$nombreUsuario'";
+                $consultaCodigoSala = "SELECT codigo_sala FROM estadisticas WHERE usuario_nombre = '$nombreUsuario'";
                 $resultadoConsultaCodigo = $conexion->query($consultaCodigoSala);
 
                 if ($resultadoConsultaCodigo->num_rows > 0) {
@@ -31,7 +31,7 @@
                     $codigoSala = $fila['codigo_sala'];
 
                     // Obtener los datos de la tabla Estadisticas para la sala específica
-                    $consulta = "SELECT * FROM Estadisticas WHERE codigo_sala = '$codigoSala'";
+                    $consulta = "SELECT * FROM estadisticas WHERE codigo_sala = '$codigoSala'";
                     $resultado = $conexion->query($consulta);
 
                     if ($resultado->num_rows > 0) {
@@ -64,11 +64,15 @@
             $conexion->close(); // Cerrar conexión a la base de datos
         ?>
     </div>
-    <div class="tabla-reg">
-        <a href="categoria.php" class="btn btn-secondary ">
-            <i class="bi bi-box-arrow-left"></i>
-            Regresar
-        </a>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <a href="categoria.php" class="btn btn-outline-dark ">
+                    <i class="bi bi-box-arrow-left"></i>
+                    Regresar
+                </a>
+            </div>
+        </div>
     </div>
 
 <body>

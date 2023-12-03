@@ -28,7 +28,7 @@
                 <h5  id="sala" class="text-bg-secondary p-3">Sala: </h5>
             </div>
             <div class="col-4">
-                <a href="estadisticas.php" class="btn btn-secondary esta">
+                <a href="estadisticas.php" class="btn btn-outline-dark esta">
                     <i class="bi bi-folder2-open"></i>
                     Estadisticas
                 </a>
