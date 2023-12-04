@@ -134,7 +134,7 @@
     <section id="manual">
         <div class="container">
             <h1>Manuales de usuario.</h1>
-            <h2>Sección enconstrucción.
+            <h2>Sección en construcción.
                 <div class="spinner-grow text-warning" role="status">
                     <span class="visually-hidden"></span>
                 </div>

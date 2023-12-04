@@ -5,7 +5,6 @@ Proyecto presentado como prototipo didáctico para la DGETI.,
  @author Maia Michelle Morales Ramírez - Programador junior,
  @author Yazmín Maldonado López - Programador junior,
  		Docentes:,
- 	Leslie Karelia Rodríguez Sibaja,
  	Roberto Ruiz Mendoza,
  	Elva Yuridia Morales Luis,
 
