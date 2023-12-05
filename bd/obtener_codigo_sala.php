@@ -6,7 +6,7 @@ $nombreUsuario = $_SESSION['usuario'] ?? null;
 
 if ($nombreUsuario !== null) {
     // Consulta para obtener el código de sala del usuario
-    $consultaCodigoSala = "SELECT codigo_sala FROM estadisticas WHERE usuario_nombre = '$nombreUsuario'";
+    $consultaCodigoSala = "SELECT codigo_sala FROM usuarioysala WHERE usuario = '$nombreUsuario'";
     $resultadoConsulta = $conexion->query($consultaCodigoSala);
 
     if ($resultadoConsulta->num_rows > 0) {

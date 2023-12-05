@@ -6,27 +6,30 @@ session_start();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['sala'])) {
         $codigo_sala = $_POST['sala'];
-
-    
         $nombre_usuario = $_SESSION['usuario'];
 
         // Verificar si el usuario ya está en la sala
-        $consulta_existencia = "SELECT * FROM estadisticas WHERE usuario_nombre = '$nombre_usuario' AND codigo_sala = '$codigo_sala'";
-        $resultado_existencia = $conexion->query($consulta_existencia);
+        $consulta_existencia_estadisticas = "SELECT * FROM estadisticas WHERE usuario_nombre = '$nombre_usuario' AND codigo_sala = '$codigo_sala'";
+        $resultado_existencia_estadisticas = $conexion->query($consulta_existencia_estadisticas);
 
-        if ($resultado_existencia->num_rows > 0) {
+        if ($resultado_existencia_estadisticas->num_rows > 0) {
             // Si el usuario ya está en la sala, redirigir a la página de temas
+            $update_usuarioYsala = "UPDATE usuarioysala SET codigo_sala = '$codigo_sala' WHERE usuario = '$nombre_usuario'";
+            $res = $conexion->query($update_usuarioYsala);
             header("location: ../categoria.php?codigo_sala=$codigo_sala");
             exit();
         } else {
             // Si el usuario no está en la sala, insertarlo en la tabla de Estadisticas
-            $consulta = "SELECT * FROM salas WHERE codigo_sala = '$codigo_sala'";
-            $resultado = $conexion->query($consulta);
+            $consulta_sala_existente = "SELECT * FROM salas WHERE codigo_sala = '$codigo_sala'";
+            $resultado_sala_existente = $conexion->query($consulta_sala_existente);
 
-            if ($resultado->num_rows > 0) {
+            if ($resultado_sala_existente->num_rows > 0) {
                 // Si la sala existe, insertar al usuario en la tabla de Estadisticas
-                $insertar_usuario = "INSERT INTO estadisticas (usuario_nombre, codigo_sala) VALUES ('$nombre_usuario', '$codigo_sala')";
-                $conexion->query($insertar_usuario);
+                $insertar_usuario_estadisticas = "INSERT INTO estadisticas (usuario_nombre, codigo_sala) VALUES ('$nombre_usuario', '$codigo_sala')";
+                $conexion->query($insertar_usuario_estadisticas);
+
+                $insert_usuarioYsala = "INSERT INTO usuarioysala (usuario, codigo_sala) VALUES ('$nombre_usuario', '$codigo_sala')";
+                $rest = $conexion->query($insert_usuarioYsala);
 
                 header("location: ../categoria.php?sala_id=$codigo_sala");
                 exit();

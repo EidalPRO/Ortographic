@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Arsenal&display=swap');
+
+
+* {
+    padding: 0;
+    margin: 0;
+    font-size: 18px;
+    /* background: #f5f6f7; */
+}
+
+body {
+    background: rgb(240, 240, 255);
+}
+
+h2 {
+    font-weight: bold;
+    font-family: 'Arsenal', sans-serif;
+}
+
+.regresar i {
+    color: black;
+    cursor: pointer;
+    margin: 20px;
+    font-size: 2.5rem;
+}
+
+.regresar i:hover {
+    color: red;
+}
+
+.card {
+    margin: 10px;
+}
+
+.img-c {
+    margin: 0;
+}
+
+
+.tabla {
+    position: absolute;
+    top: 0px;
+    right: 5px;
+}
+
+.imagen-contenedor {
+    margin: auto;
+    padding-top: 10px;
+    max-width: 150px;
+}
+.imagen-contenedor img {
+    width: 100%;
+}
+
+.card h5 {
+    user-select: none;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.5rem;
+    font-family: 'Arsenal', sans-serif;
+}
+
+.card a {
+    margin: auto;
+    margin-bottom: 5px;
+}
+
+.navx {
+    text-align: center;
+}
+
+.navx #sala{
+    cursor: auto;
+}
+
+.btn {
+    font-family: 'Arsenal', sans-serif;
+    margin: 10px;
+}
+
+.let {
+    margin-top: 35px;
+}
+
+.est {
+    margin-top: 10px;
+}
+
+
+/* h3 {
+    margin-top: 20px;
+} */
+
+@media screen and (min-width: 575px) and (max-width: 991px) {
+    .card {
+        min-width: 300px;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .card {
+        margin: 10px;
+    }
+    
+}

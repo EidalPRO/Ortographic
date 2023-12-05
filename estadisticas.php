@@ -55,7 +55,7 @@
 
             if ($nombreUsuario !== null) {
                 // Consulta para obtener el código de sala del usuario
-                $consultaCodigoSala = "SELECT codigo_sala FROM estadisticas WHERE usuario_nombre = '$nombreUsuario'";
+                $consultaCodigoSala = "SELECT codigo_sala FROM usuarioysala WHERE usuario = '$nombreUsuario'";
                 $resultadoConsultaCodigo = $conexion->query($consultaCodigoSala);
 
                 if ($resultadoConsultaCodigo->num_rows > 0) {
@@ -108,23 +108,7 @@
         </div>
     </div> -->
 
-    <script>
-        window.onload = () => {
-            obtenerCodigoSala();
-        }
-
-        function obtenerCodigoSala() {
-            fetch('bd/obtener_codigo_sala.php') 
-                .then(response => response.text()) // Usar response.text() para obtener el código de sala como texto
-                .then(codigoSala => {
-                    const codigoSalaElement = document.getElementById('sala');
-                    codigoSalaElement.innerText = "Sala: " + codigoSala; 
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
-        }
-
+    <script src="assets/js/tema.js">
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"

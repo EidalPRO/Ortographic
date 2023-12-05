@@ -34,7 +34,7 @@
                     <form action="bd/salas.php" method="POST" class="formulario mb-5">
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Ingresa el ID de la sala</label>
-                            <input type="text" class="form-control" autocomplete="off" name="sala">
+                            <input type="text" class="form-control" autocomplete="off" name="sala" id="salaCod">
                         </div>
                         <?php
                             if (isset($_GET['error'])) {
@@ -71,7 +71,12 @@
         </div>
     </div>
 
-
+    <script>
+        // Obtener el valor del código de sala del formulario
+        const codigoSala = document.getElementById('salaCod').value.trim();
+       // Almacenar el código de sala en el Local Storage
+        localStorage.setItem('codigoSala', codigoSala);
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
         integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
         crossorigin="anonymous"></script>
