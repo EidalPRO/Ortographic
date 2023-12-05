@@ -8,15 +8,19 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 section {
-    margin-top: 30px;
-    margin-bottom: 30px;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
 
 /* Hero  */
 
 .img-contenedor {
-    background: #FAF3ED;
+    background: rgb(246, 237, 229);
 }
 
 h1 {

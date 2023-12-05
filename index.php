@@ -149,7 +149,7 @@
                 <div id="contenidoArchivo"></div>
             </div>
         </div>
-        <div class="derechos-autor text-center">© 2022 Copyright DGETI - CBTis No. 150 - Autores. Derechos de propiedad
+        <div class="derechos-autor text-center">© 2023 Copyright DGETI - CBTis No. 150 - Autores. Derechos de propiedad
             intelectual del proyecto de software en proceso de registro.</div>
     </footer>
 

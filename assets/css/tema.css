@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Arsenal&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    font-size: 18px;
+    /* background: #f5f6f7; */
+    box-sizing: border-box;
+}
+
+.card p {
+    font-size: 16px;
+}
+
+.card {
+    margin: 10px;
+    height: 202px;
+    
+}
+.card:hover {
+    box-shadow: 0px 0px 50px rgba(0, 0, 0, 1);
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+.card:hover figcaption {
+    font-size: 0.6rem;
+    position: absolute;
+}
+
+.card:hover ~ .card {
+    font-weight: bold;
+    cursor: pointer;
+    transform: translateX(22px);
+}
+
+.carta {
+    font-family: 'Arsenal', sans-serif;
+    background-color: rgb(246, 237, 229);
+    height: 202px;
+
+}
+
+
+.imagen-carta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.imagen-carta img {
+    margin-left: 20px;
+}
+
+
+#sala {
+    cursor: default;
+}
+.navbar {
+    background-color: rgb(246, 237, 229);
+}
+
+.navbar-collapse {
+    align-items: center;
+    justify-content: space-between;
+}
+
+@media screen and (max-width: 991px) {
+    .card {
+        height: auto;
+    }
+    .carta {
+        height: auto;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .navbar-brand {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .navbar h6 {
+        position: absolute;
+        left: 30%;
+
+    }
+}
+
+
+/* Estadisticas */
