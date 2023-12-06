@@ -39,6 +39,8 @@
             <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" style="width: 0"></div>
         </div>
     </div>
+
+
     <div class="container-fluid conten">
         <div class="contariner d-flex reac">
             <div class="row">

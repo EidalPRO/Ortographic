@@ -213,6 +213,7 @@ function mostrarRespuestaCorrecta() {
     }).then((result) => {
         if (result.isConfirmed) {
             cargarReactivo();
+            
             avanzarBarraProgreso();
         }
     });
