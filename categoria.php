@@ -53,7 +53,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 col-md-6">
-                    <div class="card" style="max-width: 500px;">
+                    <div class="card" style="max-width: 500px;" id="t1">
                         <div class="row cartas-contenedor ">
                             <div class="col-4 imagen-carta">
                                 <img src="assets/imagenes/temas/libro.webp" class="img-fluid" alt="Acentuación">
@@ -69,7 +69,7 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-6">
-                    <div class="card" style="max-width: 500px;">
+                    <div class="card" style="max-width: 500px;" id="t2">
                         <div class="row cartas-contenedor ">
                             <div class="col-4 imagen-carta">
                                 <img src="assets/imagenes/temas/dgato.webp" class="img-fluid" alt="Puntuación">
@@ -85,7 +85,7 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-6">
-                    <div class="card" style="max-width: 500px;">
+                    <div class="card" style="max-width: 500px;" id="t3">
                         <div class="row cartas-contenedor ">
                             <div class="col-4 imagen-carta">
                                 <img src="assets/imagenes/temas/sombrero.webp" class="img-fluid" alt="Uso de letras">
@@ -101,7 +101,7 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-6">
-                    <div class="card" style="max-width: 500px;">
+                    <div class="card" style="max-width: 500px;" id="t4">
                         <div class="row cartas-contenedor ">
                             <div class="col-4 imagen-carta">
                                 <img src="assets/imagenes/temas/manzana.webp" class="img-fluid" alt="Gramatica">

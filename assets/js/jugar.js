@@ -1,4 +1,4 @@
-document.getElementById("btn").addEventListener('click', function (event) {
+document.getElementById("salir").addEventListener('click', function (event) {
     event.preventDefault();
 
     const swalWithBootstrapButtons = Swal.mixin({
@@ -24,40 +24,93 @@ document.getElementById("btn").addEventListener('click', function (event) {
 
 });
 
-var op1 = document.getElementById("op1");
-var op2 = document.getElementById("op2");
-var op3 = document.getElementById("op3");
-var mostrarReactivo = document.getElementById("mostrar-reactivo");
+window.onload = () => {
+    obtenerCodigoSala();
+}
+const codigoSala = localStorage.getItem('codigoSala');
+function obtenerCodigoSala() {
+    fetch(`bd/obtener_codigo_sala.php?codigo_sala=${codigoSala}`)
+        .then(response => response.text()) // Usar response.text() para obtener el código de sala como texto
+        .then(codigoSala => {
+            const codigoSalaElement = document.getElementById('sala');
+            codigoSalaElement.innerText = "Sala: " + codigoSala;
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+}
 
-let reactivosAcento = [];
+
+const op1 = document.getElementById("op1");
+const op2 = document.getElementById("op2");
+const op3 = document.getElementById("op3");
+const mostrarReactivo = document.getElementById("mostrar-reactivo");
+var preg;
+var res;
+var d1;
+var d2;
+var fed;
+var ora;
+var posCorrect
+var id
+var acerto = 0;
+let preguntasRespondidas = 0;
+var porcentajeEfectividad;
+var tiempoTotal;
+var tema;
+var temaPorsentaje;
+let preguntasMostradas = [];
+let reactivos = [];
+let numerosGenerados = [];
 
 // Función para obtener los datos de la tabla desde PHP
-function obtenerDatosTabla() {
-    fetch('bd/reactivos-uso.php')
+function obtenerDatos() {
+    // Obtenemos el valor de localStorage
+    var miDato = localStorage.getItem('tema');
+    switch (miDato) {
+        case "t1": tema = "reactivosacento";
+            temaPorsentaje = "tema_1_porcentaje";
+            break;
+        case "t2": tema = "reactivospunto";
+            temaPorsentaje = "tema_2_porcentaje";
+            break;
+        case "t3": tema = "reactivosuso"
+            temaPorsentaje = "tema_3_porcentaje";
+            break;
+        case "t4": tema = "reactivosgramatica";
+            temaPorsentaje = "tema_4_porcentaje";
+            break;
+    }
+
+    console.log(tema);
+
+    fetch('bd/reactivos.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: 'dato=' + tema
+    })
         .then(response => response.json())
         .then(data => {
 
-            // console.log(data);
-            reactivosAcento = data;
+            console.log(data);
 
-            // console.log(reactivosAcento);
+            reactivos = data;
 
-            // console.log(reactivosAcento[3].id);
-            // console.log(reactivosAcento[3].pregunta);
             iniciarJuego();
         })
         .catch(error => {
             console.error('Error al obtener datos:', error);
         });
 }
-window.onload = obtenerDatosTabla;
+window.onload = obtenerDatos;
+
 function iniciarJuego() {
     tiempoInicio = performance.now();
     cargarReactivo();
-
 }
 
-let numerosGenerados = [];
 function generarNumeroUnico(min, max) {
     let nuevoNumero;
     do {
@@ -67,20 +120,9 @@ function generarNumeroUnico(min, max) {
     return nuevoNumero;
 }
 
-var preg;
-var res;
-var d1;
-var d2;
-var fed;
-var ora;
-var posCorrect
-var id
-let preguntasMostradas = [];
-
-
 function cargarReactivo() {
     do {
-        id = generarNumeroUnico(0, reactivosAcento.length - 1);
+        id = generarNumeroUnico(0, reactivos.length - 1);
     } while (preguntasMostradas.includes(id));
 
     preguntasMostradas.push(id);
@@ -91,14 +133,14 @@ function cargarReactivo() {
     // console.log(n);
     // console.log(posCorrect);
 
-    // console.log(id);
+    console.log(id);
 
-    preg = reactivosAcento[id].pregunta;
-    res = reactivosAcento[id].respuesta;
-    d1 = reactivosAcento[id].distractor_1;
-    d2 = reactivosAcento[id].distracor_2;
-    fed = reactivosAcento[id].feedback;
-    ora = reactivosAcento[id].oracionCorrecta;
+    preg = reactivos[id].pregunta;
+    res = reactivos[id].respuesta;
+    d1 = reactivos[id].distractor_1;
+    d2 = reactivos[id].distracor_2;
+    fed = reactivos[id].feedback;
+    ora = reactivos[id].oracionCorrecta;
 
     mostrarReactivo.innerText = preg;
     if (posCorrect == 'I') {
@@ -129,9 +171,36 @@ function cargarReactivo() {
             op2.innerText = d1;
         }
     }
+    
+}
+
+op1.addEventListener("click", ganoI);
+function ganoI() {
+    if (posCorrect == 'I') {
+        mostrarRespuestaCorrecta();
+    } else {
+        mostrarRespuestaIncorrecta();
+    }
+}
+op2.addEventListener("click", ganoM);
+function ganoM() {
+    if (posCorrect == 'M') {
+        mostrarRespuestaCorrecta();
+    } else {
+        mostrarRespuestaIncorrecta();
+    }
+}
+op3.addEventListener("click", verificarGano);
+function verificarGano() {
+    if (posCorrect == 'D') {
+        mostrarRespuestaCorrecta();
+    } else {
+        mostrarRespuestaIncorrecta();
+    }
 }
 
 function mostrarRespuestaCorrecta() {
+    acerto++;
     Swal.fire({
         icon: 'success',
         title: 'Respuesta correcta. ',
@@ -168,62 +237,24 @@ function mostrarRespuestaIncorrecta() {
     });
 }
 
-var acerto = 0;
-
-op1.addEventListener("click", ganoI);
-function ganoI() {
-    if (posCorrect == 'I') {
-        acerto++;
-        mostrarRespuestaCorrecta();
-    } else {
-        mostrarRespuestaIncorrecta();
-    }
-}
-op2.addEventListener("click", ganoM);
-function ganoM() {
-    if (posCorrect == 'M') {
-        acerto++;
-       mostrarRespuestaCorrecta();
-    } else {
-        mostrarRespuestaIncorrecta();
-    }
-}
-op3.addEventListener("click", verificarGano);
-function verificarGano() {
-    if (posCorrect == 'D') {
-        acerto++;
-        mostrarRespuestaCorrecta();
-    } else {
-        mostrarRespuestaIncorrecta();
-    }
-}
-
-
-function verificarFinJuego() {
-    return (preguntasMostradas.length === reactivosAcento.length) ? true : false;
-}
-
-let preguntasRespondidas = 0;
-var porcentajeEfectividad;
-
 function avanzarBarraProgreso() {
     preguntasRespondidas++;
-    const porcentaje = (preguntasRespondidas / reactivosAcento.length) * 100;
-
+    // console.log(preguntasRespondidas);
+    const porcentaje = (preguntasRespondidas / reactivos.length) * 100;
     const progressBar = document.querySelector('.progress-bar');
     progressBar.style.width = porcentaje + '%';
     progressBar.setAttribute('aria-valuenow', porcentaje);
 
     if (verificarFinJuego()) {
-        porcentajeEfectividad = (acerto * 100) / reactivosAcento.length;
-        progressBar.style.width = 100 + '%';
+        // progressBar.style.width = 100 + '%';
+        porcentajeEfectividad = (acerto * 100) / reactivos.length;
         progressBar.setAttribute('aria-valuenow', porcentaje);
         finalizarJuego();
         subirDatos(tiempoTotal, porcentajeEfectividad);
         Swal.fire({
             icon: 'info',
             title: 'Preguntas completadas',
-            text: `Este fue tu porsentaje de efectividad en Acentuación ${porcentajeEfectividad}% \n
+            text: `Este fue tu porsentaje de efectividad: ${porcentajeEfectividad}% \n
             \nTu tiempo total en responder las preguntas fue de ${tiempoTotal} segundos.`
 
         }).then(() => {
@@ -231,7 +262,10 @@ function avanzarBarraProgreso() {
         });
     }
 }
-var tiempoTotal;
+
+function verificarFinJuego() {
+    return (preguntasMostradas.length === reactivos.length) ? true : false;
+}
 
 function finalizarJuego() {
     tiempoFinal = performance.now(); // Guarda el tiempo de finalización
@@ -240,12 +274,12 @@ function finalizarJuego() {
     // Convierte a segundos: tiempoTotal / 1000
 }
 
-
 // Función para subir datos al servidor
 function subirDatos(tiempoTotal, porcentajeEfectividad) {
     const datos = {
         tiempoTotal: tiempoTotal,
-        porcentajeEfectividad: porcentajeEfectividad
+        porcentajeEfectividad: porcentajeEfectividad,
+        tema: temaPorsentaje
     };
 
     const opciones = {
@@ -256,7 +290,7 @@ function subirDatos(tiempoTotal, porcentajeEfectividad) {
         body: JSON.stringify(datos)
     };
 
-    fetch('bd/subir_datos3.php', opciones)
+    fetch('bd/subir_datos1.php', opciones)
         .then(response => response.json())
         .then(data => {
             if (data.success) {

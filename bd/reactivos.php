@@ -4,17 +4,30 @@ session_start();
 
 include 'conexion_be.php';
 
-$sql = "SELECT * FROM reactivosacento";
-$resultado = $conexion->query($sql);
+if(isset($_POST['dato'])) {
+    $miDato = $_POST['dato'];
 
-$datos_reactivos = array();
+    // Consulta SQL para obtener datos según el valor recibido
+    $sql = "SELECT * FROM $miDato";
+    $result = $conexion->query($sql);
 
-if ($resultado->num_rows > 0) {
-    while ($fila = $resultado->fetch_assoc()) {
-        $datos_reactivos[] = $fila;
+    if ($result->num_rows > 0) {
+        // Crear un array para almacenar los resultados de la consulta
+        $data = array();
+
+        // Recorrer los resultados y almacenarlos en el array
+        while($row = $result->fetch_assoc()) {
+            $data[] = $row;
+        }
+
+        // Devolver los resultados como JSON
+        echo json_encode($data);
+    } else {
+        echo "No se encontraron resultados.";
     }
-}
 
-// Convertir los datos a formato JSON y enviarlos al cliente
-echo json_encode($datos_reactivos);
+    $conexion->close();
+} else {
+    echo "No se recibió ningún dato.";
+}
 ?>
