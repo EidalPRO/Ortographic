@@ -77,7 +77,7 @@ function obtenerDatos() {
         .then(response => response.json())
         .then(data => {
 
-            console.log(data);
+            // console.log(data);
 
             reactivos = data;
 
@@ -134,7 +134,7 @@ function cargarReactivo() {
         // console.log(n);
         // console.log(posCorrect);
 
-        console.log(id);
+        // console.log(id);
 
         preg = reactivos[id].pregunta;
         res = reactivos[id].respuesta;
