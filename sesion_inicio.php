@@ -10,7 +10,7 @@
     <!--CSS-->
     <link rel="stylesheet" href="assets/css/sesion.css">
     <link rel="shortcut icon" href="assets/imagenes/logoOrtographic.webp" type="image/x-icon">
-    <title>Ortographic game</title>
+    <title>Ortographic - ¿Crees tener buena ortografía?</title>
 </head>
 
 <body>
