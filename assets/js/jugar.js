@@ -121,57 +121,76 @@ function generarNumeroUnico(min, max) {
 }
 
 function cargarReactivo() {
-    do {
-        id = generarNumeroUnico(0, reactivos.length - 1);
-    } while (preguntasMostradas.includes(id));
+    if (verificarFinJuego()) {
+        // progressBar.style.width = 100 + '%';
+        porcentajeEfectividad = (acerto * 100) / reactivos.length;
+        // progressBar.setAttribute('aria-valuenow', porcentaje);
+        finalizarJuego();
+        subirDatos(tiempoTotal, porcentajeEfectividad);
+        Swal.fire({
+            icon: 'info',
+            title: 'Preguntas completadas',
+            text: `Este fue tu porsentaje de efectividad: ${porcentajeEfectividad}% \n
+            \nTu tiempo total en responder las preguntas fue de ${tiempoTotal} segundos.`
 
-    preguntasMostradas.push(id);
-
-    var n = Math.floor(Math.random() * 3);
-    posCorrect = (n == 1) ? 'I' : (n == 2) ? 'M' : 'D';
-
-    // console.log(n);
-    // console.log(posCorrect);
-
-    console.log(id);
-
-    preg = reactivos[id].pregunta;
-    res = reactivos[id].respuesta;
-    d1 = reactivos[id].distractor_1;
-    d2 = reactivos[id].distracor_2;
-    fed = reactivos[id].feedback;
-    ora = reactivos[id].oracionCorrecta;
-
-    mostrarReactivo.innerText = preg;
-    if (posCorrect == 'I') {
-        op1.innerText = res;
-        if (Math.floor(Math.random() * 2) == 1) {
-            op2.innerText = d1;
-            op3.innerText = d2;
-        } else {
-            op2.innerText = d2;
-            op3.innerText = d1;
-        }
-    } else if (posCorrect == 'M') {
-        op2.innerText = res;
-        if (Math.floor(Math.random() * 2) == 1) {
-            op1.innerText = d1;
-            op3.innerText = d2;
-        } else {
-            op1.innerText = d2;
-            op3.innerText = d1;
-        }
+        }).then(() => {
+            window.location.href = 'categoria.php';
+        });
     } else {
-        op3.innerText = res;
-        if (Math.floor(Math.random() * 2) == 1) {
-            op1.innerText = d1;
-            op2.innerText = d2;
+
+
+        do {
+            id = generarNumeroUnico(0, reactivos.length - 1);
+        } while (preguntasMostradas.includes(id));
+
+        preguntasMostradas.push(id);
+
+        var n = Math.floor(Math.random() * 3);
+        posCorrect = (n == 1) ? 'I' : (n == 2) ? 'M' : 'D';
+
+        // console.log(n);
+        // console.log(posCorrect);
+
+        console.log(id);
+
+        preg = reactivos[id].pregunta;
+        res = reactivos[id].respuesta;
+        d1 = reactivos[id].distractor_1;
+        d2 = reactivos[id].distracor_2;
+        fed = reactivos[id].feedback;
+        ora = reactivos[id].oracionCorrecta;
+
+        mostrarReactivo.innerText = preg;
+        if (posCorrect == 'I') {
+            op1.innerText = res;
+            if (Math.floor(Math.random() * 2) == 1) {
+                op2.innerText = d1;
+                op3.innerText = d2;
+            } else {
+                op2.innerText = d2;
+                op3.innerText = d1;
+            }
+        } else if (posCorrect == 'M') {
+            op2.innerText = res;
+            if (Math.floor(Math.random() * 2) == 1) {
+                op1.innerText = d1;
+                op3.innerText = d2;
+            } else {
+                op1.innerText = d2;
+                op3.innerText = d1;
+            }
         } else {
-            op1.innerText = d2;
-            op2.innerText = d1;
+            op3.innerText = res;
+            if (Math.floor(Math.random() * 2) == 1) {
+                op1.innerText = d1;
+                op2.innerText = d2;
+            } else {
+                op1.innerText = d2;
+                op2.innerText = d1;
+            }
         }
+
     }
-    
 }
 
 op1.addEventListener("click", ganoI);
@@ -213,7 +232,7 @@ function mostrarRespuestaCorrecta() {
     }).then((result) => {
         if (result.isConfirmed) {
             cargarReactivo();
-            
+
             avanzarBarraProgreso();
         }
     });
@@ -245,23 +264,6 @@ function avanzarBarraProgreso() {
     const progressBar = document.querySelector('.progress-bar');
     progressBar.style.width = porcentaje + '%';
     progressBar.setAttribute('aria-valuenow', porcentaje);
-
-    if (verificarFinJuego()) {
-        // progressBar.style.width = 100 + '%';
-        porcentajeEfectividad = (acerto * 100) / reactivos.length;
-        progressBar.setAttribute('aria-valuenow', porcentaje);
-        finalizarJuego();
-        subirDatos(tiempoTotal, porcentajeEfectividad);
-        Swal.fire({
-            icon: 'info',
-            title: 'Preguntas completadas',
-            text: `Este fue tu porsentaje de efectividad: ${porcentajeEfectividad}% \n
-            \nTu tiempo total en responder las preguntas fue de ${tiempoTotal} segundos.`
-
-        }).then(() => {
-            window.location.href = 'categoria.php';
-        });
-    }
 }
 
 function verificarFinJuego() {
