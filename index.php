@@ -16,7 +16,6 @@
 </head>
 
 <body>
-
     <div class="hero">
         <div class="container-fluid text-center img-contenedor">
             <img src="assets/imagenes/hero-orto.webp" class="img-fluid" alt="Ortographic">
