@@ -6,60 +6,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--Boostrap-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
-    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.0/dist/sweetalert2.min.css" rel="stylesheet">
     <!-- sweetalert2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!--CSS-->
-    <link rel="stylesheet" href="assets/css/registro_usuario.css">
+    <link rel="stylesheet" href="assets/css/registro_usuario2.css">
     <link rel="shortcut icon" href="assets/imagenes/logoOrtographic.webp" type="image/x-icon">
     <title>Ortographic - ¿Crees tener buena ortografía?</title>
 </head>
 
 <body>
 
-    <div class="app">
-        <div class="row">
-            <div class="col-lg-4 col-md-3">
-
+    <div class="container formulario-contenedor">
+        <h3>Nueva cuenta</h3>
+        <form id="registroForm" action="bd/registro_usuarios.php" method="POST" class="formulario mb-5">
+            <div class="mb-2">
+                <label for="exampleInputEmail1" class="form-label">Nombre de usuario.</label>
+                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                    placeholder="Ej. Grammi-Pro" name="usuario">
+                <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
             </div>
-            <div class="col-lg-4 col-md-6 d-flex flex-column">
-                <div class="w-100 form">
-                    <h3>Nueva cuenta</h3>
-                    <form id="registroForm" action="bd/registro_usuarios.php" method="POST" class="formulario mb-5">
-                        <div class="mb-2">
-                            <label for="exampleInputEmail1" class="form-label">Nombre de usuario.</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                                placeholder="Ej. Grammi-Pro" name="usuario">
-                            <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
-                        </div>
-                        <div class="mb-2">
-                            <label for="exampleInputPassword1" class="form-label">Contraseña.</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1"
-                                placeholder="Ej. gr@mi147f" name="contrasena">
-                        </div>
-                        <div class="mb-2">
-                            <label for="exampleInputPassword2" class="form-label">Confirmar contraseña.</label>
-                            <input type="password" class="form-control" id="exampleInputPassword2"
-                                placeholder="Ej. gr@mi147f" name="contrasena2">
-                        </div>
-                        <button type="submit" class="btn btn-secondary" id="boton-reg" disabled>Crear cuenta</button>
-
-                        <div class="nueva-cuenta text-center">
-                            <p class="d-inline-block">¿Ya tienes cuenta?</p>
-                            <a href="sesion_inicio.php">Inicia sesión aquí</a>
-                        </div>
-                        <div class="imagen mb-auto">
-                            <img src="assets/imagenes/logoOrtographic.webp" alt="Logo Ortographic" width="70px">
-                        </div>
-                    </form>
-                </div>
-
+            <div class="mb-2">
+                <label for="exampleInputPassword1" class="form-label">Contraseña.</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Ej. gr@mi147f"
+                    name="contrasena">
             </div>
-            <div class="col-lg-4 col-md-3">
-
+            <div class="mb-2">
+                <label for="exampleInputPassword2" class="form-label">Confirmar contraseña.</label>
+                <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Ej. gr@mi147f"
+                    name="contrasena2">
             </div>
-        </div>
+            <button type="submit" class="btn btn-secondary" id="boton-reg" disabled>Crear cuenta</button>
+
+            <div class="nueva-cuenta text-center">
+                <p class="d-inline-block">¿Ya tienes cuenta?</p>
+                <a href="inicio_sesion.php">Inicia sesión aquí</a>
+            </div>
+            <div class="imagen mb-auto">
+                <img src="assets/imagenes/logoOrtographic.webp" alt="Logo Ortographic" width="70px">
+            </div>
+        </form>
     </div>
 
     <script src="assets/js/registro.js"></script>

@@ -11,6 +11,18 @@ body {
     overflow: hidden;
 }
 
+.formulario-contenedor {
+    margin-top: 50px;
+    width: 400px;
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #FAF3ED;
+    border-radius: 5%;
+}
+
 .imagen {
     display: flex;
     justify-content: center;
@@ -19,7 +31,6 @@ body {
 
 h3 {
     text-align: center;
-    margin-top: 10px;
     font-size: 2rem;
     font-weight: bold;
     font-family: 'Lancelot', sans-serif;

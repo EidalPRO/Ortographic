@@ -37,7 +37,7 @@
                                     <i class="bi bi-person"></i>
                                 </a>';
                         } else {
-                            echo '<a href="sesion_inicio.php"><i class="bi bi-person-check"></i></a>';
+                            echo '<a href="inicio_sesion.php"><i class="bi bi-person-check"></i></a>';
                         }
                         ?>
                     </div>
@@ -237,7 +237,7 @@
                 title: "Inicia sesión",
                 text: "Debes iniciar sesión para tener una mejor experiencia del juego."
             }).then(() => {
-                window.location.href = 'sesion_inicio.php';
+                window.location.href = 'inicio_sesion.php';
             });
         <?php } ?>
     });

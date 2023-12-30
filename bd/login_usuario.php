@@ -21,7 +21,7 @@
         exit();
     } else {
         // Usuario o contraseña incorrectos, enviar mensaje al JavaScript
-        header("location: ../sesion_inicio.php?error=usuario_no_encontrado");
+        header("location: ../inicio_sesion.php?error=usuario_no_encontrado");
         exit();
     }
 
