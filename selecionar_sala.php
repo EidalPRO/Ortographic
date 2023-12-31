@@ -5,6 +5,7 @@
     }
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,66 +17,69 @@
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
     <!--CSS-->
-    <link rel="stylesheet" href="assets/css/salas.css">
+    <link rel="stylesheet" href="assets/css/salas2.css">
     <link rel="shortcut icon" href="assets/imagenes/logoOrtographic.webp" type="image/x-icon">
     <title>Ortographic - ¿Crees tener buena ortografía?</title>
 </head>
 
 <body>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-4 col-md-3">
-
-            </div>
-            <div class="col-lg-4 col-md-6 d-flex flex-column">
-                <div class="w-100 form">
-                    <h3>Salas.</h3>
-                    <form action="bd/salas.php" method="POST" class="formulario mb-5">
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Ingresa el ID de la sala</label>
-                            <input type="text" class="form-control" autocomplete="off" name="sala" id="salaCod">
-                        </div>
-                        <?php
-                            if (isset($_GET['error'])) {
-                                $error = $_GET['error'];
-                                if ($error === "sala_no_encontrado") {
-                                    echo '
-                                    <div class="alert alert-danger" role="alert">
-                                        La sala ingresada no existe.
-                                        </div>
-                                    ';
-                                }
-                            }
-                        ?>
-                        <button type="submit" class="btn btn-secondary">Aceptar</button>
-                    </form>
+    <div class="container modo-contenedor d-flex">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h3>Seleccione el modo de juego.</h3>
                 </div>
-                <div class="imagen mb-auto">
-                    <img src="assets/imagenes/logoOrtographic.webp" alt="Logo Ortographic" width="70px">
+                <div class="col-12 col-md-6">
+                    <div class="cir d-flex flex-wrap align-items-center justify-content-center">
+                        <a type="submit" id="boton_global" href="bd/salas.php">
+                            <i class="bi bi-controller"></i>
+                        </a>
+                    </div>
+                    <p>Sala global</p>
                 </div>
-                <div class="unica">
-                    <h3>Por ahora es sala unica con ID: A0123</h3>
+                <div class="col-12 col-md-6">
+                    <div class="cir d-flex flex-wrap align-items-center justify-content-center">
+                        <a type="submit" id="boton_privado" href="">
+                            <i class="bi bi-joystick"></i>
+                        </a>
+                    </div>
+                    <p>Salas privadas</p>
                 </div>
-
-                <div class="regresar text-center">
-                    <a href="index.php">
-                        <i class="bi bi-box-arrow-left"></i>
-                    </a>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-3">
-
             </div>
         </div>
+
     </div>
 
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script>
-        // Obtener el valor del código de sala del formulario
-        const codigoSala = document.getElementById('salaCod').value.trim();
-       // Almacenar el código de sala en el Local Storage
-        localStorage.setItem('codigoSala', codigoSala);
+
+        localStorage.setItem('codigoSala', A0123);
+        // document.getElementById('boton_global').addEventListener('click', function (event) {
+        //     event.preventDefault();
+
+        //     localStorage.setItem('codigoSala', A0123);
+        // });
+
+        //Esto se podra ocupar al implementar las salas privadas
+        // // Obtener el valor del código de sala del formulario
+        // const codigoSala = document.getElementById('salaCod').value.trim();
+        // // Almacenar el código de sala en el Local Storage
+        // localStorage.setItem('codigoSala', codigoSala);
+    </script>
+    <script>
+         document.getElementById('boton_privado').addEventListener('click', function (event) {
+            event.preventDefault();
+
+            Swal.fire({
+                icon: "info",
+                title: "Lo sentimos :(",
+                text: "Por el momento solo contamos con una sala global, estamos trabajando en ello."
+            }); //.then(() => {
+            //     window.location.href = 'inicio_sesion.php';
+            // });
+        });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
         integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
