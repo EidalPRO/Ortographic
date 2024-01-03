@@ -39,7 +39,7 @@
 }
 
 .preg-contenedor {
-    margin: 20px;
+    margin-top: 5px;
     text-align: center;
 }
 
@@ -51,6 +51,11 @@
     background: rgb(246, 237, 229);
     margin: 20px;
     margin-top: 50px;
+    text-align: center;
+}
+
+.reac h3 {
+    font-size: 1.5rem;
     text-align: center;
 }
 

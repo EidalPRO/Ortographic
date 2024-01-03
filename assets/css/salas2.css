@@ -16,8 +16,8 @@ body {
 
 .modo-contenedor {
     margin-top: 150px;
-    width: 500px;
-    height: 300px;
+    max-width: 500px;
+    max-height: 300px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -60,4 +60,24 @@ p {
 
 .cir i:hover {
     color: #FAF3ED;
+}
+
+@media screen and (max-width: 768px) {
+    body {
+        background-color: #FAF3ED;
+    }
+
+    /* .cir a {
+        width: 50px;
+        height: 50px;
+        margin: 5px;
+    }
+
+    .cir i {
+        font-size: 20px;
+    } */
+
+    p {
+        margin: 0px;
+    }
 }

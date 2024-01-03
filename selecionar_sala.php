@@ -30,7 +30,7 @@
                 <div class="col-12">
                     <h3>Seleccione el modo de juego.</h3>
                 </div>
-                <div class="col-12 col-md-6">
+                <div class="col-12 col-md-4">
                     <div class="cir d-flex flex-wrap align-items-center justify-content-center">
                         <a type="submit" id="boton_global" href="bd/salas.php">
                             <i class="bi bi-controller"></i>
@@ -38,13 +38,21 @@
                     </div>
                     <p>Sala global</p>
                 </div>
-                <div class="col-12 col-md-6">
+                <div class="col-12 col-md-4">
                     <div class="cir d-flex flex-wrap align-items-center justify-content-center">
                         <a type="submit" id="boton_privado" href="">
                             <i class="bi bi-joystick"></i>
                         </a>
                     </div>
                     <p>Salas privadas</p>
+                </div>
+                <div class="col-12 col-md-4">
+                    <div class="cir d-flex flex-wrap align-items-center justify-content-center">
+                        <a type="submit" id="boton_privado" href="index.php">
+                            <i class="bi bi-box-arrow-left"></i>
+                        </a>
+                    </div>
+                    <p>Regresar</p>
                 </div>
             </div>
         </div>
