@@ -96,19 +96,22 @@ h1 {
 
 
 .manual-contenedor {
-   min-height: 400px;
-}
-.manual-contenedor i {
-    font-size: 3rem;
-}
-
-.manual-contenedor h2 {
-    /* font-family: 'Arsenal', sans-serif; */
-    font-size: 3rem;
+   /* min-height: 400px; */
+   margin-top: 50px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
 }
 
-.manual-contenedor p {
-    font-size: 1rem;
+.manual-contenedor button{
+    background-color: rgb(246, 237, 229);
+    color: black;
+    font-size: 30px;
+    border-color: #FAF3ED;
+}
+
+.manual-contenedor button i {
+    font-size: 30px;
 }
 
 /* Creditos */

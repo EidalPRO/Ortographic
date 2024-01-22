@@ -129,15 +129,22 @@
     <section id="manual">
         <div class="container">
             <h1>Manuales de usuario.</h1>
+            <h5>Descarga cualquiera de nustros manuales.</h5>
             <div class="container manual-contenedor ">
-                <div class="icono text-center">
-                    <i class="bi bi-clock-history"></i>
-                </div>
-                <h2 class="text-center">Sección <br> En construcción...</h2>
-                <p class="text-center">Estamos trabajando en ello. </p>
-                <div class="text-center">
-                    <div class="spinner-grow text-warning" role="status">
-                        <span class="visually-hidden"></span>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 col-md-6">
+                            <button type="button" class="btn btn-secondary">
+                                <i class="bi bi-journal-arrow-down"></i>
+                                Manual de instalación.
+                            </button>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <button type="button" class="btn btn-secondary">
+                                <i class="bi bi-journal-arrow-down"></i>
+                                Manual de usuario.
+                            </button>
+                        </div>
                     </div>
                 </div>
            </div>
@@ -183,7 +190,7 @@
                             </div>
                             <div class="card-body">
                                 <h5 class="card-title">Autor 3</h5>
-                                <p class="card-text">Yazmím Maldonado López.</p>
+                                <p class="card-text">Yazmín Maldonado López.</p>
                             </div>
                         </div>
                     </div>
