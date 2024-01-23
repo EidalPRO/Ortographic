@@ -12,7 +12,7 @@
     <!--CSS-->
     <link rel="stylesheet" href="assets/css/index2.css">
     <link rel="shortcut icon" href="assets/imagenes/logoOrtographic.webp" type="image/x-icon">
-    <title>Ortographic - ¿Crees tener buena ortografía?</title>
+    <title>Ortographic - Donde las letras se vuelven tu juego.</title>
 </head>
 
 <body>
@@ -22,7 +22,7 @@
             <img src="assets/imagenes/hero-orto.webp" class="img-fluid" alt="Ortographic">
         </div>
         <h1 class="text-center">Ortographic</h1>
-        <p class="text-center">¿Crees tener buena ortografía?</p>
+        <p class="text-center">Donde las letras se vuelven tu juego.</p>
     </div>
 
     <section class="navegacion">
@@ -108,6 +108,31 @@
         </div>
     </section>
 
+    <section id="manual">
+        <div class="container">
+            <h1>Manuales de usuario.</h1>
+            <h5>Descarga cualquiera de nustros manuales.</h5>
+            <div class="container manual-contenedor ">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 col-md-6">
+                            <button type="button" class="btn btn-secondary" id="m1">
+                                <i class="bi bi-journal-arrow-down"></i>
+                                Manual de instalación.
+                            </button>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <button type="button" class="btn btn-secondary" id="m2">
+                                <i class="bi bi-journal-arrow-down"></i>
+                                Manual de usuario.
+                            </button>
+                        </div>
+                    </div>
+                </div>
+           </div>
+        </div>
+    </section>
+
     <section id="galeria">
         <div class="container">
             <h1>Galería de fotos.</h1>
@@ -126,30 +151,6 @@
         </div>
     </section>
 
-    <section id="manual">
-        <div class="container">
-            <h1>Manuales de usuario.</h1>
-            <h5>Descarga cualquiera de nustros manuales.</h5>
-            <div class="container manual-contenedor ">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12 col-md-6">
-                            <button type="button" class="btn btn-secondary">
-                                <i class="bi bi-journal-arrow-down"></i>
-                                Manual de instalación.
-                            </button>
-                        </div>
-                        <div class="col-12 col-md-6">
-                            <button type="button" class="btn btn-secondary">
-                                <i class="bi bi-journal-arrow-down"></i>
-                                Manual de usuario.
-                            </button>
-                        </div>
-                    </div>
-                </div>
-           </div>
-        </div>
-    </section>
 
     <footer id="creditos">
         <div class="container">
@@ -202,7 +203,7 @@
                             </div>
                             <div class="card-body">
                                 <h5 class="card-title">Asesor técnico</h5>
-                                <p class="card-text">Elva Yuridia Morales Luis.</p>
+                                <p class="card-text">Roberto Ruiz Mendoza.</p>
                             </div>
                         </div>
                     </div>
@@ -214,7 +215,7 @@
                             </div>
                             <div class="card-body">
                                 <h5 class="card-title">Asesor metodológico</h5>
-                                <p class="card-text">Roberto Ruiz Mendoza.</p>
+                                <p class="card-text">Elva Yuridia Morales Luis.</p>
                             </div>
                         </div>
                     </div>
@@ -248,6 +249,15 @@
             });
         <?php } ?>
     });
+
+        document.getElementById('m1').addEventListener('click', function (event) {
+            window.location.href = "assets/pdf/manual_instalacion_ort.pdf";
+        });
+
+        document.getElementById('m2').addEventListener('click', function (event) {
+            window.location.href = "assets/pdf/Manual_usuario_ort.pdf";
+        });
+
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
         integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"

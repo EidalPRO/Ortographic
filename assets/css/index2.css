@@ -96,8 +96,7 @@ h1 {
 
 
 .manual-contenedor {
-   /* min-height: 400px; */
-   margin-top: 50px;
+    min-height: 200px;
    display: flex;
    align-items: center;
    justify-content: center;
