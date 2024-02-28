@@ -33,7 +33,7 @@
                         <?php
                         session_start();
                         if (isset($_SESSION['usuario'])) {
-                            echo '<a href="">
+                            echo '<a href="miPerfil.php">
                                     <i class="bi bi-person"></i>
                                 </a>';
                         } else {
@@ -72,14 +72,6 @@
                     </div>
                     <p>Practicar</p>
                 </div>
-                <!-- <div class="col-6 col-md-4 col-lg-2">
-                    <div class="cir d-flex flex-wrap align-items-center justify-content-center">
-                        <a href="">
-                            <i class="bi bi-joystick"></i>
-                        </a>
-                    </div>
-                    <p>Salas privadas</p>
-                </div> -->
                 <div class="col-6 col-md-4 col-lg-2">
                     <div class="cir d-flex flex-wrap align-items-center justify-content-center">
                         <a href="#galeria">
@@ -180,18 +172,6 @@
                             <div class="card-body">
                                 <h5 class="card-title">Autor 2</h5>
                                 <p class="card-text">Maia Michelle Morales Ramíres.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-4">
-                        <div class="card equipo">
-                            <!-- <img src="..." class="card-img-top" alt="..."> -->
-                            <div class="card-top icono-footer text-center">
-                                <i class="bi bi-person-fill"></i>
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title">Autor 3</h5>
-                                <p class="card-text">Yazmín Maldonado López.</p>
                             </div>
                         </div>
                     </div>
