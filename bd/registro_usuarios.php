@@ -4,12 +4,13 @@
     $ejecutar;
     $usuario = $_POST['usuario'];
     $contrasena = $_POST['contrasena'];
+    $correo = $_POST['correo'];
 
     // Encriptamiento de contraseña
     $contrasena = hash('sha512', $contrasena);
 
     // Guardamos datos en la tabla 
-    $query = "INSERT INTO usuarios(nombre, contrasena) VALUES('$usuario', '$contrasena')";
+    $query = "INSERT INTO usuarios(nombre, correo, contrasena, foto, descripcion) VALUES('$usuario', '$correo', '$contrasena', 'perfiles/default.webp', '¿Qué miras?')";
 
     // Verificar que el usuario no se repita en la base de datos
     $verificar_usuario = mysqli_query($conexion, "SELECT * FROM usuarios WHERE nombre='$usuario' ");

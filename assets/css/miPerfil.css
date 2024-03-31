@@ -22,6 +22,12 @@
     text-align: center;
 }
 
+@media screen and (max-width: 418px) {
+    .miPerfil h4 {
+        font-size: 20px;
+    }
+}
+
 .card {
     max-width: 100%;
     border: none;

@@ -7,7 +7,6 @@
     $usuario = $_POST['usuario'];
     $contrasena = $_POST['contrasena'];
 
-    //buscar contraseña encriptada mismo procedimiento
    //buscar contraseña encriptada mismo procedimiento
    $contrasena = hash('sha512', $contrasena);
 

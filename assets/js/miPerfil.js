@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', function () {
         // Obtener el valor del campo de búsqueda
         var busqueda = this.value;
 
-
         // solicitud AJAX con fetch
         fetch('bd/buscarUsuarios.php', {
             method: 'POST',

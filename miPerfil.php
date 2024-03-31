@@ -61,8 +61,10 @@ $conexion->close();
             <div class="card mb-3">
                 <div class="row g-0">
                   <div class="col-md-4">
-                  <img src="bd/<?php echo $usuario['foto']; ?>" class="img-fluid rounded-start" alt="Foto de perfil">
-                    <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop"> <!--este es el boton para abirir el modal -->
+                    <a>
+                        <img src="bd/<?php echo $usuario['foto']; ?>" class="img-fluid rounded-start" alt="Foto de perfil">
+                    <a/>
+                    <button type="button" class="btn btn-outline-dark" id="btn-subirImg" data-bs-toggle="modal" data-bs-target="#staticBackdrop"> <!--este es el boton para abirir el modal -->
                         <i class="bi bi-upload"></i>
                     </button>
                     <!-- Modal -->
@@ -70,6 +72,8 @@ $conexion->close();
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <form id="formSubirImagen" action="bd/subirImagen.php" method="post" enctype="multipart/form-data"> 
+                                    <!-- Campo oculto para enviar el parámetro adicional -->
+                                    <input type="hidden" name="accion" value="btn-subirImg">
                                     <div class="modal-header">
                                         <h5 class="modal-title fs-5" id="exampleModalLabel">Nueva foto de perfil.</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -90,12 +94,69 @@ $conexion->close();
                         </div>
                     </div>
                   </div>
-                  <div class="col-md-8">
+                  <div class="col-12 ">
                     <div class="card-body">
-                      <h3>Nombre de usuario. </h3>
-                      <h5 class="card-title"><?php echo $usuario['nombre']; ?></h5>
+                      <h4>Nombre de usuario. </h4>
+                      <br>
+                      <h4 class="card-title"><?php echo $usuario['nombre']; ?></h4>
                       <p class="card-text"><?php echo $usuario['descripcion']; ?></p>
                       <!-- <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p> -->
+                      <div class="botdes">
+                          <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">
+                            Editar descripción
+                          </button>
+                      </div>
+                        <!-- Modal -->
+                        <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h3 class="modal-title fs-5" id="staticBackdropLabel">Ingrese una descripcion.</h3>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <form id="descripcionForm" action="bd/subirImagen.php" method="post" enctype="multipart/form-data">
+                                        <input type="hidden" name="accion" value="btn-descripcion">
+                                        <div class="modal-body">
+                                            <p><b>Nota:</b> La descripción no debe rebasar los 100 caracteres.</p>
+
+                                            <div class="mb-3">
+                                                <label for="descripcion" class="form-label">Descripción:</label>
+                                                <textarea type="text" class="form-control" id="descripcion" name="descripcion" maxlength="100" required></textarea>
+                                            </div>
+                                            <!-- Mensaje de error para mostrar cuando se encuentran palabras prohibidas -->
+                                            <div id="errorDescripcion" class="text-danger"></div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                            <button type="submit" class="btn btn-primary">Aceptar</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                       </div>
+                       <?php
+                            if (isset($_GET['error'])) {
+                                $error = $_GET['error'];
+                                if ($error === "descripcion_prohibida") {
+                                    echo '
+                                        <br>
+                                        <div class="alert alert-danger" role="alert">
+                                            Evite poner palabras ofencivas!
+                                        </div>
+                                    ';
+                                }
+                            }
+                            // } else if (isset($_GET['exito'])) {
+                            //     $exito = $_GET['exito'];
+                            //     if ($exito === "todo_bien") {
+                            //         echo '
+                            //             <div class="alert alert-danger" role="alert">
+                            //                 TodoBIen!
+                            //             </div>
+                            //         ';
+                            //     }
+                            // }
+                        ?>
                     </div>
                   </div>
                 </div>
@@ -106,12 +167,12 @@ $conexion->close();
     <section>
         <div class="container">
             <div class="row">
-                <div class="col-6">
+                <div class="col-12 col-md-6">
                     <!-- logros -->
                     <p>Logros Obtenidos</p>
                     
                 </div>
-                <div class="col-6">
+                <div class="col-12 col-md-6">
                     <div class="row">
                         <div class="col-12">
                             <label for="formGroupExampleInput" class="form-label">Buscar usuarios</label>

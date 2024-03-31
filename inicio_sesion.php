@@ -43,6 +43,10 @@
             <p class="d-inline-block">¿No tienes cuenta?</p>
             <a href="registro_usuario.html">Crea una aquí</a>
         </div>
+        <div class="nueva-cuenta text-center">
+            <p class="d-inline-block">¿Olvidaste tu contraseña?</p>
+            <a href="">has clic aquí</a>
+        </div>
         <div class="imagen mb-auto">
             <img src="assets/imagenes/logoOrtographic.webp" alt="Logo Ortographic" width="70px">
         </div>
