@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
     <!--CSS-->
     <link rel="stylesheet" href="assets/css/index2.css">
+    <link rel="stylesheet" href="assets/css/miPerfil.css">
     <link rel="shortcut icon" href="assets/imagenes/logoOrtographic.webp" type="image/x-icon">
     <title>Ortographic - Donde las letras se vuelven tu juego.</title>
 </head>
@@ -33,9 +34,10 @@
                         <?php
                         session_start();
                         if (isset($_SESSION['usuario'])) {
-                            echo '<a href="miPerfil.php">
+                            echo '<a type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal">
                                     <i class="bi bi-person"></i>
-                                </a>';
+                                  </a>
+                                ';
                         } else {
                             echo '<a href="inicio_sesion.php"><i class="bi bi-person-check"></i></a>';
                         }
@@ -99,6 +101,87 @@
             </div>
         </div>
     </section>
+
+    <?php
+    //  session_start();
+        include 'bd/conexion_be.php';
+        if(isset($_SESSION['usuario'])) {
+            
+            // nombre de usuario de la sesión
+            $nombreUsuario = $_SESSION['usuario'];
+    
+            // información del usuario
+            $queryUsuario = mysqli_query($conexion, "SELECT * FROM usuarios WHERE nombre = '$nombreUsuario'");
+            $usuario = mysqli_fetch_assoc($queryUsuario);
+    
+            $conexion->close();
+        }               
+    ?>
+
+    <section id="miPerfil">
+        <!-- Modal -->
+        
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title fs-5" id="exampleModalLabel">Mi perfil.</h4>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container">
+                                <div class="card mb-3">
+                                    <div class="row ">
+                                        <div class="col-12 col-lg-4">
+                                            <a class="image-container">
+                                                <img src="bd/<?php echo $usuario['foto']; ?>" class="img-fluid rounded-start" alt="Foto de perfil">
+                                            </a>
+                                            
+                                        </div>
+                                        <div class="col-12 col-lg-6">
+                                            <div class="card-body mi-perfil-datos">
+                                                <h3>Nombre de usuario: </h3>
+                                                <!-- <br> -->
+                                                <i><h4 class="card-title"><?php echo $usuario['nombre']; ?></h4></i>
+                                                <i><p class="card-text"><?php echo $usuario['descripcion']; ?></p></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="container social">
+                                    <div class="row">
+                                        <div class="col-12 col-lg-6">
+                                            <!-- logros -->
+                                            <p>Logros Obtenidos</p>
+                                            
+                                        </div>
+                                        <div class="col-12 col-lg-6">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <label for="formGroupExampleInput" class="form-label">Buscar usuarios</label>
+                                                <input type="text" class="form-control" id="buscarUsuarios" placeholder="Ingresa el nombre de Usuario" aria-label="First name">
+                                                </div>
+                                                <div class="col-12">
+                                                    <ul class="list-group" id="listaUsuarios">
+                                                        <!-- La lista de usuarios se mostrará aquí -->
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+    </section>
+    
 
     <section id="manual">
         <div class="container">
@@ -239,9 +322,7 @@
         });
 
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
-        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 
 </html>

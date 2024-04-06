@@ -1,41 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Arsenal&display=swap');
 
-* {
-    padding: 0;
-    margin: 0;
-    font-size: 18px;
-    /* background: #f5f6f7; */
-    box-sizing: border-box;
-}
-
-.navbar {
-    background-color: rgb(246, 237, 229);
-}
-
-.navbar-collapse {
-    align-items: center;
-    justify-content: space-between;
-}
-
-.miPerfil {
+/* .miPerfil {
     margin: 50px;
     text-align: center;
-}
+} */
 
-@media screen and (max-width: 418px) {
-    .miPerfil h4 {
-        font-size: 20px;
-    }
-}
 
 .card {
-    max-width: 100%;
     border: none;
+    font-family: 'Arsenal', sans-serif;
 }
-.card-body {
-    text-align: left;
+.mi-perfil-datos {
+    /* text-align: center; */
+    font-family: 'Arsenal', sans-serif;
 }
-.card img {
+.image-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.image-container img {
     max-width: 200px;
     border-radius: 50%;
 }
@@ -46,4 +30,10 @@
 .card button:hover {
     background-color: rgb(246, 237, 229);
     color: black;
+}
+
+@media screen and (max-width:991px) {
+    .mi-perfil-datos{
+        text-align: center;
+    }
 }
