@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,6 +12,7 @@
     <link rel="stylesheet" href="assets/css/index2.css">
     <link rel="stylesheet" href="assets/css/miPerfil.css">
     <link rel="shortcut icon" href="assets/imagenes/logoOrtographic.webp" type="image/x-icon">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <title>Ortographic - Donde las letras se vuelven tu juego.</title>
 </head>
 
@@ -36,7 +36,7 @@
                         if (isset($_SESSION['usuario'])) {
                             echo '<a type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal">
                                     <i class="bi bi-person"></i>
-                                  </a>
+                                    </a>
                                 ';
                         } else {
                             echo '<a href="inicio_sesion.php"><i class="bi bi-person-check"></i></a>';
@@ -46,7 +46,8 @@
                     <?php if (!isset($_SESSION['usuario'])) { ?>
                      <p>Iniciar sesión</p>
                     <?php } else { ?>
-                        <p><?php echo $_SESSION['usuario']; ?></p>
+                        <!-- <p><?php echo $_SESSION['usuario']; ?></p> -->
+                        <p>Mi perfil</p>
                     <?php } ?>
                 </div>
                 <div class="col-6 col-md-4 col-lg-2">
@@ -136,7 +137,9 @@
                                             <a class="image-container">
                                                 <img src="bd/<?php echo $usuario['foto']; ?>" class="img-fluid rounded-start" alt="Foto de perfil">
                                             </a>
-                                            
+                                            <button type="button" class="btn btn-outline-dark" id="btn-subirImg" data-bs-toggle="modal" data-bs-target="#staticBackdrop"> <!--este es el boton para abirir el modal -->
+                                                <i class="bi bi-upload"></i>
+                                            </button>
                                         </div>
                                         <div class="col-12 col-lg-6">
                                             <div class="card-body mi-perfil-datos">
@@ -144,6 +147,13 @@
                                                 <!-- <br> -->
                                                 <i><h4 class="card-title"><?php echo $usuario['nombre']; ?></h4></i>
                                                 <i><p class="card-text"><?php echo $usuario['descripcion']; ?></p></i>
+
+                                                <div class="botdes">
+                                                    <br>
+                                                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">
+                                                        Editar descripción
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -180,22 +190,150 @@
                 </div>
             </div>
         
+        
+        <div class="modal-foto-de-perfil">
+            <!-- Modal -->
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <form id="formSubirImagen" action="bd/subirImagen.php" method="post" enctype="multipart/form-data"> 
+                            <!-- Campo oculto para enviar el parámetro adicional -->
+                            <input type="hidden" name="accion" value="btn-subirImg">
+                            <div class="modal-header">
+                                <h3 class="modal-title fs-5" id="staticBackdropLabel">Nueva foto de perfil.</h3>
+                            </div>
+                            <div class="modal-body">
+                                <div class="mb-3">
+                                    <label for="inputImagen" class="form-label">Seleccione una imagen.</label>
+                                    <input class="form-control" type="file" name="foto" required>
+                                </div>
+                                <p><b>Nota:</b> La imagen se subirá con un ancho de 250px y no debe pesar más de 50 MB.</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">Cancelar</button>
+                                <button type="submit" class="btn btn-primary">Aceptar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-descripcion">
+             <!-- Modal -->
+            <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title fs-5" id="staticBackdropLabel">Cambiar descripción.</h3>
+                            <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+                        </div>
+                        <form id="descripcionForm" action="bd/subirImagen.php" method="post" enctype="multipart/form-data">
+                            <input type="hidden" name="accion" value="btn-descripcion">
+                            <div class="modal-body">
+                                <p><b>Nota:</b> La descripción no debe rebasar los 100 caracteres.</p>
+
+                                <div class="mb-3">
+                                    <label for="descripcion" class="form-label">Descripción:</label>
+                                    <textarea type="text" class="form-control" id="descripcion" name="descripcion" maxlength="100" required></textarea>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">Cancelar</button>
+                                <button type="submit" class="btn btn-primary">Aceptar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+        <?php
+            if (isset($_GET['error'])) {
+                $error = $_GET['error'];
+                if ($error === "en-foto") {
+                    echo '
+                        <script>
+                            Swal.fire({
+                                icon: "error",
+                                title: "Oops...",
+                                text: "Algo salio mal, vuelva a intentarlo mas tarde."
+                            });
+                        </script>
+                    ';
+                } else if ($error === 'archivoErroneo') {
+                    echo '
+                        <script>
+                            Swal.fire({
+                                icon: "error",
+                                title: "Formato incorrecto.",
+                                text: "Asegurate de seleccionar una imagen con el formato correcto (png, jpg, jpeg)."
+                            });
+                        </script>
+                    ';
+                } else if ($error === 'archivoPesado') {
+                    echo '
+                        <script>
+                            Swal.fire({
+                                icon: "error",
+                                title: "Imagen muy pesada.",
+                                text: "Asegurate de seleccionar una imagen que no rebase los 50 MB."
+                            });
+                        </script>
+                    ';
+                } else if ($error === 'descripcion_prohibida') {
+                    echo '
+                        <script>
+                            Swal.fire({
+                                icon: "error",
+                                title: "Descrpición ofensiva.",
+                                text: "Evite poner palabras ofensivas en la descripción."
+                            });
+                        </script>
+                    ';
+                }
+            } else if (isset($_GET['exito'])) {
+                $exito = $_GET['exito'];
+                if ($exito === "en-foto") {
+                    echo '
+                        <script>
+                            Swal.fire({
+                                icon: "success",
+                                title: "Foto subida con exito.",
+                                text: "Puedes verla entrando nuevamente a tu perfil."
+                            });
+                        </script>
+                    ';
+                } else if ($exito === 'descripcionExitosa') {
+                    echo '
+                        <script>
+                            Swal.fire({
+                                icon: "success",
+                                title: "Descripción aceptada.",
+                                text: "Puedes verla entrando nuevamente a tu perfil."
+                            });
+                        </script>
+                    ';
+                }
+            }
+        ?>
     </section>
     
 
     <section id="manual">
         <div class="container">
-            <h1>Manuales de usuario.</h1>
-            <h5>Descarga cualquiera de nustros manuales.</h5>
+            <h1>Manual de usuario.</h1>
+            <h5>Descarga nustro manual.</h5>
             <div class="container manual-contenedor ">
                 <div class="container">
                     <div class="row">
-                        <div class="col-12 col-md-6">
+                        <!-- <div class="col-12 col-md-6">
                             <button type="button" class="btn btn-secondary" id="m1">
                                 <i class="bi bi-journal-arrow-down"></i>
                                 Manual de instalación.
                             </button>
-                        </div>
+                        </div> -->
                         <div class="col-12 col-md-6">
                             <button type="button" class="btn btn-secondary" id="m2">
                                 <i class="bi bi-journal-arrow-down"></i>
@@ -292,7 +430,7 @@
     </footer>
     
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="assets/js/index.js"></script>
     <script>
         //aqui la alerta y verificcion
         document.getElementById('boton_practicar').addEventListener('click', function (event) {
@@ -311,16 +449,7 @@
                 window.location.href = 'inicio_sesion.php';
             });
         <?php } ?>
-    });
-
-        document.getElementById('m1').addEventListener('click', function (event) {
-            window.location.href = "assets/pdf/manual_instalacion_ort.pdf";
         });
-
-        document.getElementById('m2').addEventListener('click', function (event) {
-            window.location.href = "assets/pdf/Manual_usuario_ort.pdf";
-        });
-
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>

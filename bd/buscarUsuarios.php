@@ -15,10 +15,11 @@ if (isset($_POST['busqueda'])) {
     while ($fila = $resultado->fetch_assoc()) {
         echo '<li class="list-group-item d-flex justify-content-between align-items-center">';
         echo $fila['nombre'];
-        echo '<button type="button" class="btn btn-info btn-sm">Ver perfil</button>';
-        echo '<button type="button" class="btn btn-success btn-sm">Agregar amigo</button>';
+        echo '<button type="button" class="btn btn-info btn-sm" >Ver perfil</button>';
         echo '</li>';
     }
+
+    
 }
 
 $conexion->close();
