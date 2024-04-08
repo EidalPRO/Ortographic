@@ -14,6 +14,12 @@ body {
     overflow: hidden;
 }
 
+.modal {
+    background-color: #FAF3ED;
+    font-family: 'Arsenal', sans-serif;
+}
+
+
 .modo-contenedor {
     margin-top: 150px;
     max-width: 500px;
