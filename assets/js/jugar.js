@@ -42,6 +42,7 @@ var porcentajeEfectividad;
 var tiempoTotal;
 var tema;
 var temaPorsentaje;
+var dificultad;
 let preguntasMostradas = [];
 let reactivos = [];
 let numerosGenerados = [];
@@ -50,29 +51,35 @@ let numerosGenerados = [];
 function obtenerDatos() {
     // Obtenemos el valor de localStorage
     var miDato = localStorage.getItem('tema');
+    var miDificultad = localStorage.getItem('dificultad');
     switch (miDato) {
-        case "t1": tema = "reactivosacento";
-            temaPorsentaje = "tema_1_porcentaje";
+        case "t1":
+                tema = "acentuacion";
+                temaPorsentaje = "tema_1_porcentaje";
             break;
-        case "t2": tema = "reactivospunto";
-            temaPorsentaje = "tema_2_porcentaje";
+        case "t2": 
+                tema = "puntuacion";
+                temaPorsentaje = "tema_2_porcentaje";
             break;
-        case "t3": tema = "reactivosuso"
-            temaPorsentaje = "tema_3_porcentaje";
+        case "t3": 
+                tema = "letras";
+                temaPorsentaje = "tema_3_porcentaje";
             break;
-        case "t4": tema = "reactivosgramatica";
-            temaPorsentaje = "tema_4_porcentaje";
+        case "t4": 
+                tema = "gramaticaGeneral";
+                temaPorsentaje = "tema_4_porcentaje";
             break;
     }
 
+    console.log(miDificultad);
     console.log(tema);
 
     fetch('bd/reactivos.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body: 'dato=' + tema
+        }, 
+        body: 'dato=' + tema + '&dato2=' + miDificultad // Aquí enviamos tanto el tema como la dificultad
     })
         .then(response => response.json())
         .then(data => {
@@ -139,9 +146,13 @@ function cargarReactivo() {
         preg = reactivos[id].pregunta;
         res = reactivos[id].respuesta;
         d1 = reactivos[id].distractor_1;
-        d2 = reactivos[id].distracor_2;
+        d2 = reactivos[id].distractor_2;
         fed = reactivos[id].feedback;
         ora = reactivos[id].oracionCorrecta;
+
+        console.log(d1);
+        console.log(d2);
+        console.log(res);
 
         mostrarReactivo.innerText = preg;
         if (posCorrect == 'I') {

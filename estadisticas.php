@@ -48,6 +48,7 @@
 
 
     <div class="table-responsive est">
+        <!-- <h5>Estas son las estadísticas generales, las cuales se calculan en función de las respuestas correctas de cada tema en los tres niveles de dificultad (fácil, medio y difícil).</h5> -->
         <?php
             include 'bd/conexion_be.php';
 

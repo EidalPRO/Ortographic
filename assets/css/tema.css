@@ -6,6 +6,7 @@
     font-size: 18px;
     /* background: #f5f6f7; */
     box-sizing: border-box;
+    font-family: 'Arsenal', sans-serif;
 }
 
 .card p {
@@ -64,6 +65,12 @@
     align-items: center;
     justify-content: space-between;
 }
+
+.queestion {
+    background-color: transparent;
+    border: none;
+}
+
 
 @media screen and (max-width: 991px) {
     .card {

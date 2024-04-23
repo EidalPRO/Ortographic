@@ -1,14 +1,14 @@
 <?php
-
 session_start();
 
 include 'conexion_be.php';
 
 if(isset($_POST['dato'])) {
     $miDato = $_POST['dato'];
+    $miDificultad = $_POST['dato2'];
 
-    //Consulta para obtener los reactivos repecto al tema ($miDato)
-    $sql = "SELECT * FROM $miDato";
+    //Consulta para obtener los reactivos repecto al tema ($miDato) y la dificultad ($miDificultad)
+    $sql = "SELECT * FROM reactivos WHERE tipo='$miDato' AND dificultad='$miDificultad'";
     $result = $conexion->query($sql);
 
     if ($result->num_rows > 0) {
