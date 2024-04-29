@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--Boostrap-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
     <!--CSS-->
     <link rel="stylesheet" href="assets/css/index2.css">
@@ -17,7 +16,7 @@
 </head>
 
 <body>
-    
+
     <div class="hero">
         <div class="container-fluid text-center img-contenedor">
             <img src="assets/imagenes/hero-orto.webp" class="img-fluid" alt="Ortographic">
@@ -44,7 +43,7 @@
                         ?>
                     </div>
                     <?php if (!isset($_SESSION['usuario'])) { ?>
-                     <p>Iniciar sesión</p>
+                        <p>Iniciar sesión</p>
                     <?php } else { ?>
                         <!-- <p><?php echo $_SESSION['usuario']; ?></p> -->
                         <p>Mi perfil</p>
@@ -65,7 +64,7 @@
                             </a>
                         </div>
                         <p>Cerrar sesión</p>
-                   <?php } ?>
+                    <?php } ?>
                 </div>
                 <div class="col-6 col-md-4 col-lg-2">
                     <div class="cir d-flex flex-wrap align-items-center justify-content-center">
@@ -105,98 +104,102 @@
 
     <?php
     //  session_start();
-        include 'bd/conexion_be.php';
-        if(isset($_SESSION['usuario'])) {
-            
-            // nombre de usuario de la sesión
-            $nombreUsuario = $_SESSION['usuario'];
-    
-            // información del usuario
-            $queryUsuario = mysqli_query($conexion, "SELECT * FROM usuarios WHERE nombre = '$nombreUsuario'");
-            $usuario = mysqli_fetch_assoc($queryUsuario);
-    
-            $conexion->close();
-        }               
+    include 'bd/conexion_be.php';
+    if (isset($_SESSION['usuario'])) {
+
+        // nombre de usuario de la sesión
+        $nombreUsuario = $_SESSION['usuario'];
+
+        // información del usuario
+        $queryUsuario = mysqli_query($conexion, "SELECT * FROM usuarios WHERE nombre = '$nombreUsuario'");
+        $usuario = mysqli_fetch_assoc($queryUsuario);
+
+        $conexion->close();
+    }
     ?>
 
     <section id="miPerfil">
         <!-- Modal -->
-        
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
-                <div class="modal-dialog modal-xl">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title fs-5" id="exampleModalLabel">Mi perfil.</h4>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="container">
-                                <div class="card mb-3">
-                                    <div class="row ">
-                                        <div class="col-12 col-lg-4">
-                                            <a class="image-container">
-                                                <img src="bd/<?php echo $usuario['foto']; ?>" class="img-fluid rounded-start" alt="Foto de perfil">
-                                            </a>
-                                            <button type="button" class="btn btn-outline-dark" id="btn-subirImg" data-bs-toggle="modal" data-bs-target="#staticBackdrop"> <!--este es el boton para abirir el modal -->
-                                                <i class="bi bi-upload"></i>
-                                            </button>
-                                        </div>
-                                        <div class="col-12 col-lg-6">
-                                            <div class="card-body mi-perfil-datos">
-                                                <h3>Nombre de usuario: </h3>
-                                                <!-- <br> -->
-                                                <i><h4 class="card-title"><?php echo $usuario['nombre']; ?></h4></i>
-                                                <i><p class="card-text"><?php echo $usuario['descripcion']; ?></p></i>
 
-                                                <div class="botdes">
-                                                    <br>
-                                                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">
-                                                        Editar descripción
-                                                    </button>
-                                                </div>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title fs-5" id="exampleModalLabel">Mi perfil.</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container">
+                            <div class="card mb-3">
+                                <div class="row ">
+                                    <div class="col-12 col-lg-4">
+                                        <a class="image-container">
+                                            <img src="bd/<?php echo $usuario['foto']; ?>" class="img-fluid rounded-start" alt="Foto de perfil">
+                                        </a>
+                                        <button type="button" class="btn btn-outline-dark" id="btn-subirImg" data-bs-toggle="modal" data-bs-target="#staticBackdrop"> <!--este es el boton para abirir el modal -->
+                                            <i class="bi bi-upload"></i>
+                                        </button>
+                                    </div>
+                                    <div class="col-12 col-lg-6">
+                                        <div class="card-body mi-perfil-datos">
+                                            <h3>Nombre de usuario: </h3>
+                                            <!-- <br> -->
+                                            <i>
+                                                <h4 class="card-title"><?php echo $usuario['nombre']; ?></h4>
+                                            </i>
+                                            <i>
+                                                <p class="card-text"><?php echo $usuario['descripcion']; ?></p>
+                                            </i>
+
+                                            <div class="botdes">
+                                                <br>
+                                                <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">
+                                                    Editar descripción
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="container social">
-                                    <div class="row">
-                                        <div class="col-12 col-lg-6">
-                                            <!-- logros -->
-                                            <p>Logros Obtenidos</p>
-                                            
-                                        </div>
-                                        <div class="col-12 col-lg-6">
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <label for="formGroupExampleInput" class="form-label">Buscar usuarios</label>
+                            </div>
+                            <div class="container social">
+                                <div class="row">
+                                    <div class="col-12 col-lg-6">
+                                        <!-- logros -->
+                                        <p>Logros Obtenidos</p>
+
+                                    </div>
+                                    <div class="col-12 col-lg-6">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <label for="formGroupExampleInput" class="form-label">Buscar usuarios</label>
                                                 <input type="text" class="form-control" id="buscarUsuarios" placeholder="Ingresa el nombre de Usuario" aria-label="First name">
-                                                </div>
-                                                <div class="col-12">
-                                                    <ul class="list-group" id="listaUsuarios">
-                                                        <!-- La lista de usuarios se mostrará aquí -->
-                                                    </ul>
-                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <ul class="list-group" id="listaUsuarios">
+                                                    <!-- La lista de usuarios se mostrará aquí -->
+                                                </ul>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                            <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
-                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
                     </div>
                 </div>
             </div>
-        
-        
+        </div>
+
+
         <div class="modal-foto-de-perfil">
             <!-- Modal -->
             <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
-                        <form id="formSubirImagen" action="bd/subirImagen.php" method="post" enctype="multipart/form-data"> 
+                        <form id="formSubirImagen" action="bd/subirImagen.php" method="post" enctype="multipart/form-data">
                             <!-- Campo oculto para enviar el parámetro adicional -->
                             <input type="hidden" name="accion" value="btn-subirImg">
                             <div class="modal-header">
@@ -220,7 +223,7 @@
         </div>
 
         <div class="modal-descripcion">
-             <!-- Modal -->
+            <!-- Modal -->
             <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -247,13 +250,13 @@
                 </div>
             </div>
         </div>
-        
+
 
         <?php
-            if (isset($_GET['error'])) {
-                $error = $_GET['error'];
-                if ($error === "en-foto") {
-                    echo '
+        if (isset($_GET['error'])) {
+            $error = $_GET['error'];
+            if ($error === "en-foto") {
+                echo '
                         <script>
                             Swal.fire({
                                 icon: "error",
@@ -262,8 +265,8 @@
                             });
                         </script>
                     ';
-                } else if ($error === 'archivoErroneo') {
-                    echo '
+            } else if ($error === 'archivoErroneo') {
+                echo '
                         <script>
                             Swal.fire({
                                 icon: "error",
@@ -272,8 +275,8 @@
                             });
                         </script>
                     ';
-                } else if ($error === 'archivoPesado') {
-                    echo '
+            } else if ($error === 'archivoPesado') {
+                echo '
                         <script>
                             Swal.fire({
                                 icon: "error",
@@ -282,8 +285,8 @@
                             });
                         </script>
                     ';
-                } else if ($error === 'descripcion_prohibida') {
-                    echo '
+            } else if ($error === 'descripcion_prohibida') {
+                echo '
                         <script>
                             Swal.fire({
                                 icon: "error",
@@ -292,11 +295,11 @@
                             });
                         </script>
                     ';
-                }
-            } else if (isset($_GET['exito'])) {
-                $exito = $_GET['exito'];
-                if ($exito === "en-foto") {
-                    echo '
+            }
+        } else if (isset($_GET['exito'])) {
+            $exito = $_GET['exito'];
+            if ($exito === "en-foto") {
+                echo '
                         <script>
                             Swal.fire({
                                 icon: "success",
@@ -305,8 +308,8 @@
                             });
                         </script>
                     ';
-                } else if ($exito === 'descripcionExitosa') {
-                    echo '
+            } else if ($exito === 'descripcionExitosa') {
+                echo '
                         <script>
                             Swal.fire({
                                 icon: "success",
@@ -315,11 +318,11 @@
                             });
                         </script>
                     ';
-                }
             }
+        }
         ?>
     </section>
-    
+
 
     <section id="manual">
         <div class="container">
@@ -342,14 +345,14 @@
                         </div>
                     </div>
                 </div>
-           </div>
+            </div>
         </div>
     </section>
 
     <section id="galeria">
         <div class="container">
             <h1>Galería de fotos.</h1>
-           <div class="container galeria-contenedor ">
+            <div class="container galeria-contenedor ">
                 <div class="icono text-center">
                     <i class="bi bi-clock-history"></i>
                 </div>
@@ -360,7 +363,7 @@
                         <span class="visually-hidden"></span>
                     </div>
                 </div>
-           </div>
+            </div>
         </div>
     </section>
 
@@ -428,27 +431,27 @@
         </div>
         <div class="derechos-autor text-center">© 2023 Copyright DGETI - CBTis No. 150.</div>
     </footer>
-    
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="assets/js/index.js"></script>
     <script>
         //aqui la alerta y verificcion
-        document.getElementById('boton_practicar').addEventListener('click', function (event) {
-        event.preventDefault();
+        document.getElementById('boton_practicar').addEventListener('click', function(event) {
+            event.preventDefault();
 
-        <?php if (isset($_SESSION['usuario'])) { ?>
-            // Si la sesión está iniciada, redirige a la página de selección de sala
-            window.location.href = "selecionar_sala.php";
-        <?php } else { ?>
-            // Si la sesión no está iniciada, muestra una alerta
-            Swal.fire({
-                icon: "info",
-                title: "Inicia sesión",
-                text: "Debes iniciar sesión para tener una mejor experiencia del juego."
-            }).then(() => {
-                window.location.href = 'inicio_sesion.php';
-            });
-        <?php } ?>
+            <?php if (isset($_SESSION['usuario'])) { ?>
+                // Si la sesión está iniciada, redirige a la página de selección de sala
+                window.location.href = "selecionar_sala.php";
+            <?php } else { ?>
+                // Si la sesión no está iniciada, muestra una alerta
+                Swal.fire({
+                    icon: "info",
+                    title: "Inicia sesión",
+                    text: "Debes iniciar sesión para tener una mejor experiencia del juego."
+                }).then(() => {
+                    window.location.href = 'inicio_sesion.php';
+                });
+            <?php } ?>
         });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

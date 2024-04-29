@@ -12,12 +12,10 @@ if ($nombreUsuario !== null) {
     if ($resultadoConsulta->num_rows > 0) {
         $fila = $resultadoConsulta->fetch_assoc();
         $codigoSala = $fila['codigo_sala'];
-        echo $codigoSala; 
+        echo $codigoSala;
     } else {
         echo "No se encontró el código de sala para este usuario.";
     }
 } else {
     echo "Falta el nombre de usuario en la sesión.";
 }
-
-?>

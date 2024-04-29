@@ -1,8 +1,8 @@
 <?php
-    session_start();
-    if(!isset($_SESSION['usuario'])) {
-        header("location: index.php");
-    }
+session_start();
+if (!isset($_SESSION['usuario'])) {
+    header("location: index.php");
+}
 ?>
 
 <!DOCTYPE html>
@@ -12,10 +12,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--Boostrap-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
-    
+
     <!--CSS-->
     <link rel="stylesheet" href="assets/css/tema.css">
     <link rel="shortcut icon" href="assets/imagenes/logoOrtographic.webp" type="image/x-icon">
@@ -27,8 +26,7 @@
     <nav class="navbar navbar-expand-md navbar-light">
         <div class="container-fluid">
             <h6>Seleccione el tema a practicar</h6>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-toggler"
-                aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-toggler" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbar-toggler">
@@ -136,10 +134,10 @@
                     </div>
                     <div class="modal-body">
                         <p>
-                        Para comenzar a jugar, selecciona uno de los cuatro temas disponibles para practicar. Luego, elige la dificultad con la que deseas enfrentarte. <br>
-                        El porcentaje de efectividad se calculará en función de las respuestas correctas que des en cada tema y en cada una de sus tres diferentes dificultades. Al completar los tres niveles (fácil, medio y difícil) de un tema, el porcentaje de efectividad de ese tema será del 100%.
-                        <br><br>
-                        ¡Diviértete aprendiendo!
+                            Para comenzar a jugar, selecciona uno de los cuatro temas disponibles para practicar. Luego, elige la dificultad con la que deseas enfrentarte. <br>
+                            El porcentaje de efectividad se calculará en función de las respuestas correctas que des en cada tema y en cada una de sus tres diferentes dificultades. Al completar los tres niveles (fácil, medio y difícil) de un tema, el porcentaje de efectividad de ese tema será del 100%.
+                            <br><br>
+                            ¡Diviértete aprendiendo!
                         </p>
                     </div>
                     <div class="modal-footer">
@@ -154,74 +152,72 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script>
         window.onload = () => {
-    obtenerCodigoSala();
-}
+            obtenerCodigoSala();
+        }
 
-const codigoSala = localStorage.getItem('codigoSala');
+        const codigoSala = localStorage.getItem('codigoSala');
 
 
-function obtenerCodigoSala() {
-    fetch(`bd/obtener_codigo_sala.php?codigo_sala=${codigoSala}`)
-        .then(response => response.text()) // Usar response.text() para obtener el código de sala como texto
-        .then(codigoSala => {
-            const codigoSalaElement = document.getElementById('sala');
-            codigoSalaElement.innerText = "Sala: " + codigoSala;
-        })
-        .catch(error => {
-            console.error('Error:', error);
+        function obtenerCodigoSala() {
+            fetch(`bd/obtener_codigo_sala.php?codigo_sala=${codigoSala}`)
+                .then(response => response.text()) // Usar response.text() para obtener el código de sala como texto
+                .then(codigoSala => {
+                    const codigoSalaElement = document.getElementById('sala');
+                    codigoSalaElement.innerText = "Sala: " + codigoSala;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+
+        t1.addEventListener("click", function() {
+            mostrarDificultad('t1');
         });
-}
 
-t1.addEventListener("click", function () {
-    mostrarDificultad('t1');
-});
+        t2.addEventListener("click", function() {
+            mostrarDificultad('t2');
+        });
 
-t2.addEventListener("click", function () {
-    mostrarDificultad('t2');
-});
+        t3.addEventListener("click", function() {
+            mostrarDificultad('t3');
+        });
 
-t3.addEventListener("click", function () {
-    mostrarDificultad('t3');
-});
+        t4.addEventListener("click", function() {
+            mostrarDificultad('t4');
+        });
 
-t4.addEventListener("click", function () {
-    mostrarDificultad('t4');
-});
-
-function mostrarDificultad(tema) {
-    Swal.fire({
-        title: 'Selecciona la dificultad',
-        input: 'select',
-        inputOptions: {
-            'facil': 'Fácil',
-            'medio': 'Medio',
-            'dificil': 'Difícil'
-        },
-        inputPlaceholder: 'Selecciona una opción',
-        showCancelButton: true,
-        cancelButtonText: 'Cancelar',
-        confirmButtonText: 'Aceptar',
-        inputValidator: (value) => {
-            return new Promise((resolve) => {
-                if (value !== '') {
-                    resolve()
-                } else {
-                    resolve('Debes seleccionar una opción')
+        function mostrarDificultad(tema) {
+            Swal.fire({
+                title: 'Selecciona la dificultad',
+                input: 'select',
+                inputOptions: {
+                    'facil': 'Fácil',
+                    'medio': 'Medio',
+                    'dificil': 'Difícil'
+                },
+                inputPlaceholder: 'Selecciona una opción',
+                showCancelButton: true,
+                cancelButtonText: 'Cancelar',
+                confirmButtonText: 'Aceptar',
+                inputValidator: (value) => {
+                    return new Promise((resolve) => {
+                        if (value !== '') {
+                            resolve()
+                        } else {
+                            resolve('Debes seleccionar una opción')
+                        }
+                    })
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    localStorage.setItem('tema', tema);
+                    localStorage.setItem('dificultad', result.value); // Guardar la dificultad seleccionada en localStorage
+                    window.location.href = "juego.php";
                 }
             })
         }
-    }).then((result) => {
-        if (result.isConfirmed) {
-            localStorage.setItem('tema', tema);
-            localStorage.setItem('dificultad', result.value); // Guardar la dificultad seleccionada en localStorage
-            window.location.href = "juego.php";
-        }
-    })
-}
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 
 </html>

@@ -10,20 +10,21 @@ $palabrasProhibidas = array(
 );
 
 
-if(isset($_POST['accion']) && $_POST['accion'] === 'btn-subirImg') {
+if (isset($_POST['accion']) && $_POST['accion'] === 'btn-subirImg') {
     subirImagen($conexion);
-} else if (isset($_POST['accion']) && $_POST['accion'] === 'btn-descripcion'){
+} else if (isset($_POST['accion']) && $_POST['accion'] === 'btn-descripcion') {
     subirDescripcion($conexion, $palabrasProhibidas);
 }
 
 
 
-function subirDescripcion($conexion, $palabrasProhibidas) {
+function subirDescripcion($conexion, $palabrasProhibidas)
+{
     $nombreUsuario = $_SESSION['usuario'];
-    
+
     // Obtener la descripción enviada por el formulario
     $descripcion = $_POST['descripcion'];
-    
+
     // Verificar si la descripción contiene palabras prohibidas
     if (contienePalabrasProhibidas($descripcion, $palabrasProhibidas)) {
         header("location: ../index.php?error=descripcion_prohibida");
@@ -31,18 +32,18 @@ function subirDescripcion($conexion, $palabrasProhibidas) {
     } else {
         // Actualizar la descripción en la base de datos
         $query = mysqli_query($conexion, "UPDATE usuarios SET descripcion = '$descripcion' WHERE nombre = '$nombreUsuario'");
-        
+
         if ($query) {
             header("location: ../index.php?exito=descripcionExitosa");
         }
-    
+
         // Cerrar la conexión
         $conexion->close();
     }
-    
 }
 
-function contienePalabrasProhibidas($texto, $palabrasProhibidas) {
+function contienePalabrasProhibidas($texto, $palabrasProhibidas)
+{
     foreach ($palabrasProhibidas as $palabra) {
         if (stripos($texto, $palabra) !== false) {
             return true;
@@ -51,13 +52,14 @@ function contienePalabrasProhibidas($texto, $palabrasProhibidas) {
     return false;
 }
 
-function subirImagen($conexion) { 
+function subirImagen($conexion)
+{
     // Obtener el nombre de usuario de la sesión
     $nombreUsuario = $_SESSION['usuario'];
-    
+
     // Inicializar la variable de imagen
     $imagen = '';
-    
+
     // Verificar si se ha enviado un archivo
     if (isset($_FILES["foto"])) {
         $file = $_FILES["foto"];
@@ -94,7 +96,7 @@ function subirImagen($conexion) {
         // Actualizar la variable de imagen con la ruta relativa
         $imagen = "perfiles/" . DIRECTORY_SEPARATOR . $nombre;
 
-    
+
 
         // Actualizar la columna 'foto' en la base de datos
         $query = mysqli_query($conexion, "UPDATE usuarios SET foto = '$imagen' WHERE nombre = '$nombreUsuario'");
@@ -112,6 +114,3 @@ function subirImagen($conexion) {
     // Cerrar la conexión
     $conexion->close();
 }
-
-
-?>

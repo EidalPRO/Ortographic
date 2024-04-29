@@ -18,9 +18,6 @@ if (isset($_POST['busqueda'])) {
         echo '<button type="button" class="btn btn-info btn-sm" >Ver perfil</button>';
         echo '</li>';
     }
-
-    
 }
 
 $conexion->close();
-?>

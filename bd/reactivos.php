@@ -3,7 +3,7 @@ session_start();
 
 include 'conexion_be.php';
 
-if(isset($_POST['dato'])) {
+if (isset($_POST['dato'])) {
     $miDato = $_POST['dato'];
     $miDificultad = $_POST['dato2'];
 
@@ -16,7 +16,7 @@ if(isset($_POST['dato'])) {
         $data = array();
 
         //Recorrer los resultados y almacenarlos en el array
-        while($row = $result->fetch_assoc()) {
+        while ($row = $result->fetch_assoc()) {
             $data[] = $row;
         }
 
@@ -30,4 +30,3 @@ if(isset($_POST['dato'])) {
 } else {
     echo "No se recibió ningún dato.";
 }
-?>
