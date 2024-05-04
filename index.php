@@ -52,7 +52,7 @@
                 <div class="col-6 col-md-4 col-lg-2">
                     <?php if (!isset($_SESSION['usuario'])) { ?>
                         <div class="cir d-flex flex-wrap align-items-center justify-content-center">
-                            <a href="registro_usuario.html">
+                            <a href="inicio_sesion.php">
                                 <i class="bi bi-person-add"></i>
                             </a>
                         </div>

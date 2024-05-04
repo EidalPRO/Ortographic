@@ -1,22 +1,22 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const contrasena1 = document.getElementById('exampleInputPassword1');
-    const contrasena2 = document.getElementById('exampleInputPassword2');
+    const contrasena1 = document.getElementById('con1');
+    const contrasena2 = document.getElementById('con2');
     const botonAceptar = document.getElementById('boton-reg');
 
     function verificarContrasenas() {
         if (contrasena1.value !== '' || contrasena2.value !== '') {
             if (contrasena1.value !== contrasena2.value) {
-                contrasena1.style.borderColor = 'red';
-                contrasena2.style.borderColor = 'red';
+                contrasena1.style.backgroundColor = '#ff000042';
+                contrasena2.style.backgroundColor = '#ff000042';
                 botonAceptar.disabled = true;
             } else {
-                contrasena1.style.borderColor = 'green';
-                contrasena2.style.borderColor = 'green';
+                contrasena1.style.backgroundColor = '#00ff2223';
+                contrasena2.style.backgroundColor = '#00ff2223';
                 botonAceptar.disabled = false;
             }
         } else {
-            contrasena1.style.borderColor = '';
-            contrasena2.style.borderColor = '';
+            contrasena1.style.backgroundColor= '';
+            contrasena2.style.backgroundColor = '';
             botonAceptar.disabled = true;
         }
     }
@@ -27,4 +27,16 @@ document.addEventListener("DOMContentLoaded", function () {
     // Event listeners para verificar mientras se escriben las contraseñas
     contrasena1.addEventListener('input', verificarContrasenas);
     contrasena2.addEventListener('input', verificarContrasenas);
+});
+
+const container = document.getElementById('container');
+const registerBtn = document.getElementById('register');
+const loginBtn = document.getElementById('login');
+
+registerBtn.addEventListener('click', () => {
+    container.classList.add("active");
+});
+
+loginBtn.addEventListener('click', () => {
+    container.classList.remove("active");
 });
