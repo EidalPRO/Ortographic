@@ -63,7 +63,9 @@ if (isset($_POST['sala'])) {
         if ($resultado_sala_existente->num_rows > 0) {
             // Si la sala existe, insertar al usuario en la tabla de Estadisticas
             $insertar_usuario_estadisticas = "INSERT INTO estadisticas (usuario_nombre, codigo_sala) VALUES ('$nombre_usuario', '$codigo_sala')";
+            $insertar_usuario_estadisticas2 = "INSERT INTO estadisticasbasicas (usuario_nombre, codigo_sala) VALUES ('$nombre_usuario', '$codigo_sala')";
             $conexion->query($insertar_usuario_estadisticas);
+            $conexion->query($insertar_usuario_estadisticas2);
 
             $insert_usuarioYsala = "INSERT INTO usuarioysala (usuario, codigo_sala) VALUES ('$nombre_usuario', '$codigo_sala')";
             $rest = $conexion->query($insert_usuarioYsala);

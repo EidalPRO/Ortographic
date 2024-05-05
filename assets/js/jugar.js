@@ -28,6 +28,7 @@ const op1 = document.getElementById("op1");
 const op2 = document.getElementById("op2");
 const op3 = document.getElementById("op3");
 const mostrarReactivo = document.getElementById("mostrar-reactivo");
+const contador = document.getElementById("contador");
 var preg;
 var res;
 var d1;
@@ -54,20 +55,20 @@ function obtenerDatos() {
     var miDificultad = localStorage.getItem('dificultad');
     switch (miDato) {
         case "t1":
-                tema = "acentuacion";
-                temaPorsentaje = "tema_1_porcentaje";
+            tema = "acentuacion";
+            temaPorsentaje = "tema_1_porcentaje";
             break;
-        case "t2": 
-                tema = "puntuacion";
-                temaPorsentaje = "tema_2_porcentaje";
+        case "t2":
+            tema = "puntuacion";
+            temaPorsentaje = "tema_2_porcentaje";
             break;
-        case "t3": 
-                tema = "letras";
-                temaPorsentaje = "tema_3_porcentaje";
+        case "t3":
+            tema = "letras";
+            temaPorsentaje = "tema_3_porcentaje";
             break;
-        case "t4": 
-                tema = "gramaticaGeneral";
-                temaPorsentaje = "tema_4_porcentaje";
+        case "t4":
+            tema = "gramaticaGeneral";
+            temaPorsentaje = "tema_4_porcentaje";
             break;
     }
 
@@ -78,7 +79,7 @@ function obtenerDatos() {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
-        }, 
+        },
         body: 'dato=' + tema + '&dato2=' + miDificultad // Aquí enviamos tanto el tema como la dificultad
     })
         .then(response => response.json())
@@ -150,10 +151,7 @@ function cargarReactivo() {
         fed = reactivos[id].feedback;
         ora = reactivos[id].oracionCorrecta;
 
-        console.log(d1);
-        console.log(d2);
-        console.log(res);
-
+        contador.innerText = preguntasMostradas.length + "/" + reactivos.length;
         mostrarReactivo.innerText = preg;
         if (posCorrect == 'I') {
             op1.innerText = res;
@@ -272,7 +270,7 @@ function finalizarJuego() {
 }
 
 // Función para subir datos al servidor
-function subirDatos(tiempoTotal, porcentajeEfectividad) {
+function subirDatos(tiempoTotal, porcentajeEfectividad, porcentajeNivel, dificultad) {
     const datos = {
         tiempoTotal: tiempoTotal,
         porcentajeEfectividad: porcentajeEfectividad,
