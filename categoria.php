@@ -129,10 +129,21 @@ if (!isset($_SESSION['usuario'])) {
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h3 class="modal-title fs-5" id="exampleModalLabel">Acerca de</h3>
+                        <div class="tools">
+                            <div class="circle">
+                                <span class="red box"></span>
+                            </div>
+                            <div class="circle">
+                                <span class="yellow box"></span>
+                            </div>
+                            <div class="circle">
+                                <span class="green box"></span>
+                            </div>
+                        </div>
                         <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
                     </div>
                     <div class="modal-body">
+                        <h4 class="modal-title fs-5" id="exampleModalLabel">Acerca de</h4>
                         <p>
                             Para comenzar a jugar, selecciona uno de los cuatro temas disponibles para practicar. Luego, elige la dificultad con la que deseas enfrentarte. <br>
                             El porcentaje de efectividad se calculará en función de las respuestas correctas que des en cada tema y en cada una de sus tres diferentes dificultades. Al completar los tres niveles (fácil, medio y difícil) de un tema, el porcentaje de efectividad de ese tema será del 100%.
@@ -141,7 +152,14 @@ if (!isset($_SESSION['usuario'])) {
                         </p>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-dark" data-bs-dismiss="modal">
+                            <span class="circle1"></span>
+                            <span class="circle2"></span>
+                            <span class="circle3"></span>
+                            <span class="circle4"></span>
+                            <span class="circle5"></span>
+                            <span class="text">Cerrar</span>
+                        </button>
                         <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
                     </div>
                 </div>
@@ -150,26 +168,8 @@ if (!isset($_SESSION['usuario'])) {
     </section>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="assets/js/estaditicas.js"></script>
     <script>
-        window.onload = () => {
-            obtenerCodigoSala();
-        }
-
-        const codigoSala = localStorage.getItem('codigoSala');
-
-
-        function obtenerCodigoSala() {
-            fetch(`bd/obtener_codigo_sala.php?codigo_sala=${codigoSala}`)
-                .then(response => response.text()) // Usar response.text() para obtener el código de sala como texto
-                .then(codigoSala => {
-                    const codigoSalaElement = document.getElementById('sala');
-                    codigoSalaElement.innerText = "Sala: " + codigoSala;
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
-        }
-
         t1.addEventListener("click", function() {
             mostrarDificultad('t1');
         });

@@ -9,6 +9,23 @@ $datos = json_decode($datosJSON, true);
 $tiempoTranscurridoNuevo = $datos['tiempoTotal'] ?? null;
 $porcentajeEfectividad = $datos['porcentajeEfectividad'] ?? null;
 $tema = $datos['tema'] ?? null;
+$dificultad = $datos['dificultad'] ?? null;
+$tema2;
+
+switch ($tema) {
+    case 'tema_1_porcentaje':
+        $tema2 = ($dificultad == 'facil') ? 'tema1_facil' : ($dificultad == 'medio') ? 'tema1_medio' : 'tema1_dificil';
+        break;
+    case 'tema_2_porcentaje':
+        $tema2 = ($dificultad == 'facil') ? 'tema2_facil' : ($dificultad == 'medio') ? 'tema2_medio' : 'tema2_dificil';
+        break;
+    case 'tema_3_porcentaje':
+        $tema2 = ($dificultad == 'facil') ? 'tema3_facil' : ($dificultad == 'medio') ? 'tema3_medio' : 'tema3_dificil';
+        break;
+    case 'tema_4_porcentaje':
+        $tema2 = ($dificultad == 'facil') ? 'tema4_facil' : ($dificultad == 'medio') ? 'tema4_medio' : 'tema4_dificil';
+        break;
+}
 
 $nombreUsuario = $_SESSION['usuario'] ?? null;
 
@@ -32,7 +49,7 @@ if ($nombreUsuario !== null) {
             $tiempoTotalActualizado = $tiempoTotalExistente + $tiempoTranscurridoNuevo;
 
             // Consulta para actualizar los datos en la tabla Estadisticas
-            $consultaActualizar = "UPDATE estadisticas SET tiempo_total_practica = $tiempoTotalActualizado, $tema = $porcentajeEfectividad WHERE codigo_sala = '$codigoSala' AND usuario_nombre = '$nombreUsuario'";
+            $consultaActualizar = "UPDATE estadisticasbasicas SET $tema2 = $porcentajeEfectividad WHERE codigo_sala = '$codigoSala' AND usuario_nombre = '$nombreUsuario'";
             $resultadoActualizar = $conexion->query($consultaActualizar);
 
             if ($resultadoActualizar) {

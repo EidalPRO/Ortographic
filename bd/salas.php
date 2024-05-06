@@ -25,12 +25,25 @@ if (isset($_POST['sala'])) {
         $resultado_sala_existente = $conexion->query($consulta_sala_existente);
 
         if ($resultado_sala_existente->num_rows > 0) {
+            $consulta_existencia_usuarioEnSala = "SELECT * FROM usuarioysala WHERE usuario = '$nombre_usuario'";
+            $resultado_existencia_usuarioEnSala = $conexion->query($consulta_existencia_usuarioEnSala);
+
+            if (!($resultado_existencia_usuarioEnSala->num_rows > 0)) {
+                $insert_usuarioYsala = "INSERT INTO usuarioysala (usuario, codigo_sala) VALUES ('$nombre_usuario', '$codigo_sala')";
+                $rest = $conexion->query($insert_usuarioYsala);
+            } else {
+                $update_usuarioYsala = "UPDATE usuarioysala SET codigo_sala = '$codigo_sala' WHERE usuario = '$nombre_usuario'";
+                $res = $conexion->query($update_usuarioYsala);
+            }
+
+
             // Si la sala existe, insertar al usuario en la tabla de Estadisticas
             $insertar_usuario_estadisticas = "INSERT INTO estadisticas (usuario_nombre, codigo_sala) VALUES ('$nombre_usuario', '$codigo_sala')";
+            $insertar_usuario_estadisticas2 = "INSERT INTO estadisticasbasicas (usuario_nombre, codigo_sala) VALUES ('$nombre_usuario', '$codigo_sala')";
             $conexion->query($insertar_usuario_estadisticas);
+            $conexion->query($insertar_usuario_estadisticas2);
 
-            $insert_usuarioYsala = "INSERT INTO usuarioysala (usuario, codigo_sala) VALUES ('$nombre_usuario', '$codigo_sala')";
-            $rest = $conexion->query($insert_usuarioYsala);
+
 
             header("location: ../categoria.php?sala_id=$codigo_sala");
             exit();

@@ -16,12 +16,12 @@
 .card {
     margin: 10px;
     height: 202px;
-    
+    /* box-shadow: 0px 0px 10px #000; */
+    transition: 3s;
 }
+
 .card:hover {
-    box-shadow: 0px 0px 50px rgba(0, 0, 0, 1);
-    cursor: pointer;
-    transform: scale(1.05);
+    transform: scale(0.9);
 }
 
 .card:hover figcaption {
@@ -29,7 +29,7 @@
     position: absolute;
 }
 
-.card:hover ~ .card {
+.card:hover~.card {
     font-weight: bold;
     cursor: pointer;
     transform: translateX(22px);
@@ -57,6 +57,7 @@
 #sala {
     cursor: default;
 }
+
 .navbar {
     background-color: rgb(246, 237, 229);
 }
@@ -76,6 +77,7 @@
     .card {
         height: auto;
     }
+
     .carta {
         height: auto;
     }
@@ -93,6 +95,111 @@
         left: 30%;
 
     }
+}
+
+.modal-content {
+    margin: 0;
+    background-color: #F8FBFE;
+    border-radius: 8px;
+    z-index: 1;
+}
+
+.modal-footer {
+    border: none;
+}
+
+.modal-body {
+    margin: 0;
+    border: none;
+}
+
+.modal-header {
+    border: none;
+}
+
+.tools {
+    display: flex;
+    align-items: center;
+    padding: 9px;
+}
+
+.circle {
+    padding: 0 4px;
+}
+
+.box {
+    display: inline-block;
+    align-items: center;
+    width: 10px;
+    height: 10px;
+    padding: 1px;
+    border-radius: 50%;
+}
+
+.red {
+    background-color: #ff605c;
+}
+
+.yellow {
+    background-color: #ffbd44;
+}
+
+.green {
+    background-color: #00ca4e;
+}
+
+.modal button {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: white;
+    background-color: #171717;
+    /* padding: 1em 2em; */
+    border: none;
+    border-radius: .6rem;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.modal button span:not(:nth-child(6)) {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    height: 30px;
+    width: 30px;
+    background-color: #0c66ed;
+    border-radius: 50%;
+    transition: .6s ease;
+}
+
+.modal button span:nth-child(6) {
+    position: relative;
+}
+
+.modal button span:nth-child(1) {
+    transform: translate(-3.3em, -4em);
+}
+
+.modal button span:nth-child(2) {
+    transform: translate(-6em, 1.3em);
+}
+
+.modal button span:nth-child(3) {
+    transform: translate(-.2em, 1.8em);
+}
+
+.modal button span:nth-child(4) {
+    transform: translate(3.5em, 1.4em);
+}
+
+.modal button span:nth-child(5) {
+    transform: translate(3.5em, -3.8em);
+}
+
+.modal button:hover span:not(:nth-child(6)) {
+    transform: translate(-50%, -50%) scale(4);
+    transition: 1.5s ease;
 }
 
 

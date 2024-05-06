@@ -40,10 +40,11 @@ var id
 var acerto = 0;
 let preguntasRespondidas = 0;
 var porcentajeEfectividad;
+var porcentajeNivel;
 var tiempoTotal;
 var tema;
 var temaPorsentaje;
-var dificultad;
+var miDificultad;
 let preguntasMostradas = [];
 let reactivos = [];
 let numerosGenerados = [];
@@ -52,7 +53,7 @@ let numerosGenerados = [];
 function obtenerDatos() {
     // Obtenemos el valor de localStorage
     var miDato = localStorage.getItem('tema');
-    var miDificultad = localStorage.getItem('dificultad');
+    miDificultad = localStorage.getItem('dificultad');
     switch (miDato) {
         case "t1":
             tema = "acentuacion";
@@ -72,8 +73,8 @@ function obtenerDatos() {
             break;
     }
 
-    console.log(miDificultad);
-    console.log(tema);
+    // console.log(miDificultad);
+    // console.log(tema);
 
     fetch('bd/reactivos.php', {
         method: 'POST',
@@ -116,12 +117,13 @@ function cargarReactivo() {
         // progressBar.style.width = 100 + '%';
         porcentajeEfectividad = (acerto * 100) / reactivos.length;
         // progressBar.setAttribute('aria-valuenow', porcentaje);
+
         finalizarJuego();
-        subirDatos(tiempoTotal, porcentajeEfectividad);
+        subirDatos(tiempoTotal, porcentajeEfectividad, miDificultad);
         Swal.fire({
             icon: 'info',
             title: 'Preguntas completadas',
-            text: `Este fue tu porsentaje de efectividad: ${porcentajeEfectividad}% \n
+            text: `Este fue tu porsentaje de efectividad en la dificultad ${miDificultad}: ${porcentajeEfectividad}% \n
             \nTu tiempo total en responder las preguntas fue de ${tiempoTotal} segundos.`
 
         }).then(() => {
@@ -141,6 +143,7 @@ function cargarReactivo() {
 
         // console.log(n);
         // console.log(posCorrect);
+        
 
         // console.log(id);
 
@@ -270,11 +273,12 @@ function finalizarJuego() {
 }
 
 // Función para subir datos al servidor
-function subirDatos(tiempoTotal, porcentajeEfectividad, porcentajeNivel, dificultad) {
+function subirDatos(tiempoTotal, porcentajeEfectividad, miDificultad) {
     const datos = {
         tiempoTotal: tiempoTotal,
         porcentajeEfectividad: porcentajeEfectividad,
-        tema: temaPorsentaje
+        tema: temaPorsentaje,
+        dificultad: miDificultad
     };
 
     const opciones = {
