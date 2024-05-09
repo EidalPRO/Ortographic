@@ -60,6 +60,7 @@
 }
 
 .reac button {
+    text-transform: none;
     width: 80%;
     margin: 10px;
     margin-top: 20px;

@@ -1,4 +1,4 @@
-localStorage.setItem('codigoSala', A0123);
+localStorage.setItem('codigoSala', 'A0123');
 
 // document.getElementById('boton_global').addEventListener('click', function (event) {
 //     event.preventDefault();

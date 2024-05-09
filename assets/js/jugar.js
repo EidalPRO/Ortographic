@@ -116,12 +116,13 @@ function cargarReactivo() {
     if (verificarFinJuego()) {
         // progressBar.style.width = 100 + '%';
         porcentajeEfectividad = (acerto * 100) / reactivos.length;
+        porcentajeEfectividad = Number(porcentajeEfectividad.toFixed(2));
         // progressBar.setAttribute('aria-valuenow', porcentaje);
 
         finalizarJuego();
         subirDatos(tiempoTotal, porcentajeEfectividad, miDificultad);
         Swal.fire({
-            icon: 'info',
+            icon: "success",
             title: 'Preguntas completadas',
             text: `Este fue tu porsentaje de efectividad en la dificultad ${miDificultad}: ${porcentajeEfectividad}% \n
             \nTu tiempo total en responder las preguntas fue de ${tiempoTotal} segundos.`
@@ -143,7 +144,7 @@ function cargarReactivo() {
 
         // console.log(n);
         // console.log(posCorrect);
-        
+
 
         // console.log(id);
 
@@ -270,6 +271,8 @@ function finalizarJuego() {
 
     tiempoTotal = (tiempoFinal - tiempoInicio) / 1000; // Calcula la diferencia de tiempo
     // Convierte a segundos: tiempoTotal / 1000
+    // Limita el tiempo total a dos decimales y muestra solo las cuatro cifras significativas
+    tiempoTotal = Number(tiempoTotal.toFixed(2));
 }
 
 // Función para subir datos al servidor

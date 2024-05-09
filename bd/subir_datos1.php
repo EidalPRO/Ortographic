@@ -14,41 +14,48 @@ $tema2;
 
 switch ($tema) {
     case 'tema_1_porcentaje':
-        $tema2 = ($dificultad == 'facil') ? 'tema1_facil' : ($dificultad == 'medio') ? 'tema1_medio' : 'tema1_dificil';
+        if ($dificultad == 'facil') {
+            $tema2 = 'tema1_facil';
+        } else {
+            $tema2 = ($dificultad == 'medio') ? 'tema1_medio' : 'tema1_dificil';
+        }
         break;
     case 'tema_2_porcentaje':
-        $tema2 = ($dificultad == 'facil') ? 'tema2_facil' : ($dificultad == 'medio') ? 'tema2_medio' : 'tema2_dificil';
+        if ($dificultad == 'facil') {
+            $tema2 = 'tema2_facil';
+        } else {
+            $tema2 = ($dificultad == 'medio') ? 'tema2_medio' : 'tema2_dificil';
+        }
         break;
     case 'tema_3_porcentaje':
-        $tema2 = ($dificultad == 'facil') ? 'tema3_facil' : ($dificultad == 'medio') ? 'tema3_medio' : 'tema3_dificil';
+        if ($dificultad == 'facil') {
+            $tema2 = 'tema3_facil';
+        } else {
+            $tema2 = ($dificultad == 'medio') ? 'tema3_medio' : 'tema3_dificil';
+        }
         break;
     case 'tema_4_porcentaje':
-        $tema2 = ($dificultad == 'facil') ? 'tema4_facil' : ($dificultad == 'medio') ? 'tema4_medio' : 'tema4_dificil';
+        if ($dificultad == 'facil') {
+            $tema2 = 'tema4_facil';
+        } else {
+            $tema2 = ($dificultad == 'medio') ? 'tema4_medio' : 'tema4_dificil';
+        }
         break;
 }
 
-$nombreUsuario = $_SESSION['usuario'] ?? null;
+if ($tema2 && $tiempoTranscurridoNuevo !== null && $porcentajeEfectividad !== null) {
+    $nombreUsuario = $_SESSION['usuario'] ?? null;
 
-if ($nombreUsuario !== null) {
-    // Consulta para obtener el código de sala del usuario
-    $consultaCodigoSala = "SELECT codigo_sala FROM usuarioysala WHERE usuario = '$nombreUsuario'";
-    $resultadoConsultaCodigo = $conexion->query($consultaCodigoSala);
+    if ($nombreUsuario !== null) {
+        // Obtener el código de sala del usuario
+        $consultaCodigoSala = "SELECT codigo_sala FROM usuarioysala WHERE usuario = '$nombreUsuario'";
+        $resultadoConsultaCodigo = $conexion->query($consultaCodigoSala);
 
-    if ($resultadoConsultaCodigo->num_rows > 0) {
-        $fila = $resultadoConsultaCodigo->fetch_assoc();
-        $codigoSala = $fila['codigo_sala'];
+        if ($resultadoConsultaCodigo && $resultadoConsultaCodigo->num_rows > 0) {
+            $fila = $resultadoConsultaCodigo->fetch_assoc();
+            $codigoSala = $fila['codigo_sala'];
 
-        $consultaTiempoExistente = "SELECT tiempo_total_practica FROM estadisticas WHERE usuario_nombre = '$nombreUsuario' AND codigo_sala = '$codigoSala'";
-        $resultadoTiempoExistente = $conexion->query($consultaTiempoExistente);
-
-        if ($resultadoTiempoExistente->num_rows > 0) {
-            $filaTiempo = $resultadoTiempoExistente->fetch_assoc();
-            $tiempoTotalExistente = $filaTiempo['tiempo_total_practica'];
-
-            // Sumar el tiempo existente con el nuevo tiempo
-            $tiempoTotalActualizado = $tiempoTotalExistente + $tiempoTranscurridoNuevo;
-
-            // Consulta para actualizar los datos en la tabla Estadisticas
+            // Actualizar los datos en la tabla estadisticasbasicas
             $consultaActualizar = "UPDATE estadisticasbasicas SET $tema2 = $porcentajeEfectividad WHERE codigo_sala = '$codigoSala' AND usuario_nombre = '$nombreUsuario'";
             $resultadoActualizar = $conexion->query($consultaActualizar);
 
@@ -61,15 +68,15 @@ if ($nombreUsuario !== null) {
             }
         } else {
             $response['success'] = false;
-            $response['message'] = "No se encontró el tiempo total de práctica para este usuario.";
+            $response['message'] = "No se encontró el código de sala para este usuario.";
         }
     } else {
         $response['success'] = false;
-        $response['message'] = "No se encontró el código de sala para este usuario.";
+        $response['message'] = "Falta el nombre de usuario en la sesión.";
     }
 } else {
     $response['success'] = false;
-    $response['message'] = "Falta el nombre de usuario en la sesión.";
+    $response['message'] = "Datos insuficientes para realizar la actualización.";
 }
 
 header('Content-Type: application/json');
