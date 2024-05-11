@@ -78,9 +78,9 @@ if (!isset($_SESSION['usuario'])) {
                             </div>
                             <div class="col-8 cuerpo-carta">
                                 <div class="card-body carta">
-                                    <h5 class="card-title">Puntuación.</h5>
-                                    <p class="card-text">Uso adecuado de signos de puntuación como punto, coma, punto y
-                                        coma, etc., para separar y organizar oraciones y párrafos.</p>
+                                    <h5 class="card-title">Uso de letras.</h5>
+                                    <p class="card-text">Normas para el uso adecuado de las letras, como la grafía
+                                        correcta de las palabras, uso de mayúsculas y minúsculas, etc.</p>
                                 </div>
                             </div>
                         </div>
@@ -94,9 +94,9 @@ if (!isset($_SESSION['usuario'])) {
                             </div>
                             <div class="col-8 cuerpo-carta">
                                 <div class="card-body carta">
-                                    <h5 class="card-title">Uso de letras.</h5>
-                                    <p class="card-text">Normas para el uso adecuado de las letras, como la grafía
-                                        correcta de las palabras, uso de mayúsculas y minúsculas, etc.</p>
+                                    <h5 class="card-title">Concordancia.</h5>
+                                    <p class="card-text">Se trata de los errores de concordancia entre sustantivos y adjetivos, sujetos y predicados, así como entre género y número.</p>
+
                                 </div>
                             </div>
                         </div>

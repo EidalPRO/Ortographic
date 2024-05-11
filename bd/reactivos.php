@@ -8,7 +8,7 @@ if (isset($_POST['dato'])) {
     $miDificultad = $_POST['dato2'];
 
     //Consulta para obtener los reactivos repecto al tema ($miDato) y la dificultad ($miDificultad)
-    $sql = "SELECT * FROM reactivos WHERE tipo='$miDato' AND dificultad='$miDificultad'";
+    $sql = "SELECT * FROM reactivos WHERE dificultad='$miDificultad' AND  tipo='$miDato'";
     $result = $conexion->query($sql);
 
     if ($result->num_rows > 0) {
@@ -30,3 +30,4 @@ if (isset($_POST['dato'])) {
 } else {
     echo "No se recibió ningún dato.";
 }
+$conexion->close(); // Cerrar conexión a la base de datos

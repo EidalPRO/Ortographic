@@ -19,3 +19,4 @@ if ($nombreUsuario !== null) {
 } else {
     echo "Falta el nombre de usuario en la sesión.";
 }
+$conexion->close(); // Cerrar conexión a la base de datos

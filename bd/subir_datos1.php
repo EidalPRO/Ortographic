@@ -56,12 +56,66 @@ if ($tema2 && $tiempoTranscurridoNuevo !== null && $porcentajeEfectividad !== nu
             $codigoSala = $fila['codigo_sala'];
 
             // Actualizar los datos en la tabla estadisticasbasicas
-            $consultaActualizar = "UPDATE estadisticasbasicas SET $tema2 = $porcentajeEfectividad WHERE codigo_sala = '$codigoSala' AND usuario_nombre = '$nombreUsuario'";
+            $consultaActualizar = "UPDATE estadisticasbasicas SET $tema2 = '$porcentajeEfectividad' WHERE codigo_sala = '$codigoSala' AND usuario_nombre = '$nombreUsuario'";
             $resultadoActualizar = $conexion->query($consultaActualizar);
+
+            $consultaObtenerEstadisticas = "SELECT tiempo_total_practica FROM estadisticas WHERE usuario_nombre = '$nombreUsuario' AND codigo_sala = '$codigoSala'";
+            $resultadoObtenerEstadisticas = $conexion->query($consultaObtenerEstadisticas);
+
+            if ($resultadoObtenerEstadisticas->num_rows > 0) {
+                $fila2 = $resultadoObtenerEstadisticas->fetch_assoc();
+                $tiempoActual = $fila2['tiempo_total_practica'];
+                $tiempoActualizado = $tiempoActual + $tiempoTranscurridoNuevo;
+
+                $consultaBasica = "SELECT * FROM estadisticasbasicas WHERE codigo_sala = '$codigoSala' AND usuario_nombre = '$nombreUsuario'";
+                $resultadoBasico = $conexion->query($consultaBasica);
+
+                if ($resultadoBasico->num_rows > 0) {
+                    // Array para almacenar los datos
+                    $datosBasicos = $resultadoBasico->fetch_assoc();
+
+                    $sumaEstadisticas = 0;
+
+                    switch ($tema) {
+                        case 'tema_1_porcentaje':
+                            // Sumar los valores de los campos relacionados con el tema 1
+                            $sumaEstadisticas = (($datosBasicos['tema1_facil'] + $datosBasicos['tema1_medio'] + $datosBasicos['tema1_dificil'])/3);
+                            break;
+                        case 'tema_2_porcentaje':
+                            // Sumar los valores de los campos relacionados con el tema 2
+                            $sumaEstadisticas = (($datosBasicos['tema2_facil'] + $datosBasicos['tema2_medio'] + $datosBasicos['tema2_dificil'])/3);
+                            break;
+                        case 'tema_3_porcentaje':
+                            // Sumar los valores de los campos relacionados con el tema 3
+                            $sumaEstadisticas = (($datosBasicos['tema3_facil'] + $datosBasicos['tema3_medio'] + $datosBasicos['tema3_dificil'])/3);
+                            break;
+                        case 'tema_4_porcentaje':
+                            // Sumar los valores de los campos relacionados con el tema 4
+                            $sumaEstadisticas = (($datosBasicos['tema4_facil'] + $datosBasicos['tema4_medio'] + $datosBasicos['tema4_dificil'])/3);
+                            break;
+                    }
+
+                    $actualizar = "UPDATE estadisticas SET $tema = '$sumaEstadisticas', tiempo_total_practica = '$tiempoActualizado' WHERE codigo_sala = '$codigoSala' AND usuario_nombre ='$nombreUsuario'";
+                    $actualizarRes = $conexion->query($actualizar);
+                    if ($actualizarRes) {
+                        $response['success'] = true;
+                        $response['message'] = "Datos actualizados correctamente en la tabla Estadisticas.";
+                    } else {
+                        $response['success'] = false;
+                        $response['message'] = "Error al actualizar datos: " . $conexion->error;
+                    }
+                } else {
+                    $response['success'] = false;
+                    $response['message'] = "No se encontró el código de sala para este usuario.";
+                }
+            } else {
+                $response['success'] = false;
+                $response['message'] = "No se encontró el código de sala para este usuario.";
+            }
 
             if ($resultadoActualizar) {
                 $response['success'] = true;
-                $response['message'] = "Datos actualizados correctamente en la tabla Estadisticas.";
+                $response['message'] = "Datos actualizados correctamente en la tabla Estadisticas Basicas.";
             } else {
                 $response['success'] = false;
                 $response['message'] = "Error al actualizar datos: " . $conexion->error;
@@ -81,3 +135,5 @@ if ($tema2 && $tiempoTranscurridoNuevo !== null && $porcentajeEfectividad !== nu
 
 header('Content-Type: application/json');
 echo json_encode($response);
+
+$conexion->close(); // Cerrar conexión a la base de datos

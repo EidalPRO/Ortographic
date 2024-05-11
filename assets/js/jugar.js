@@ -53,6 +53,7 @@ let numerosGenerados = [];
 function obtenerDatos() {
     // Obtenemos el valor de localStorage
     var miDato = localStorage.getItem('tema');
+    console.log(miDato);
     miDificultad = localStorage.getItem('dificultad');
     switch (miDato) {
         case "t1":
@@ -60,11 +61,11 @@ function obtenerDatos() {
             temaPorsentaje = "tema_1_porcentaje";
             break;
         case "t2":
-            tema = "puntuacion";
+            tema = "letras";
             temaPorsentaje = "tema_2_porcentaje";
             break;
         case "t3":
-            tema = "letras";
+            tema = "concordancia";
             temaPorsentaje = "tema_3_porcentaje";
             break;
         case "t4":
@@ -296,9 +297,10 @@ function subirDatos(tiempoTotal, porcentajeEfectividad, miDificultad) {
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                console.log('Datos actualizados correctamente:', data.message);
+                // console.log('Datos actualizados correctamente:', data.message);
             } else {
                 console.error('Error al actualizar datos:', data.message);
+
             }
         })
         .catch(error => {

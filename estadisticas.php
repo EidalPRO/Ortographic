@@ -67,7 +67,7 @@ if (!isset($_SESSION['usuario'])) {
                 if ($resultado->num_rows > 0) {
                     echo "<h5 class='text-center'>Estadiaticas generales (Sumatioria de las 3 dificultades)</5h>";
                     echo "<table border='1' class='table table-light table-striped'>";
-                    echo "<thead><tr><th scope='col'>Usuario</th><th scope='col'>Acentuación</th><th scope='col'>Puntuación</th><th scope='col'>Uso de letras</th><th scope='col'>Gramatica en general</th><th scope='col'>Tiempo de uso</th></tr></thead>";
+                    echo "<thead><tr><th scope='col'>Usuario</th><th scope='col'>Acentuación</th><th scope='col'>Uso de letras</th><th scope='col'>Concordancia</th><th scope='col'>Gramatica en general</th><th scope='col'>Tiempo de uso</th></tr></thead>";
 
                     echo "<tbody>";
                     while ($fila = $resultado->fetch_assoc()) {
@@ -103,8 +103,8 @@ if (!isset($_SESSION['usuario'])) {
                     // Sección para datos de dificultad Fácil
                     echo "<h5 class='text-center'>Estadisticas de todos los temas en su dificultad facil.</h5>";
                     echo "<table border='1' class='table table-light table-striped'>";
-                    echo "<thead><tr><th scope='col'>Usuario</th><th scope='col'>Acentuación</th><th scope='col'>Puntuación</th><th scope='col'>Uso de letras</th><th scope='col'>Gramatica en general</th></tr></thead>";
-                    echo "<tbody>";
+                    echo "<thead><tr><th scope='col'>Usuario</th><th scope='col'>Acentuación</th><th scope='col'>Uso de letras</th><th scope='col'>Concordancia</th><th scope='col'>Gramatica en general</th></tr></thead>";
+                    echo "<tbody class='text-center'>";
                     foreach ($datosBasicos as $datos) {
                         echo "<tr>";
                         echo "<th scope='row'>" . $datos['usuario_nombre'] . "</th>";
@@ -120,8 +120,8 @@ if (!isset($_SESSION['usuario'])) {
                     // Sección para datos de dificultad Medio
                     echo "<h5 class='text-center'>Estadisticas de todos los temas en su dificultad medio.</h5>";
                     echo "<table border='1' class='table table-light table-striped'>";
-                    echo "<thead><tr><th scope='col'>Usuario</th><th scope='col'>Acentuación</th><th scope='col'>Puntuación</th><th scope='col'>Uso de letras</th><th scope='col'>Gramatica en general</th></tr></thead>";
-                    echo "<tbody>";
+                    echo "<thead><tr><th scope='col'>Usuario</th><th scope='col'>Acentuación</th><th scope='col'>Uso de letras</th><th scope='col'>Concordancia</th><th scope='col'>Gramatica en general</th></tr></thead>";
+                    echo "<tbody class='text-center'>";
                     foreach ($datosBasicos as $datos) {
                         echo "<tr>";
                         echo "<th scope='row'>" . $datos['usuario_nombre'] . "</th>";
@@ -137,8 +137,8 @@ if (!isset($_SESSION['usuario'])) {
                     // Sección para datos de dificultad Difícil
                     echo "<h5 class='text-center'>Estadisticas de todos los temas en su dificultad dificil.</h5>";
                     echo "<table border='1' class='table table-light table-striped'>";
-                    echo "<thead><tr><th scope='col'>Usuario</th><th scope='col'>Acentuación</th><th scope='col'>Puntuación</th><th scope='col'>Uso de letras</th><th scope='col'>Gramatica en general</th></tr></thead>";
-                    echo "<tbody>";
+                    echo "<thead><tr><th scope='col'>Usuario</th><th scope='col'>Acentuación</th><th scope='col'>Uso de letras</th><th scope='col'>Concordancia</th><th scope='col'>Gramatica en general</th></tr></thead>";
+                    echo "<tbody class='text-center'>";
                     foreach ($datosBasicos as $datos) {
                         echo "<tr>";
                         echo "<th scope='row'>" . $datos['usuario_nombre'] . "</th>";
