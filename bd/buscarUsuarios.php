@@ -15,7 +15,7 @@ if (isset($_POST['busqueda'])) {
     while ($fila = $resultado->fetch_assoc()) {
         echo '<li class="list-group-item d-flex justify-content-between align-items-center">';
         echo $fila['nombre'];
-        echo '<button type="button" class="btn btn-info btn-sm" >Ver perfil</button>';
+        echo '<a href="perfil_usuario.php?id=' . $fila['id_usuario'] . '" class="btn btn-info btn-sm">Ver perfil</a>';
         echo '</li>';
     }
 }

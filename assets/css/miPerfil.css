@@ -10,30 +10,35 @@
     border: none;
     font-family: 'Arsenal', sans-serif;
 }
+
 .mi-perfil-datos {
     /* text-align: center; */
     font-family: 'Arsenal', sans-serif;
 }
+
 .image-container {
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
 .image-container img {
     max-width: 200px;
     border-radius: 50%;
 }
+
 .card button {
     border: none;
     display: block;
 }
+
 .card button:hover {
     background-color: rgb(246, 237, 229);
     color: black;
 }
 
 @media screen and (max-width:991px) {
-    .mi-perfil-datos{
+    .mi-perfil-datos {
         text-align: center;
     }
 }

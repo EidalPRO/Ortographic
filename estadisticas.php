@@ -66,6 +66,7 @@ if (!isset($_SESSION['usuario'])) {
 
                 if ($resultado->num_rows > 0) {
                     echo "<h5 class='text-center'>Estadiaticas generales (Sumatioria de las 3 dificultades)</5h>";
+                    echo "<div class='table-responsive'>";
                     echo "<table border='1' class='table table-light table-striped'>";
                     echo "<thead><tr><th scope='col'>Usuario</th><th scope='col'>Acentuación</th><th scope='col'>Uso de letras</th><th scope='col'>Concordancia</th><th scope='col'>Gramatica en general</th><th scope='col'>Tiempo de uso</th></tr></thead>";
 
@@ -82,6 +83,7 @@ if (!isset($_SESSION['usuario'])) {
                     }
                     echo "</tbody>";
                     echo "</table>";
+                    echo "</div>";
                 } else {
                     echo "No se encontraron registros para esta sala.";
                 }
@@ -102,6 +104,7 @@ if (!isset($_SESSION['usuario'])) {
 
                     // Sección para datos de dificultad Fácil
                     echo "<h5 class='text-center'>Estadisticas de todos los temas en su dificultad facil.</h5>";
+                    echo "<div class='table-responsive'>";
                     echo "<table border='1' class='table table-light table-striped'>";
                     echo "<thead><tr><th scope='col'>Usuario</th><th scope='col'>Acentuación</th><th scope='col'>Uso de letras</th><th scope='col'>Concordancia</th><th scope='col'>Gramatica en general</th></tr></thead>";
                     echo "<tbody class='text-center'>";
@@ -116,9 +119,11 @@ if (!isset($_SESSION['usuario'])) {
                     }
                     echo "</tbody>";
                     echo "</table>";
+                    echo "</div>";
 
                     // Sección para datos de dificultad Medio
                     echo "<h5 class='text-center'>Estadisticas de todos los temas en su dificultad medio.</h5>";
+                    echo "<div class='table-responsive'>";
                     echo "<table border='1' class='table table-light table-striped'>";
                     echo "<thead><tr><th scope='col'>Usuario</th><th scope='col'>Acentuación</th><th scope='col'>Uso de letras</th><th scope='col'>Concordancia</th><th scope='col'>Gramatica en general</th></tr></thead>";
                     echo "<tbody class='text-center'>";
@@ -133,9 +138,11 @@ if (!isset($_SESSION['usuario'])) {
                     }
                     echo "</tbody>";
                     echo "</table>";
+                    echo "</div>";
 
                     // Sección para datos de dificultad Difícil
                     echo "<h5 class='text-center'>Estadisticas de todos los temas en su dificultad dificil.</h5>";
+                    echo "<div class='table-responsive'>";
                     echo "<table border='1' class='table table-light table-striped'>";
                     echo "<thead><tr><th scope='col'>Usuario</th><th scope='col'>Acentuación</th><th scope='col'>Uso de letras</th><th scope='col'>Concordancia</th><th scope='col'>Gramatica en general</th></tr></thead>";
                     echo "<tbody class='text-center'>";
@@ -150,6 +157,7 @@ if (!isset($_SESSION['usuario'])) {
                     }
                     echo "</tbody>";
                     echo "</table>";
+                    echo "</div>";
                 } else {
                     echo "No se encontraron registros de estadísticas básicas para esta sala.";
                 }

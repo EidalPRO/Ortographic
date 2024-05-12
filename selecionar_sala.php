@@ -18,7 +18,7 @@ if (!isset($_SESSION['usuario'])) {
     <!--CSS-->
     <link rel="stylesheet" href="assets/css/salas2.css">
     <link rel="shortcut icon" href="assets/imagenes/logoOrtographic.webp" type="image/x-icon">
-    <title>Ortographic - ¿Crees tener buena ortografía?</title>
+    <title>Ortographic - Donde las letras se vuelven tu juego.</title>
 </head>
 
 <body>
@@ -63,12 +63,23 @@ if (!isset($_SESSION['usuario'])) {
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="modal-title fs-5" id="staticBackdropLabel">Salas privadas</h3>
+                    <div class="tools">
+                        <div class="circle">
+                            <span class="red box"></span>
+                        </div>
+                        <div class="circle">
+                            <span class="yellow box"></span>
+                        </div>
+                        <div class="circle">
+                            <span class="green box"></span>
+                        </div>
+                    </div>
                     <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
                 </div>
                 <div class="modal-body">
                     <div class="container">
                         <div class="row">
+                            <h3 class="modal-title fs-5" id="staticBackdropLabel">Salas privadas</h3>
                             <h5>Disfruta jugando en una sala privada con tus amigos, puedes crear una sala privada o unirte a una utilizando su id.</h5>
                             <br>
                             <div class="col-12 col-lg-6">
@@ -93,7 +104,14 @@ if (!isset($_SESSION['usuario'])) {
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Regresar</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        <span class="circle1"></span>
+                        <span class="circle2"></span>
+                        <span class="circle3"></span>
+                        <span class="circle4"></span>
+                        <span class="circle5"></span>
+                        <span class="text">Regresar</span>
+                    </button>
                     <!-- <button type="button" class="btn btn-primary">Understood</button> -->
                 </div>
             </div>
@@ -105,14 +123,32 @@ if (!isset($_SESSION['usuario'])) {
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="modal-title fs-5" id="staticBackdropLabel">Sala nueva</h3>
+                    <div class="tools">
+                        <div class="circle">
+                            <span class="red box"></span>
+                        </div>
+                        <div class="circle">
+                            <span class="yellow box"></span>
+                        </div>
+                        <div class="circle">
+                            <span class="green box"></span>
+                        </div>
+                    </div>
                     <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
                 </div>
                 <div class="modal-body">
+                    <h3 class="modal-title fs-5" id="staticBackdropLabel">Sala nueva</h3>
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Cancelar</button>
+                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        <span class="circle1"></span>
+                        <span class="circle2"></span>
+                        <span class="circle3"></span>
+                        <span class="circle4"></span>
+                        <span class="circle5"></span>
+                        <span class="text">Cancelar</span>
+                    </button>
                     <!-- <button type="button" class="btn btn-primary">Understood</button> -->
                 </div>
             </div>
@@ -123,21 +159,45 @@ if (!isset($_SESSION['usuario'])) {
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="modal-title fs-5" id="staticBackdropLabel">Sala existente</h3>
+                    <div class="tools">
+                        <div class="circle">
+                            <span class="red box"></span>
+                        </div>
+                        <div class="circle">
+                            <span class="yellow box"></span>
+                        </div>
+                        <div class="circle">
+                            <span class="green box"></span>
+                        </div>
+                    </div>
                     <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
                 </div>
                 <div class="modal-body">
+                    <h3 class="modal-title fs-5" id="staticBackdropLabel">Sala existente</h3>
                     <h5>Ingresa el id de la sala</h5>
                     <form action="bd/salas.php" method="post" enctype="multipart/form-data">
                         <div class="mb-3">
                             <!-- <label for="exampleInputEmail1" class="form-label">Email address</label> -->
                             <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="sala">
                         </div>
-                        <button type="submit" class="btn btn-primary">Aceptar</button>
+                        <button type="submit" class="btn btn-primary"><span class="circle1"></span>
+                            <span class="circle2"></span>
+                            <span class="circle3"></span>
+                            <span class="circle4"></span>
+                            <span class="circle5"></span>
+                            <span class="text">Aceptar</span>
+                        </button>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Cancelar</button>
+                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        <span class="circle1"></span>
+                        <span class="circle2"></span>
+                        <span class="circle3"></span>
+                        <span class="circle4"></span>
+                        <span class="circle5"></span>
+                        <span class="text">Cancelar</span>
+                    </button>
                     <!-- <button type="button" class="btn btn-primary">Understood</button> -->
                 </div>
             </div>
