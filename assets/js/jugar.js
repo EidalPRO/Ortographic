@@ -296,7 +296,7 @@ function subirDatos(tiempoTotal, porcentajeEfectividad, miDificultad) {
                     \nTu tiempo total en responder las preguntas fue de ${tiempoTotal} segundos.`
 
                 }).then(() => {
-                    window.location.href = 'categoria.php';
+                    window.location.href = 'categoria.php?ronda=terminada';
                 });
             } else {
                 console.error('Error al actualizar datos:', data.message);
