@@ -44,12 +44,11 @@ function registro($conexion)
     // Encriptamiento de contraseña
     $contrasena = hash('sha512', $contrasena);
 
-    // Guardamos datos en la tabla 
+    // Guardamos datos en la tabla de usuarios
     $query = "INSERT INTO usuarios(nombre, correo, contrasena, foto, descripcion) VALUES('$usuario', '$correo', '$contrasena', 'perfiles/default.webp', '¿Qué miras?')";
 
     // Verificar que el usuario no se repita en la base de datos
     $verificar_usuario = mysqli_query($conexion, "SELECT * FROM usuarios WHERE nombre='$usuario' ");
-
 
     if (mysqli_num_rows($verificar_usuario) > 0) {
         header("location: ../inicio_sesion.php?responce=usuario-existente");
@@ -59,7 +58,15 @@ function registro($conexion)
     $ejecutar = mysqli_query($conexion, $query);
 
     if ($ejecutar) {
-        header("location: ../inicio_sesion.php?responce=registro-exitoso");
+        // Insertar un registro en la tabla de logros para el nuevo usuario
+        $query_logros = "INSERT INTO logros (usuario, logroInicio) VALUES ('$usuario', 'completado')";
+        $ejecutar_logros = mysqli_query($conexion, $query_logros);
+
+        if ($ejecutar_logros) {
+            header("location: ../inicio_sesion.php?responce=registro-exitoso");
+        } else {
+            header("location: ../inicio_sesion.php?responce=error-logros");
+        }
     } else {
         header("location: ../inicio_sesion.php?responce=error");
     }

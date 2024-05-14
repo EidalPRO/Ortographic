@@ -10,10 +10,16 @@ $tiempoTranscurridoNuevo = $datos['tiempoTotal'] ?? null;
 $porcentajeEfectividad = $datos['porcentajeEfectividad'] ?? null;
 $tema = $datos['tema'] ?? null;
 $dificultad = $datos['dificultad'] ?? null;
-$tema2;
+$tema2 = null;
+$logroObtenido = null;
+$logro = null;
+$logroTema = null;
 
 switch ($tema) {
     case 'tema_1_porcentaje':
+        $logro = "logro1";
+        $logroConseguido = "Maestro de la Acentuación";
+        $logroTema = "Acentuación";
         if ($dificultad == 'facil') {
             $tema2 = 'tema1_facil';
         } else {
@@ -21,6 +27,9 @@ switch ($tema) {
         }
         break;
     case 'tema_2_porcentaje':
+        $logro = "logro2";
+        $logroTema = "Uso de letras";
+        $logroConseguido = "Rey de las Letras";
         if ($dificultad == 'facil') {
             $tema2 = 'tema2_facil';
         } else {
@@ -28,6 +37,9 @@ switch ($tema) {
         }
         break;
     case 'tema_3_porcentaje':
+        $logro = "logro3";
+        $logroTema = "Concordancia";
+        $logroConseguido = "Señor de la Concordancia";
         if ($dificultad == 'facil') {
             $tema2 = 'tema3_facil';
         } else {
@@ -35,6 +47,9 @@ switch ($tema) {
         }
         break;
     case 'tema_4_porcentaje':
+        $logro = "logro4";
+        $logroTema = "Gramatica general";
+        $logroConseguido = "Experto en Gramática";
         if ($dificultad == 'facil') {
             $tema2 = 'tema4_facil';
         } else {
@@ -79,19 +94,19 @@ if ($tema2 && $tiempoTranscurridoNuevo !== null && $porcentajeEfectividad !== nu
                     switch ($tema) {
                         case 'tema_1_porcentaje':
                             // Sumar los valores de los campos relacionados con el tema 1
-                            $sumaEstadisticas = (($datosBasicos['tema1_facil'] + $datosBasicos['tema1_medio'] + $datosBasicos['tema1_dificil'])/3);
+                            $sumaEstadisticas = (($datosBasicos['tema1_facil'] + $datosBasicos['tema1_medio'] + $datosBasicos['tema1_dificil']) / 3);
                             break;
                         case 'tema_2_porcentaje':
                             // Sumar los valores de los campos relacionados con el tema 2
-                            $sumaEstadisticas = (($datosBasicos['tema2_facil'] + $datosBasicos['tema2_medio'] + $datosBasicos['tema2_dificil'])/3);
+                            $sumaEstadisticas = (($datosBasicos['tema2_facil'] + $datosBasicos['tema2_medio'] + $datosBasicos['tema2_dificil']) / 3);
                             break;
                         case 'tema_3_porcentaje':
                             // Sumar los valores de los campos relacionados con el tema 3
-                            $sumaEstadisticas = (($datosBasicos['tema3_facil'] + $datosBasicos['tema3_medio'] + $datosBasicos['tema3_dificil'])/3);
+                            $sumaEstadisticas = (($datosBasicos['tema3_facil'] + $datosBasicos['tema3_medio'] + $datosBasicos['tema3_dificil']) / 3);
                             break;
                         case 'tema_4_porcentaje':
                             // Sumar los valores de los campos relacionados con el tema 4
-                            $sumaEstadisticas = (($datosBasicos['tema4_facil'] + $datosBasicos['tema4_medio'] + $datosBasicos['tema4_dificil'])/3);
+                            $sumaEstadisticas = (($datosBasicos['tema4_facil'] + $datosBasicos['tema4_medio'] + $datosBasicos['tema4_dificil']) / 3);
                             break;
                     }
 

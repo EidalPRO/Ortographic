@@ -16,3 +16,5 @@ function obtenerCodigoSala() {
             console.error('Error:', error);
         });
 }
+
+

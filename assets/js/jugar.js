@@ -122,15 +122,6 @@ function cargarReactivo() {
 
         finalizarJuego();
         subirDatos(tiempoTotal, porcentajeEfectividad, miDificultad);
-        Swal.fire({
-            icon: "success",
-            title: 'Preguntas completadas',
-            text: `Este fue tu porsentaje de efectividad en la dificultad ${miDificultad}: ${porcentajeEfectividad}% \n
-            \nTu tiempo total en responder las preguntas fue de ${tiempoTotal} segundos.`
-
-        }).then(() => {
-            window.location.href = 'categoria.php';
-        });
     } else {
 
 
@@ -298,6 +289,15 @@ function subirDatos(tiempoTotal, porcentajeEfectividad, miDificultad) {
         .then(data => {
             if (data.success) {
                 // console.log('Datos actualizados correctamente:', data.message);
+                Swal.fire({
+                    icon: "success",
+                    title: 'Preguntas completadas',
+                    text: `Este fue tu porsentaje de efectividad en la dificultad ${miDificultad}: ${porcentajeEfectividad}% \n
+                    \nTu tiempo total en responder las preguntas fue de ${tiempoTotal} segundos.`
+
+                }).then(() => {
+                    window.location.href = 'categoria.php';
+                });
             } else {
                 console.error('Error al actualizar datos:', data.message);
 
