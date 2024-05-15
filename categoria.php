@@ -167,6 +167,7 @@ if (!isset($_SESSION['usuario'])) {
         </div>
     </section>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="assets/js/estaditicas.js"></script>
     <script>
@@ -216,6 +217,70 @@ if (!isset($_SESSION['usuario'])) {
                 }
             })
         }
+
+        // Función para obtener parámetros de la URL
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+
+        // Obtener los valores de los parámetros de la URL
+        var codigo = getParameterByName('codigoSala');
+        var ronda = getParameterByName('ronda');
+        var logro = getParameterByName('logro');
+
+        if (codigo !== null) {
+            localStorage.setItem('codigoSala', codigo);
+        } else {
+            codigo = localStorage.getItem('codigoSala');
+        }
+
+        console.log(codigo)
+        console.log(logro)
+        var logroObtenido;
+
+        // Llamar a la función en estadisticas.js pasando los valores de los parámetros
+        if ((ronda !== null) && (logro !== null)) {
+            enviarDatos();
+        }
+
+        function enviarDatos() {
+            const datos = {
+                tema: logro,
+                codigo: codigo
+            };
+
+            const opciones = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(datos)
+            };
+
+            fetch('bd/obtenerLogros.php', opciones)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        logroObtenido = data.logro;
+                        console.log(`El logro ${logroObtenido} se actualizó correctamente.`);
+                        // Hacer algo con el logro obtenido
+                    } else {
+                        console.error('Error al actualizar el logro.', data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+
+        // console.log('Ronda:', ronda);
+        // console.log('Logro:', logro);
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>

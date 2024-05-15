@@ -296,7 +296,7 @@ function subirDatos(tiempoTotal, porcentajeEfectividad, miDificultad) {
                     \nTu tiempo total en responder las preguntas fue de ${tiempoTotal} segundos.`
 
                 }).then(() => {
-                    window.location.href = 'categoria.php?ronda=terminada';
+                    window.location.href = `categoria.php?ronda=terminada&logro=${temaPorsentaje}`;
                 });
             } else {
                 console.error('Error al actualizar datos:', data.message);

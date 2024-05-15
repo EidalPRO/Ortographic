@@ -3,6 +3,7 @@ window.onload = () => {
 }
 
 const codigoSala = localStorage.getItem('codigoSala');
+// console.log(codigoSala);
 
 
 function obtenerCodigoSala() {
@@ -16,5 +17,3 @@ function obtenerCodigoSala() {
             console.error('Error:', error);
         });
 }
-
-

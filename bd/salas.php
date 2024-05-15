@@ -17,7 +17,7 @@ if (isset($_POST['sala'])) {
         // Si el usuario ya está en la sala, redirigir a la página de temas
         $update_usuarioYsala = "UPDATE usuarioysala SET codigo_sala = '$codigo_sala' WHERE usuario = '$nombre_usuario'";
         $res = $conexion->query($update_usuarioYsala);
-        header("location: ../categoria.php?codigo_sala=$codigo_sala");
+        header("location: ../categoria.php?codigoSala=$codigo_sala");
         exit();
     } else {
         // Si el usuario no está en la sala, insertarlo en la tabla de Estadisticas
@@ -45,7 +45,7 @@ if (isset($_POST['sala'])) {
 
 
 
-            header("location: ../categoria.php?sala_id=$codigo_sala");
+            header("location: ../categoria.php?codigoSala=$codigo_sala");
             exit();
         } else {
             // Si la sala no existe, mostrar un mensaje de error
@@ -66,7 +66,7 @@ if (isset($_POST['sala'])) {
         // Si el usuario ya está en la sala, redirigir a la página de temas
         $update_usuarioYsala = "UPDATE usuarioysala SET codigo_sala = '$codigo_sala' WHERE usuario = '$nombre_usuario'";
         $res = $conexion->query($update_usuarioYsala);
-        header("location: ../categoria.php?codigo_sala=$codigo_sala");
+        header("location: ../categoria.php?codigoSala=$codigo_sala");
         exit();
     } else {
         // Si el usuario no está en la sala, insertarlo en la tabla de Estadisticas
@@ -83,7 +83,7 @@ if (isset($_POST['sala'])) {
             $insert_usuarioYsala = "INSERT INTO usuarioysala (usuario, codigo_sala) VALUES ('$nombre_usuario', '$codigo_sala')";
             $rest = $conexion->query($insert_usuarioYsala);
 
-            header("location: ../categoria.php?sala_id=$codigo_sala");
+            header("location: ../categoria.php?codigoSala=$codigo_sala");
             exit();
         } else {
             // Si la sala no existe, mostrar un mensaje de error
