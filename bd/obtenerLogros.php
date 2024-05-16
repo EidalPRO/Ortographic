@@ -87,6 +87,7 @@ if ($tema !== null) {
                     if ($conexion->affected_rows > 0) {
                         $response['success'] = true;
                         $response['logro'] = $logro;
+                        $response['logroTema'] = $logroTema;
                     } else {
                         $response['success'] = false;
                         $response['message'] = "No se pudo actualizar el logro '$logroConseguido' para el usuario '$nombreUsuario'.";

@@ -166,9 +166,8 @@ if (!isset($_SESSION['usuario'])) {
             </div>
         </div>
     </section>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="assets/js/estaditicas.js"></script>
     <script>
         t1.addEventListener("click", function() {
@@ -243,6 +242,8 @@ if (!isset($_SESSION['usuario'])) {
         console.log(codigo)
         console.log(logro)
         var logroObtenido;
+        var logroAMostrar;
+        var logroTema;
 
         // Llamar a la función en estadisticas.js pasando los valores de los parámetros
         if ((ronda !== null) && (logro !== null)) {
@@ -267,8 +268,20 @@ if (!isset($_SESSION['usuario'])) {
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
+                        logroTema = data.logroTema;
                         logroObtenido = data.logro;
-                        console.log(`El logro ${logroObtenido} se actualizó correctamente.`);
+                        logroAMostrar = (logroObtenido === "logro1") ? 'Maestro de la Acentuación' : (logroObtenido === "logro2") ? 'Rey de las Letras' : (logroObtenido === "logro3") ? 'Señor de la Concordancia' : 'Experto en Gramática';
+
+                        Swal.fire({
+                            title: "Felicidades!",
+                            text: `Acabas de obtener el logro ${logroAMostrar}. 
+                            \n Por haber conseguido el 100% de efectividad en el tema de ${logroTema}.`,
+                            imageUrl: "assets/imagenes/logoOrtographic.webp",
+                            imageWidth: 400,
+                            imageHeight: 200,
+                            imageAlt: "Custom image"
+                        });
+
                         // Hacer algo con el logro obtenido
                     } else {
                         console.error('Error al actualizar el logro.', data.message);
