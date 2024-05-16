@@ -271,13 +271,13 @@ if (!isset($_SESSION['usuario'])) {
                         logroTema = data.logroTema;
                         logroObtenido = data.logro;
                         logroAMostrar = (logroObtenido === "logro1") ? 'Maestro de la Acentuación' : (logroObtenido === "logro2") ? 'Rey de las Letras' : (logroObtenido === "logro3") ? 'Señor de la Concordancia' : 'Experto en Gramática';
-
+                        var logroImagen = (logroObtenido === "logro1") ? 'Acentuacion.webp' : (logroObtenido === "logro2") ? 'Logro-letras.webp' : (logroObtenido === "logro3") ? 'Concordancia.webp' : 'Gramatica.webp';
                         Swal.fire({
                             title: "Felicidades!",
                             text: `Acabas de obtener el logro ${logroAMostrar}. 
                             \n Por haber conseguido el 100% de efectividad en el tema de ${logroTema}.`,
-                            imageUrl: "assets/imagenes/logoOrtographic.webp",
-                            imageWidth: 400,
+                            imageUrl: `assets/imagenes/logros/${logroImagen}`,
+                            imageWidth: 200,
                             imageHeight: 200,
                             imageAlt: "Custom image"
                         });
