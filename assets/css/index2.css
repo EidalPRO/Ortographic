@@ -77,20 +77,10 @@ h1 {
 
 /* Galeria */
 .galeria-contenedor {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     min-height: 400px;
-}
-
-.galeria-contenedor i {
-    font-size: 3rem;
-}
-
-.galeria-contenedor h2 {
-    /* font-family: 'Arsenal', sans-serif; */
-    font-size: 3rem;
-}
-
-.galeria-contenedor p {
-    font-size: 1rem;
 }
 
 
@@ -328,3 +318,5 @@ h3 {
 .cta:active {
     transform: scale(0.95);
 }
+
+

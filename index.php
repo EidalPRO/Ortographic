@@ -5,13 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--Boostrap-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
     <!--CSS-->
     <link rel="stylesheet" href="assets/css/index2.css">
     <link rel="stylesheet" href="assets/css/miPerfil.css">
+    <link rel="stylesheet" href="assets/css/404.css">
     <link rel="shortcut icon" href="assets/imagenes/logoOrtographic.webp" type="image/x-icon">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <title>Ortographic - Donde las letras se vuelven tu juego.</title>
 </head>
 
@@ -117,10 +120,10 @@
         $conexion->close();
     }
     ?>
-    
+
     <section class="mi-perfil">
         <div class="modal fade" id="MiPerfil" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-dialog modal-xl">
                 <div class="modal-content perfil-contenedor">
                     <div class="modal-body">
                         <div class="card">
@@ -215,7 +218,7 @@
                             </div>
                             <div class="card__avatar">
                                 <a class="image-container">
-                                    <img src="bd/<?php echo $usuario['foto']; ?>" class="img-fluid rounded-start" alt="Foto de perfil" width="100px">
+                                    <img src="bd/<?php echo $usuario['foto']; ?>" class="img-fluid" alt="Foto de perfil" width="100px">
                                 </a>
                                 <button type="button" class="btn btn-outline-dark" id="btn-subirImg" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                                     <dfn title="Nueva foto de perfil.">
@@ -224,7 +227,7 @@
                                 </button>
                             </div>
                             <div class="card__title">
-                                <h5 class="card-title"><?php echo $usuario['nombre']; ?></h5>
+                                <h3 class="card-title"><?php echo $usuario['nombre']; ?></h3>
                             </div>
                             <div class="card__subtitle mb-4 text-center">
                                 <p class="card-text"><?php echo $usuario['descripcion']; ?></p>
@@ -234,10 +237,67 @@
                             </div>
                             <div class="container mb-5">
                                 <div class="row">
-                                    <div class="col-12 col-md-6 text-center">
+                                    <div class="col-12 col-md-8 text-center">
                                         <p>Logros Obtenidos</p>
+                                        <div class="container-fluid logros-obtenidos">
+                                            <div class="row justify-content-center">
+                                                <?php
+                                                include 'bd/conexion_be.php';
+
+                                                $sql = "SELECT * FROM logros WHERE usuario = '$nombreUsuario'";
+                                                $consultaLogros = mysqli_query($conexion, $sql);
+
+                                                // Verifica si la consulta fue exitosa
+                                                if ($consultaLogros) {
+                                                    // Recorre cada fila de resultados
+                                                    while ($logro = mysqli_fetch_assoc($consultaLogros)) {
+                                                        // Verifica si cada logro contiene la palabra "completado"
+                                                        if (strpos($logro['logroInicio'], 'completado') !== false) {
+                                                            echo '<div class="col-6 col-md-4">';
+                                                            echo '<p>Bienvenido a Ortographic.</p>';
+                                                            echo '<img src="assets/imagenes/logros/logroInicio.webp" alt="Logro Inicio" width="50">';
+                                                            echo '</div>';
+                                                        }
+                                                        if (strpos($logro['logro1'], 'completado') !== false) {
+                                                            echo '<div class="col-6 col-md-4">';
+                                                            echo '<p>Maestro de la Acentuación.</p>';
+                                                            echo '<img src="assets/imagenes/logros/Acentuacion.webp" alt="Logro 1" width="50">';
+                                                            echo '</div>';
+                                                        }
+                                                        if (strpos($logro['logro2'], 'completado') !== false) {
+                                                            echo '<div class="col-6 col-md-4">';
+                                                            echo '<p>Rey de las Letras.</p>';
+                                                            echo '<img src="assets/imagenes/logros/Logro-letras.webp" alt="Logro 2" width="50">';
+                                                            echo '</div>';
+                                                        }
+                                                        if (strpos($logro['logro3'], 'completado') !== false) {
+                                                            echo '<div class="col-6 col-md-4">';
+                                                            echo '<p>Señor de la Concordancia.</p>';
+                                                            echo '<img src="assets/imagenes/logros/Concordancia.webp" alt="Logro 3" width="50">';
+                                                            echo '</div>';
+                                                        }
+                                                        if (strpos($logro['logro4'], 'completado') !== false) {
+                                                            echo '<div class="col-6 col-md-4">';
+                                                            echo '<p>Experto en Gramática.</p>';
+                                                            echo '<img src="assets/imagenes/logros/Gramatica.webp" alt="Logro 4" width="50">';
+                                                            echo '</div>';
+                                                        }
+                                                        if (strpos($logro['logroFinal'], 'completado') !== false) {
+                                                            echo '<div class="col-6 col-md-4">';
+                                                            echo '<p>Sabio Ortográfico.</p>';
+                                                            echo '<img src="assets/imagenes/logros/logro-final.webp" alt="Logro Final" width="50">';
+                                                            echo '</div>';
+                                                        }
+                                                    }
+                                                } else {
+                                                    // Manejar el caso en que no se obtengan resultados
+                                                    echo "No se encontraron logros para este usuario.";
+                                                }
+                                                ?>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="col-12 col-md-6">
+                                    <div class="col-12 col-md-4">
                                         <div class="row">
                                             <div class="col-12">
                                                 <label for="formGroupExampleInput" class="form-label">Buscar usuarios</label>
@@ -392,6 +452,123 @@
         ?>
     </section>
 
+    <section id="tu-perfil">
+
+        <?php
+
+        // session_start();
+        include 'bd/conexion_be.php';
+
+        if (isset($_GET['id'])) {
+            // Obtiene el ID del usuario de la URL y lo limpia para evitar inyección de SQL
+            $usuarioID = mysqli_real_escape_string($conexion, $_GET['id']);
+
+            // Realiza una consulta para obtener la información del usuario utilizando el ID
+            $sql = "SELECT * FROM Usuarios WHERE nombre = '$usuarioID'";
+            $resultado = $conexion->query($sql);
+
+            if ($resultado->num_rows > 0) {
+                $usuario = $resultado->fetch_assoc();
+        ?>
+                <script>
+                    Swal.fire({
+                        html: `<div class="card">
+                            <a class="image-container">
+                                <img src="bd/<?php echo $usuario['foto']; ?>" class="img-fluid" alt="Foto de perfil" width="150px">
+                            </a>
+
+                            <div class="card__title mt-3 ">
+                                <h1 class="card-title"><?php echo $usuario['nombre']; ?></h1>
+                            </div>
+
+                            <div class="card__subtitle">
+                                <p class="card-text"><?php echo $usuario['descripcion']; ?></p>
+                            </div>
+
+                            <div class="container">
+                            <p class="mt-5">Logros Obtenidos</p>
+                                        <div class="container-fluid logros-obtenidos">
+                                            <div class="row">
+                                                <?php
+                                                include 'bd/conexion_be.php';
+
+                                                $sql2 = "SELECT * FROM logros WHERE usuario = '$usuarioID'";
+                                                $consultaLogros2 = mysqli_query($conexion, $sql2);
+
+                                                // Verifica si la consulta fue exitosa
+                                                if ($consultaLogros2) {
+                                                    // Recorre cada fila de resultados
+                                                    while ($logro2 = mysqli_fetch_assoc($consultaLogros2)) {
+                                                        // Verifica si cada logro contiene la palabra "completado"
+                                                        if (strpos($logro2['logroInicio'], 'completado') !== false) {
+                                                            echo '<div class="col-12 col-sm-4">';
+                                                            echo '<p>Bienvenido a Ortographic.</p>';
+                                                            echo '<img src="assets/imagenes/logros/logroInicio.webp" alt="Logro Inicio" width="50">';
+                                                            echo '</div>';
+                                                        }
+                                                        if (strpos($logro2['logro1'], 'completado') !== false) {
+                                                            echo '<div class="col-12 col-sm-4">';
+                                                            echo '<p>Maestro de la Acentuación.</p>';
+                                                            echo '<img src="assets/imagenes/logros/Acentuacion.webp" alt="Logro 1" width="50">';
+                                                            echo '</div>';
+                                                        }
+                                                        if (strpos($logro2['logro2'], 'completado') !== false) {
+                                                            echo '<div class="col-12 col-sm-4">';
+                                                            echo '<p>Rey de las Letras.</p>';
+                                                            echo '<img src="assets/imagenes/logros/Logro-letras.webp" alt="Logro 2" width="50">';
+                                                            echo '</div>';
+                                                        }
+                                                        if (strpos($logro2['logro3'], 'completado') !== false) {
+                                                            echo '<div class="col-12 col-sm-4">';
+                                                            echo '<p>Señor de la Concordancia.</p>';
+                                                            echo '<img src="assets/imagenes/logros/Concordancia.webp" alt="Logro 3" width="50">';
+                                                            echo '</div>';
+                                                        }
+                                                        if (strpos($logro2['logro4'], 'completado') !== false) {
+                                                            echo '<div class="col-12 col-sm-4">';
+                                                            echo '<p>Experto en Gramática.</p>';
+                                                            echo '<img src="assets/imagenes/logros/Gramatica.webp" alt="Logro 4" width="50">';
+                                                            echo '</div>';
+                                                        }
+                                                        if (strpos($logro2['logroFinal'], 'completado') !== false) {
+                                                            echo '<div class="col-12 col-sm-4">';
+                                                            echo '<p>Sabio Ortográfico.</p>';
+                                                            echo '<img src="assets/imagenes/logros/logro-final.webp" alt="Logro Final" width="50">';
+                                                            echo '</div>';
+                                                        }
+                                                    }
+                                                } else {
+                                                    // Manejar el caso en que no se obtengan resultados
+                                                    echo "No se encontraron logros para este usuario.";
+                                                }
+                                                ?>
+                                            </div>
+                                        </div>
+                                </div>
+                                
+                        </div>`,
+                        allowOutsideClick: false,
+                        showCloseButton: true,
+                        showConfirmButton: false,
+                    }).then((result) => {
+                        if (result.dismiss === Swal.DismissReason.close) {
+                            window.location.href = 'index.php';
+                        }
+                    });
+                </script>
+        <?php
+            } else {
+                echo "Usuario no encontrado";
+            }
+        } else {
+            // echo "ID de usuario no proporcionado";
+        }
+
+
+        ?>
+
+    </section>
+
     <section id="manual">
         <div class="container">
             <h1>Manual de usuario.</h1>
@@ -420,17 +597,71 @@
     <section id="galeria">
         <div class="container">
             <h1>Galería de fotos.</h1>
-            <div class="container galeria-contenedor ">
-                <div class="icono text-center">
-                    <i class="bi bi-clock-history"></i>
-                </div>
-                <h2 class="text-center">Sección <br> En construcción...</h2>
-                <p class="text-center">Estamos trabajando en ello. </p>
-                <div class="text-center">
-                    <div class="spinner-grow text-warning" role="status">
-                        <span class="visually-hidden"></span>
+            <div class="container galeria-contenedor">
+                <div class="row">
+
+                    <div class="main_wrapper">
+                        <div class="main">
+                            <div class="antenna">
+                                <div class="antenna_shadow"></div>
+                                <div class="a1"></div>
+                                <div class="a1d"></div>
+                                <div class="a2"></div>
+                                <div class="a2d"></div>
+                                <div class="a_base"></div>
+                            </div>
+                            <div class="tv">
+                                <div class="cruve">
+                                    <svg xml:space="preserve" viewBox="0 0 189.929 189.929" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" version="1.1" class="curve_svg">
+                                        <path d="M70.343,70.343c-30.554,30.553-44.806,72.7-39.102,115.635l-29.738,3.951C-5.442,137.659,11.917,86.34,49.129,49.13
+                C86.34,11.918,137.664-5.445,189.928,1.502l-3.95,29.738C143.041,25.54,100.895,39.789,70.343,70.343z"></path>
+                                    </svg>
+                                </div>
+                                <div class="display_div">
+                                    <div class="screen_out">
+                                        <div class="screen_out1">
+                                            <div class="screen">
+                                                <span class="notfound_text">Sección en construcción</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="lines">
+                                    <div class="line1"></div>
+                                    <div class="line2"></div>
+                                    <div class="line3"></div>
+                                </div>
+                                <div class="buttons_div">
+                                    <div class="b1">
+                                        <div></div>
+                                    </div>
+                                    <div class="b2"></div>
+                                    <div class="speakers">
+                                        <div class="g1">
+                                            <div class="g11"></div>
+                                            <div class="g12"></div>
+                                            <div class="g13"></div>
+                                        </div>
+                                        <div class="g"></div>
+                                        <div class="g"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bottom">
+                                <div class="base1"></div>
+                                <div class="base2"></div>
+                                <div class="base3"></div>
+                            </div>
+                        </div>
+                        <div class="text_404">
+                            <div class="text_4041">4</div>
+                            <div class="text_4042">0</div>
+                            <div class="text_4043">4</div>
+                        </div>
                     </div>
+
                 </div>
+
             </div>
         </div>
     </section>
