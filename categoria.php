@@ -170,53 +170,6 @@ if (!isset($_SESSION['usuario'])) {
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="assets/js/estaditicas.js"></script>
     <script>
-        t1.addEventListener("click", function() {
-            mostrarDificultad('t1');
-        });
-
-        t2.addEventListener("click", function() {
-            mostrarDificultad('t2');
-        });
-
-        t3.addEventListener("click", function() {
-            mostrarDificultad('t3');
-        });
-
-        t4.addEventListener("click", function() {
-            mostrarDificultad('t4');
-        });
-
-        function mostrarDificultad(tema) {
-            Swal.fire({
-                title: 'Selecciona la dificultad',
-                input: 'select',
-                inputOptions: {
-                    'facil': 'Fácil',
-                    'medio': 'Medio',
-                    'dificil': 'Difícil'
-                },
-                inputPlaceholder: 'Selecciona una opción',
-                showCancelButton: true,
-                cancelButtonText: 'Cancelar',
-                confirmButtonText: 'Aceptar',
-                inputValidator: (value) => {
-                    return new Promise((resolve) => {
-                        if (value !== '') {
-                            resolve()
-                        } else {
-                            resolve('Debes seleccionar una opción')
-                        }
-                    })
-                }
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    localStorage.setItem('tema', tema);
-                    localStorage.setItem('dificultad', result.value); // Guardar la dificultad seleccionada en localStorage
-                    window.location.href = "juego.php";
-                }
-            })
-        }
-
         // Función para obtener parámetros de la URL
         function getParameterByName(name, url) {
             if (!url) url = window.location.href;
@@ -232,6 +185,7 @@ if (!isset($_SESSION['usuario'])) {
         var codigo = getParameterByName('codigoSala');
         var ronda = getParameterByName('ronda');
         var logro = getParameterByName('logro');
+        var df1 =getParameterByName('')
 
         if (codigo !== null) {
             localStorage.setItem('codigoSala', codigo);
@@ -239,57 +193,109 @@ if (!isset($_SESSION['usuario'])) {
             codigo = localStorage.getItem('codigoSala');
         }
 
-        console.log(codigo)
-        console.log(logro)
-        var logroObtenido;
-        var logroAMostrar;
-        var logroTema;
+        if (codigo === 'A0123') {
+            t1.addEventListener("click", function() {
+                mostrarDificultad('t1');
+            });
 
-        // Llamar a la función en estadisticas.js pasando los valores de los parámetros
-        if ((ronda !== null) && (logro !== null)) {
-            enviarDatos();
-        }
+            t2.addEventListener("click", function() {
+                mostrarDificultad('t2');
+            });
 
-        function enviarDatos() {
-            const datos = {
-                tema: logro,
-                codigo: codigo
-            };
+            t3.addEventListener("click", function() {
+                mostrarDificultad('t3');
+            });
 
-            const opciones = {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(datos)
-            };
+            t4.addEventListener("click", function() {
+                mostrarDificultad('t4');
+            });
 
-            fetch('bd/obtenerLogros.php', opciones)
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        logroTema = data.logroTema;
-                        logroObtenido = data.logro;
-                        logroAMostrar = (logroObtenido === "logro1") ? 'Maestro de la Acentuación' : (logroObtenido === "logro2") ? 'Rey de las Letras' : (logroObtenido === "logro3") ? 'Señor de la Concordancia' : 'Experto en Gramática';
-                        var logroImagen = (logroObtenido === "logro1") ? 'Acentuacion.webp' : (logroObtenido === "logro2") ? 'Logro-letras.webp' : (logroObtenido === "logro3") ? 'Concordancia.webp' : 'Gramatica.webp';
-                        Swal.fire({
-                            title: "Felicidades!",
-                            text: `Acabas de obtener el logro ${logroAMostrar}. 
-                            \n Por haber conseguido el 100% de efectividad en el tema de ${logroTema}.`,
-                            imageUrl: `assets/imagenes/logros/${logroImagen}`,
-                            imageWidth: 200,
-                            imageHeight: 200,
-                            imageAlt: "Custom image"
-                        });
-
-                        // Hacer algo con el logro obtenido
-                    } else {
-                        console.error('Error al actualizar el logro.', data.message);
+            function mostrarDificultad(tema) {
+                Swal.fire({
+                    title: 'Selecciona la dificultad',
+                    input: 'select',
+                    inputOptions: {
+                        'facil': 'Fácil',
+                        'medio': 'Medio',
+                        'dificil': 'Difícil'
+                    },
+                    inputPlaceholder: 'Selecciona una opción',
+                    showCancelButton: true,
+                    cancelButtonText: 'Cancelar',
+                    confirmButtonText: 'Aceptar',
+                    inputValidator: (value) => {
+                        return new Promise((resolve) => {
+                            if (value !== '') {
+                                resolve()
+                            } else {
+                                resolve('Debes seleccionar una opción')
+                            }
+                        })
+                    }
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        localStorage.setItem('tema', tema);
+                        localStorage.setItem('dificultad', result.value); // Guardar la dificultad seleccionada en localStorage
+                        window.location.href = "juego.php";
                     }
                 })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
+            }
+
+            console.log(codigo)
+            console.log(logro)
+            var logroObtenido;
+            var logroAMostrar;
+            var logroTema;
+
+            // Llamar a la función en estadisticas.js pasando los valores de los parámetros
+            if ((ronda !== null) && (logro !== null)) {
+                enviarDatos();
+            }
+
+            function enviarDatos() {
+                const datos = {
+                    tema: logro,
+                    codigo: codigo
+                };
+
+                const opciones = {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(datos)
+                };
+
+                fetch('bd/obtenerLogros.php', opciones)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            logroTema = data.logroTema;
+                            logroObtenido = data.logro;
+                            logroAMostrar = (logroObtenido === "logro1") ? 'Maestro de la Acentuación' : (logroObtenido === "logro2") ? 'Rey de las Letras' : (logroObtenido === "logro3") ? 'Señor de la Concordancia' : 'Experto en Gramática';
+                            var logroImagen = (logroObtenido === "logro1") ? 'Acentuacion.webp' : (logroObtenido === "logro2") ? 'Logro-letras.webp' : (logroObtenido === "logro3") ? 'Concordancia.webp' : 'Gramatica.webp';
+                            Swal.fire({
+                                title: "Felicidades!",
+                                text: `Acabas de obtener el logro ${logroAMostrar}. 
+                            \n Por haber conseguido el 100% de efectividad en el tema de ${logroTema}.`,
+                                imageUrl: `assets/imagenes/logros/${logroImagen}`,
+                                imageWidth: 200,
+                                imageHeight: 200,
+                                imageAlt: "Custom image"
+                            });
+
+                            // Hacer algo con el logro obtenido
+                        } else {
+                            console.error('Error al actualizar el logro.', data.message);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+            }
+
+        } else {
+
         }
 
         // console.log('Ronda:', ronda);

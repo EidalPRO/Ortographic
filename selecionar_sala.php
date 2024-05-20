@@ -14,7 +14,7 @@ if (!isset($_SESSION['usuario'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--Boostrap-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <!--CSS-->
     <link rel="stylesheet" href="assets/css/salas2.css">
     <link rel="shortcut icon" href="assets/imagenes/logoOrtographic.webp" type="image/x-icon">
@@ -139,6 +139,41 @@ if (!isset($_SESSION['usuario'])) {
                 <div class="modal-body">
                     <h3 class="modal-title fs-5" id="staticBackdropLabel">Sala nueva</h3>
 
+                    <h4 class="mt-3" id="id-sala">Código de la nueva sala: </h4>
+                    <span>El código se vuelve único en el momento de la creación de la sala.</span>
+
+                    <form action="bd/salas.php" method="post" enctype="multipart/form-data" class="mt-5" id="formulario">
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Nombre de la sala:</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="sala">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="dificultad">Selecciona las dificultades que quieres para esta sala:</label>
+                            <div>
+                                <input type="checkbox" id="facil" name="dificultad1" value="Facil">
+                                <label for="facil">Fácil</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="medio" name="dificultad2" value="Medio">
+                                <label for="medio">Medio</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="dificil" name="dificultad3" value="Dificil">
+                                <label for="dificil">Difícil</label>
+                            </div>
+                        </div>
+                        <input type="hidden" name="accion" value="nuevo">
+                        <input type="hidden" name="codigo" value="" id="codigo_sala">
+
+                        <button type="submit" class="btn btn-primary" id="btn-submit"><span class="circle1"></span>
+                            <span class="circle2"></span>
+                            <span class="circle3"></span>
+                            <span class="circle4"></span>
+                            <span class="circle5"></span>
+                            <span class="text">Aceptar</span>
+                        </button>
+                    </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
@@ -218,11 +253,21 @@ if (!isset($_SESSION['usuario'])) {
                          });
                     </script>
                 ';
+        } else if ($error === 'sala_existente') {
+            echo '
+                    <script>
+                        Swal.fire({
+                            icon: "error",
+                            title: "Oops...",
+                            text: "Este código de sala ya existe intente de nuevo."
+                         });
+                    </script>
+                ';
         }
     }
     ?>
 
-    <script src="assets/js/seleccionar_sala.js"></script>
+    <script src="assets/js/sala.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
 </body>
 
