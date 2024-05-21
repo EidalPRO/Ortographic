@@ -185,10 +185,15 @@ if (!isset($_SESSION['usuario'])) {
         var codigo = getParameterByName('codigoSala');
         var ronda = getParameterByName('ronda');
         var logro = getParameterByName('logro');
-        var df1 = getParameterByName('')
+        var df1 = getParameterByName('df1');
+        var df2 = getParameterByName('df2');
+        var df3 = getParameterByName('df3');
 
-        if (codigo !== null) {
+        if ((codigo !== null) && (df1 !== null) && (df2 !== null) && (df3 !== null)) {
             localStorage.setItem('codigoSala', codigo);
+            localStorage.setItem('df1', df1);
+            localStorage.setItem('df2', df2);
+            localStorage.setItem('df3', df3);
             console.log(codigo);
             const codigoSalaElement = document.getElementById('sala');
             codigoSalaElement.innerText = "Sala: " + codigo;
@@ -212,6 +217,10 @@ if (!isset($_SESSION['usuario'])) {
                         console.error('Error:', error);
                     });
             }
+
+            df1 = localStorage.getItem('df1');
+            df2 = localStorage.getItem('df2');
+            df3 = localStorage.getItem('df3');
         }
 
         if (codigo === 'A0123') {
@@ -317,7 +326,68 @@ if (!isset($_SESSION['usuario'])) {
 
         } else {
 
+            t1.addEventListener("click", function() {
+                mostrarDificultad('t1');
+            });
+
+            t2.addEventListener("click", function() {
+                mostrarDificultad('t2');
+            });
+
+            t3.addEventListener("click", function() {
+                mostrarDificultad('t3');
+            });
+
+            t4.addEventListener("click", function() {
+                mostrarDificultad('t4');
+            });
+
+            function mostrarDificultad(tema) {
+                var options = {}; // Objeto para almacenar las opciones del SweetAlert
+
+                // Verificar si df1 es true y agregarlo como opción si lo es
+                if (df1 === 'true') {
+                    options['facil'] = 'Fácil';
+                }
+
+                // Verificar si df2 es true y agregarlo como opción si lo es
+                if (df2 === 'true') {
+                    options['medio'] = 'Medio';
+                }
+
+                // Verificar si df3 es true y agregarlo como opción si lo es
+                if (df3 === 'true') {
+                    options['dificil'] = 'Difícil';
+                }
+
+                // Mostrar el SweetAlert con las opciones disponibles
+                Swal.fire({
+                    title: 'Selecciona la dificultad',
+                    input: 'select',
+                    inputOptions: options,
+                    inputPlaceholder: 'Selecciona una opción',
+                    showCancelButton: true,
+                    cancelButtonText: 'Cancelar',
+                    confirmButtonText: 'Aceptar',
+                    inputValidator: (value) => {
+                        return new Promise((resolve) => {
+                            if (value !== '') {
+                                resolve()
+                            } else {
+                                resolve('Debes seleccionar una opción')
+                            }
+                        })
+                    }
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        localStorage.setItem('tema', tema);
+                        localStorage.setItem('dificultad', result.value); // Guardar la dificultad seleccionada en localStorage
+                        window.location.href = "juego.php";
+                    }
+                });
+            }
         }
+
 
         // console.log('Ronda:', ronda);
         // console.log('Logro:', logro);

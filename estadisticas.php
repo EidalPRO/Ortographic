@@ -11,10 +11,10 @@ if (!isset($_SESSION['usuario'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--Boostrap-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
-    <!--CSS-->
+    <!-- CSS personalizado -->
     <link rel="stylesheet" href="assets/css/estadisticas.css">
     <link rel="shortcut icon" href="assets/imagenes/logoOrtographic.webp" type="image/x-icon">
     <title>Ortographic - ¿Crees tener buena ortografía?</title>
@@ -43,133 +43,151 @@ if (!isset($_SESSION['usuario'])) {
         </div>
     </nav>
 
-
     <div class="table-responsive est">
-        <!-- <h5>Estas son las estadísticas generales, las cuales se calculan en función de las respuestas correctas de cada tema en los tres niveles de dificultad (fácil, medio y difícil).</h5> -->
-        <?php
-        include 'bd/conexion_be.php';
+        <!-- Tabla general -->
+        <h5 class='text-center'>Estadiaticas generales (Sumatioria de las 3 dificultades)</h5>
+        <div class='table-responsive'>
+            <?php
+            include 'bd/conexion_be.php';
 
-        $nombreUsuario = $_SESSION['usuario'] ?? null;
+            $nombreUsuario = $_SESSION['usuario'] ?? null;
 
-        if ($nombreUsuario !== null) {
-            // Consulta para obtener el código de sala del usuario
-            $consultaCodigoSala = "SELECT codigo_sala FROM usuarioysala WHERE usuario = '$nombreUsuario'";
-            $resultadoConsultaCodigo = $conexion->query($consultaCodigoSala);
+            if ($nombreUsuario !== null) {
+                // Consulta para obtener el código de sala del usuario
+                $consultaCodigoSala = "SELECT codigo_sala FROM usuarioysala WHERE usuario = '$nombreUsuario'";
+                $resultadoConsultaCodigo = $conexion->query($consultaCodigoSala);
 
-            if ($resultadoConsultaCodigo->num_rows > 0) {
-                $fila = $resultadoConsultaCodigo->fetch_assoc();
-                $codigoSala = $fila['codigo_sala'];
+                if ($resultadoConsultaCodigo->num_rows > 0) {
+                    $fila = $resultadoConsultaCodigo->fetch_assoc();
+                    $codigoSala = $fila['codigo_sala'];
 
-                // Obtener los datos de la tabla Estadisticas para la sala específica
-                $consulta = "SELECT * FROM estadisticas WHERE codigo_sala = '$codigoSala'";
-                $resultado = $conexion->query($consulta);
+                    $salaDificultad = "SELECT facil, medio, dificil FROM salas WHERE codigo_sala = '$codigoSala'";
+                    $resultadoSala = $conexion->query($salaDificultad);
 
-                if ($resultado->num_rows > 0) {
-                    echo "<h5 class='text-center'>Estadiaticas generales (Sumatioria de las 3 dificultades)</5h>";
-                    echo "<div class='table-responsive'>";
-                    echo "<table border='1' class='table table-light table-striped'>";
-                    echo "<thead><tr><th scope='col'>Usuario</th><th scope='col'>Acentuación</th><th scope='col'>Uso de letras</th><th scope='col'>Concordancia</th><th scope='col'>Gramatica en general</th><th scope='col'>Tiempo de uso</th></tr></thead>";
+                    if ($resultadoSala) {
+                        // Verificar si hay al menos una fila de resultados
+                        if ($resultadoSala->num_rows > 0) {
+                            // Obtener los datos de las dificultades
+                            $filaRes = $resultadoSala->fetch_assoc();
+                            $df1 = $filaRes["facil"];
+                            $df2 = $filaRes["medio"];
+                            $df3 = $filaRes["dificil"];
+                            // Obtener los datos de la tabla Estadisticas para la sala específica
+                            $consulta = "SELECT * FROM estadisticas WHERE codigo_sala = '$codigoSala'";
+                            $resultado = $conexion->query($consulta);
 
-                    echo "<tbody>";
-                    while ($fila = $resultado->fetch_assoc()) {
-                        echo "<tr>";
-                        echo "<th scope='row'>" . $fila['usuario_nombre'] . "</th>";
-                        echo "<td>" . $fila['tema_1_porcentaje'] . "%</td>";
-                        echo "<td>" . $fila['tema_2_porcentaje'] . "%</td>";
-                        echo "<td>" . $fila['tema_3_porcentaje'] . "%</td>";
-                        echo "<td>" . $fila['tema_4_porcentaje'] . "%</td>";
-                        echo "<td>" . $fila['tiempo_total_practica'] . " Segundos</td>";
-                        echo "</tr>";
+                            if ($resultado->num_rows > 0) {
+                                echo "<table border='1' class='table table-light table-striped'>";
+                                echo "<thead><tr><th scope='col'>Usuario</th><th scope='col'>Acentuación</th><th scope='col'>Uso de letras</th><th scope='col'>Concordancia</th><th scope='col'>Gramatica en general</th><th scope='col'>Tiempo de uso</th></tr></thead>";
+                                echo "<tbody>";
+                                while ($fila = $resultado->fetch_assoc()) {
+                                    echo "<tr>";
+                                    echo "<th scope='row'>" . $fila['usuario_nombre'] . "</th>";
+                                    echo "<td>" . $fila['tema_1_porcentaje'] . "%</td>";
+                                    echo "<td>" . $fila['tema_2_porcentaje'] . "%</td>";
+                                    echo "<td>" . $fila['tema_3_porcentaje'] . "%</td>";
+                                    echo "<td>" . $fila['tema_4_porcentaje'] . "%</td>";
+                                    echo "<td>" . $fila['tiempo_total_practica'] . " Segundos</td>";
+                                    echo "</tr>";
+                                }
+                                echo "</tbody>";
+                                echo "</table>";
+                            } else {
+                                echo "No se encontraron registros para esta sala.";
+                            }
+
+                            // Consulta para obtener los datos de estadisticasbasicas
+                            $consultaBasica = "SELECT * FROM estadisticasbasicas WHERE codigo_sala = '$codigoSala'";
+                            $resultadoBasico = $conexion->query($consultaBasica);
+
+                            if ($resultadoBasico->num_rows > 0) {
+                                // Array para almacenar los datos
+                                $datosBasicos = array();
+
+                                while ($fila = $resultadoBasico->fetch_assoc()) {
+                                    $datosBasicos[] = $fila;
+                                }
+
+                                // Verificar si df1 es true
+                                if ($df1 === "true") {
+                                    // Mostrar tabla de dificultad Fácil
+                                    echo "<h5 class='text-center'>Estadisticas de todos los temas en su dificultad facil.</h5>";
+                                    echo "<table border='1' class='table table-light table-striped'>";
+                                    echo "<thead><tr><th scope='col'>Usuario</th><th scope='col'>Acentuación</th><th scope='col'>Uso de letras</th><th scope='col'>Concordancia</th><th scope='col'>Gramatica en general</th></tr></thead>";
+                                    echo "<tbody class='text-center'>";
+                                    foreach ($datosBasicos as $datos) {
+                                        echo "<tr>";
+                                        echo "<th scope='row'>" . $datos['usuario_nombre'] . "</th>";
+                                        echo "<td>" . $datos['tema1_facil'] . "%</td>";
+                                        echo "<td>" . $datos['tema2_facil'] . "%</td>";
+                                        echo "<td>" . $datos['tema3_facil'] . "%</td>";
+                                        echo "<td>" . $datos['tema4_facil'] . "%</td>";
+                                        echo "</tr>";
+                                    }
+                                    echo "</tbody>";
+                                    echo "</table>";
+                                }
+
+                                // Verificar si df2 es true
+                                if ($df2 === "true") {
+                                    // Mostrar tabla de dificultad Medio
+                                    echo "<h5 class='text-center'>Estadisticas de todos los temas en su dificultad medio.</h5>";
+                                    echo "<table border='1' class='table table-light table-striped'>";
+                                    echo "<thead><tr><th scope='col'>Usuario</th><th scope='col'>Acentuación</th><th scope='col'>Uso de letras</th><th scope='col'>Concordancia</th><th scope='col'>Gramatica en general</th></tr></thead>";
+                                    echo "<tbody class='text-center'>";
+                                    foreach ($datosBasicos as $datos) {
+                                        echo "<tr>";
+                                        echo "<th scope='row'>" . $datos['usuario_nombre'] . "</th>";
+                                        echo "<td>" . $datos['tema1_medio'] . "%</td>";
+                                        echo "<td>" . $datos['tema2_medio'] . "%</td>";
+                                        echo "<td>" . $datos['tema3_medio'] . "%</td>";
+                                        echo "<td>" . $datos['tema4_medio'] . "%</td>";
+                                        echo "</tr>";
+                                    }
+                                    echo "</tbody>";
+                                    echo "</table>";
+                                }
+
+                                // Verificar si df3 es true
+                                if ($df3 === "true") {
+                                    // Mostrar tabla de dificultad Difícil
+                                    echo "<h5 class='text-center'>Estadisticas de todos los temas en su dificultad difícil.</h5>";
+                                    echo "<table border='1' class='table table-light table-striped'>";
+                                    echo "<thead><tr><th scope='col'>Usuario</th><th scope='col'>Acentuación</th><th scope='col'>Uso de letras</th><th scope='col'>Concordancia</th><th scope='col'>Gramatica en general</th></tr></thead>";
+                                    echo "<tbody class='text-center'>";
+                                    foreach ($datosBasicos as $datos) {
+                                        echo "<tr>";
+                                        echo "<th scope='row'>" . $datos['usuario_nombre'] . "</th>";
+                                        echo "<td>" . $datos['tema1_dificil'] . "%</td>";
+                                        echo "<td>" . $datos['tema2_dificil'] . "%</td>";
+                                        echo "<td>" . $datos['tema3_dificil'] . "%</td>";
+                                        echo "<td>" . $datos['tema4_dificil'] . "%</td>";
+                                        echo "</tr>";
+                                    }
+                                    echo "</tbody>";
+                                    echo "</table>";
+                                }
+                            } else {
+                                echo "No se encontraron registros de estadísticas básicas para esta sala.";
+                            }
+                        } else {
+                            echo "No se encontró el código de sala para este usuario.";
+                        }
+                    } else {
+                        echo "No hay usuario registrado en la sesión.";
                     }
-                    echo "</tbody>";
-                    echo "</table>";
-                    echo "</div>";
                 } else {
-                    echo "No se encontraron registros para esta sala.";
-                }
-
-                // Consulta para obtener los datos de estadisticasbasicas
-                $consultaBasica = "SELECT * FROM estadisticasbasicas WHERE codigo_sala = '$codigoSala'";
-                $resultadoBasico = $conexion->query($consultaBasica);
-
-                if ($resultadoBasico->num_rows > 0) {
-                    // echo "<h2>Datos de Estadísticas Básicas</h2>";
-
-                    // Array para almacenar los datos
-                    $datosBasicos = array();
-
-                    while ($fila = $resultadoBasico->fetch_assoc()) {
-                        $datosBasicos[] = $fila;
-                    }
-
-                    // Sección para datos de dificultad Fácil
-                    echo "<h5 class='text-center'>Estadisticas de todos los temas en su dificultad facil.</h5>";
-                    echo "<div class='table-responsive'>";
-                    echo "<table border='1' class='table table-light table-striped'>";
-                    echo "<thead><tr><th scope='col'>Usuario</th><th scope='col'>Acentuación</th><th scope='col'>Uso de letras</th><th scope='col'>Concordancia</th><th scope='col'>Gramatica en general</th></tr></thead>";
-                    echo "<tbody class='text-center'>";
-                    foreach ($datosBasicos as $datos) {
-                        echo "<tr>";
-                        echo "<th scope='row'>" . $datos['usuario_nombre'] . "</th>";
-                        echo "<td>" . $datos['tema1_facil'] . "%</td>";
-                        echo "<td>" . $datos['tema2_facil'] . "%</td>";
-                        echo "<td>" . $datos['tema3_facil'] . "%</td>";
-                        echo "<td>" . $datos['tema4_facil'] . "%</td>";
-                        echo "</tr>";
-                    }
-                    echo "</tbody>";
-                    echo "</table>";
-                    echo "</div>";
-
-                    // Sección para datos de dificultad Medio
-                    echo "<h5 class='text-center'>Estadisticas de todos los temas en su dificultad medio.</h5>";
-                    echo "<div class='table-responsive'>";
-                    echo "<table border='1' class='table table-light table-striped'>";
-                    echo "<thead><tr><th scope='col'>Usuario</th><th scope='col'>Acentuación</th><th scope='col'>Uso de letras</th><th scope='col'>Concordancia</th><th scope='col'>Gramatica en general</th></tr></thead>";
-                    echo "<tbody class='text-center'>";
-                    foreach ($datosBasicos as $datos) {
-                        echo "<tr>";
-                        echo "<th scope='row'>" . $datos['usuario_nombre'] . "</th>";
-                        echo "<td>" . $datos['tema1_medio'] . "%</td>";
-                        echo "<td>" . $datos['tema2_medio'] . "%</td>";
-                        echo "<td>" . $datos['tema3_medio'] . "%</td>";
-                        echo "<td>" . $datos['tema4_medio'] . "%</td>";
-                        echo "</tr>";
-                    }
-                    echo "</tbody>";
-                    echo "</table>";
-                    echo "</div>";
-
-                    // Sección para datos de dificultad Difícil
-                    echo "<h5 class='text-center'>Estadisticas de todos los temas en su dificultad dificil.</h5>";
-                    echo "<div class='table-responsive'>";
-                    echo "<table border='1' class='table table-light table-striped'>";
-                    echo "<thead><tr><th scope='col'>Usuario</th><th scope='col'>Acentuación</th><th scope='col'>Uso de letras</th><th scope='col'>Concordancia</th><th scope='col'>Gramatica en general</th></tr></thead>";
-                    echo "<tbody class='text-center'>";
-                    foreach ($datosBasicos as $datos) {
-                        echo "<tr>";
-                        echo "<th scope='row'>" . $datos['usuario_nombre'] . "</th>";
-                        echo "<td>" . $datos['tema1_dificil'] . "%</td>";
-                        echo "<td>" . $datos['tema2_dificil'] . "%</td>";
-                        echo "<td>" . $datos['tema3_dificil'] . "%</td>";
-                        echo "<td>" . $datos['tema4_dificil'] . "%</td>";
-                        echo "</tr>";
-                    }
-                    echo "</tbody>";
-                    echo "</table>";
-                    echo "</div>";
-                } else {
-                    echo "No se encontraron registros de estadísticas básicas para esta sala.";
+                    // No se encontraron resultados para el código de sala especificado
+                    // Puedes manejar esta situación según tu lógica de aplicación
                 }
             } else {
-                echo "No se encontró el código de sala para este usuario.";
+                // Hubo un error al ejecutar la consulta SQL
+                echo "Error al ejecutar la consulta: " . $conexion->error;
             }
-        } else {
-            echo "No hay usuario registrado en la sesión.";
-        }
 
-        $conexion->close(); // Cerrar conexión a la base de datos
-        ?>
+            $conexion->close(); // Cerrar conexión a la base de datos
+            ?>
+        </div>
     </div>
 
     <!-- <div class="container">
