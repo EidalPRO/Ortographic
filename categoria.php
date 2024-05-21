@@ -168,7 +168,7 @@ if (!isset($_SESSION['usuario'])) {
     </section>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="assets/js/estaditicas.js"></script>
+    <!-- <script src="assets/js/estaditicas.js"></script> -->
     <script>
         // Función para obtener parámetros de la URL
         function getParameterByName(name, url) {
@@ -185,12 +185,33 @@ if (!isset($_SESSION['usuario'])) {
         var codigo = getParameterByName('codigoSala');
         var ronda = getParameterByName('ronda');
         var logro = getParameterByName('logro');
-        var df1 =getParameterByName('')
+        var df1 = getParameterByName('')
 
         if (codigo !== null) {
             localStorage.setItem('codigoSala', codigo);
+            console.log(codigo);
+            const codigoSalaElement = document.getElementById('sala');
+            codigoSalaElement.innerText = "Sala: " + codigo;
         } else {
-            codigo = localStorage.getItem('codigoSala');
+            window.onload = () => {
+                obtenerCodigoSala();
+            }
+
+            const codigoSala = localStorage.getItem('codigoSala');
+            console.log(codigoSala);
+
+
+            function obtenerCodigoSala() {
+                fetch(`bd/obtener_codigo_sala.php?codigo_sala=${codigoSala}`)
+                    .then(response => response.text()) // Usar response.text() para obtener el código de sala como texto
+                    .then(codigoSala => {
+                        const codigoSalaElement = document.getElementById('sala');
+                        codigoSalaElement.innerText = "Sala: " + codigoSala;
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+            }
         }
 
         if (codigo === 'A0123') {
