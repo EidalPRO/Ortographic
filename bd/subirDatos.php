@@ -18,6 +18,8 @@ $logroObtenido = null;
 $logro = null;
 $logroTema = null;
 
+$dificultades = ($df1 ? 1 : 0) + ($df2 ? 1 : 0) + ($df3 ? 1 : 0);
+
 switch ($tema) {
     case 'tema_1_porcentaje':
         $logro = "logro1";

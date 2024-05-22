@@ -189,12 +189,12 @@ if (!isset($_SESSION['usuario'])) {
         var df2 = getParameterByName('df2');
         var df3 = getParameterByName('df3');
 
+        localStorage.setItem('codigoSala', codigo);
         if ((codigo !== null) && (df1 !== null) && (df2 !== null) && (df3 !== null)) {
-            localStorage.setItem('codigoSala', codigo);
             localStorage.setItem('df1', df1);
             localStorage.setItem('df2', df2);
             localStorage.setItem('df3', df3);
-            console.log(codigo);
+            // console.log(codigo);
             const codigoSalaElement = document.getElementById('sala');
             codigoSalaElement.innerText = "Sala: " + codigo;
         } else {

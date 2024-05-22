@@ -101,7 +101,7 @@ function obtenerDatos() {
             iniciarJuego();
         })
         .catch(error => {
-            console.error('Error al obtener datos:', error);
+            console.log('Error al obtener datos:', error);
         });
 }
 window.onload = obtenerDatos;
@@ -128,7 +128,15 @@ function cargarReactivo() {
         // progressBar.setAttribute('aria-valuenow', porcentaje);
 
         finalizarJuego();
-        subirDatos(tiempoTotal, porcentajeEfectividad, miDificultad);
+        var dificultades = (df1 ? 1 : 0) + (df2 ? 1 : 0) + (df3 ? 1 : 0);
+        if (dificultades === 1) {
+            console.log(dificultades);
+        } else if (dificultades === 2) {
+            console.log(dificultades);
+        } else {
+            console.log(dificultades);
+            subirDatosUno(tiempoTotal, porcentajeEfectividad, miDificultad);
+        }
     } else {
 
 
@@ -275,7 +283,7 @@ function finalizarJuego() {
 }
 
 // Función para subir datos al servidor
-function subirDatos(tiempoTotal, porcentajeEfectividad, miDificultad) {
+function subirDatosUno(tiempoTotal, porcentajeEfectividad, miDificultad) {
     const datos = {
         tiempoTotal: tiempoTotal,
         porcentajeEfectividad: porcentajeEfectividad,
@@ -294,23 +302,24 @@ function subirDatos(tiempoTotal, porcentajeEfectividad, miDificultad) {
         body: JSON.stringify(datos)
     };
 
-    fetch('bd/subir_datos1.php', opciones)
-        .then(response => response.json())
+    fetch('bd/subirDatos.php', opciones)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Ocurrió un error al realizar la solicitud.');
+            }
+            return response.json();
+        })
         .then(data => {
             if (data.success) {
-                // console.log('Datos actualizados correctamente:', data.message);
                 Swal.fire({
                     icon: "success",
                     title: 'Preguntas completadas',
-                    text: `Este fue tu porsentaje de efectividad en la dificultad ${miDificultad}: ${porcentajeEfectividad}% \n
-                    \nTu tiempo total en responder las preguntas fue de ${tiempoTotal} segundos.`
-
+                    text: `Este fue tu porcentaje de efectividad en la dificultad ${miDificultad}: ${porcentajeEfectividad}% \nTu tiempo total en responder las preguntas fue de ${tiempoTotal} segundos.`
                 }).then(() => {
                     window.location.href = `categoria.php?ronda=terminada&logro=${temaPorsentaje}`;
                 });
             } else {
                 console.error('Error al actualizar datos:', data.message);
-
             }
         })
         .catch(error => {
