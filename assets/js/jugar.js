@@ -35,8 +35,8 @@ var d1;
 var d2;
 var fed;
 var ora;
-var posCorrect
-var id
+var posCorrect;
+var id;
 var acerto = 0;
 let preguntasRespondidas = 0;
 var porcentajeEfectividad;
@@ -48,6 +48,13 @@ var miDificultad;
 let preguntasMostradas = [];
 let reactivos = [];
 let numerosGenerados = [];
+var df1 = (localStorage.getItem('df1') === 'true') ? true : false;
+var df2 = (localStorage.getItem('df2') === 'true') ? true : false;
+var df3 = (localStorage.getItem('df3') === 'true') ? true : false;
+console.log(df1);
+console.log(df2);
+console.log(df3);
+
 
 // Función para obtener los datos de la tabla desde PHP
 function obtenerDatos() {
@@ -273,7 +280,10 @@ function subirDatos(tiempoTotal, porcentajeEfectividad, miDificultad) {
         tiempoTotal: tiempoTotal,
         porcentajeEfectividad: porcentajeEfectividad,
         tema: temaPorsentaje,
-        dificultad: miDificultad
+        dificultad: miDificultad,
+        df1: df1,
+        df2: df2,
+        df3: df3
     };
 
     const opciones = {

@@ -45,7 +45,7 @@ if (!isset($_SESSION['usuario'])) {
 
     <div class="table-responsive est">
         <!-- Tabla general -->
-        <h5 class='text-center'>Estadiaticas generales (Sumatioria de las 3 dificultades)</h5>
+        <h5 class='text-center'>Estadísticas generales</h5>
         <div class='table-responsive'>
             <?php
             include 'bd/conexion_be.php';
@@ -72,6 +72,7 @@ if (!isset($_SESSION['usuario'])) {
                             $df1 = $filaRes["facil"];
                             $df2 = $filaRes["medio"];
                             $df3 = $filaRes["dificil"];
+
                             // Obtener los datos de la tabla Estadisticas para la sala específica
                             $consulta = "SELECT * FROM estadisticas WHERE codigo_sala = '$codigoSala'";
                             $resultado = $conexion->query($consulta);
@@ -108,64 +109,70 @@ if (!isset($_SESSION['usuario'])) {
                                     $datosBasicos[] = $fila;
                                 }
 
-                                // Verificar si df1 es true
-                                if ($df1 === "true") {
-                                    // Mostrar tabla de dificultad Fácil
-                                    echo "<h5 class='text-center'>Estadisticas de todos los temas en su dificultad facil.</h5>";
-                                    echo "<table border='1' class='table table-light table-striped'>";
-                                    echo "<thead><tr><th scope='col'>Usuario</th><th scope='col'>Acentuación</th><th scope='col'>Uso de letras</th><th scope='col'>Concordancia</th><th scope='col'>Gramatica en general</th></tr></thead>";
-                                    echo "<tbody class='text-center'>";
-                                    foreach ($datosBasicos as $datos) {
-                                        echo "<tr>";
-                                        echo "<th scope='row'>" . $datos['usuario_nombre'] . "</th>";
-                                        echo "<td>" . $datos['tema1_facil'] . "%</td>";
-                                        echo "<td>" . $datos['tema2_facil'] . "%</td>";
-                                        echo "<td>" . $datos['tema3_facil'] . "%</td>";
-                                        echo "<td>" . $datos['tema4_facil'] . "%</td>";
-                                        echo "</tr>";
-                                    }
-                                    echo "</tbody>";
-                                    echo "</table>";
-                                }
+                                // Contar el número de dificultades activas
+                                $numDificultades = ($df1 === "true" ? 1 : 0) + ($df2 === "true" ? 1 : 0) + ($df3 === "true" ? 1 : 0);
 
-                                // Verificar si df2 es true
-                                if ($df2 === "true") {
-                                    // Mostrar tabla de dificultad Medio
-                                    echo "<h5 class='text-center'>Estadisticas de todos los temas en su dificultad medio.</h5>";
-                                    echo "<table border='1' class='table table-light table-striped'>";
-                                    echo "<thead><tr><th scope='col'>Usuario</th><th scope='col'>Acentuación</th><th scope='col'>Uso de letras</th><th scope='col'>Concordancia</th><th scope='col'>Gramatica en general</th></tr></thead>";
-                                    echo "<tbody class='text-center'>";
-                                    foreach ($datosBasicos as $datos) {
-                                        echo "<tr>";
-                                        echo "<th scope='row'>" . $datos['usuario_nombre'] . "</th>";
-                                        echo "<td>" . $datos['tema1_medio'] . "%</td>";
-                                        echo "<td>" . $datos['tema2_medio'] . "%</td>";
-                                        echo "<td>" . $datos['tema3_medio'] . "%</td>";
-                                        echo "<td>" . $datos['tema4_medio'] . "%</td>";
-                                        echo "</tr>";
+                                if ($numDificultades > 1) {
+                                    // Mostrar estadísticas por dificultad solo si hay más de una dificultad
+                                    // Verificar si df1 es true
+                                    if ($df1 === "true") {
+                                        // Mostrar tabla de dificultad Fácil
+                                        echo "<h5 class='text-center'>Estadísticas de todos los temas en su dificultad fácil.</h5>";
+                                        echo "<table border='1' class='table table-light table-striped'>";
+                                        echo "<thead><tr><th scope='col'>Usuario</th><th scope='col'>Acentuación</th><th scope='col'>Uso de letras</th><th scope='col'>Concordancia</th><th scope='col'>Gramatica en general</th></tr></thead>";
+                                        echo "<tbody class='text-center'>";
+                                        foreach ($datosBasicos as $datos) {
+                                            echo "<tr>";
+                                            echo "<th scope='row'>" . $datos['usuario_nombre'] . "</th>";
+                                            echo "<td>" . $datos['tema1_facil'] . "%</td>";
+                                            echo "<td>" . $datos['tema2_facil'] . "%</td>";
+                                            echo "<td>" . $datos['tema3_facil'] . "%</td>";
+                                            echo "<td>" . $datos['tema4_facil'] . "%</td>";
+                                            echo "</tr>";
+                                        }
+                                        echo "</tbody>";
+                                        echo "</table>";
                                     }
-                                    echo "</tbody>";
-                                    echo "</table>";
-                                }
 
-                                // Verificar si df3 es true
-                                if ($df3 === "true") {
-                                    // Mostrar tabla de dificultad Difícil
-                                    echo "<h5 class='text-center'>Estadisticas de todos los temas en su dificultad difícil.</h5>";
-                                    echo "<table border='1' class='table table-light table-striped'>";
-                                    echo "<thead><tr><th scope='col'>Usuario</th><th scope='col'>Acentuación</th><th scope='col'>Uso de letras</th><th scope='col'>Concordancia</th><th scope='col'>Gramatica en general</th></tr></thead>";
-                                    echo "<tbody class='text-center'>";
-                                    foreach ($datosBasicos as $datos) {
-                                        echo "<tr>";
-                                        echo "<th scope='row'>" . $datos['usuario_nombre'] . "</th>";
-                                        echo "<td>" . $datos['tema1_dificil'] . "%</td>";
-                                        echo "<td>" . $datos['tema2_dificil'] . "%</td>";
-                                        echo "<td>" . $datos['tema3_dificil'] . "%</td>";
-                                        echo "<td>" . $datos['tema4_dificil'] . "%</td>";
-                                        echo "</tr>";
+                                    // Verificar si df2 es true
+                                    if ($df2 === "true") {
+                                        // Mostrar tabla de dificultad Medio
+                                        echo "<h5 class='text-center'>Estadísticas de todos los temas en su dificultad medio.</h5>";
+                                        echo "<table border='1' class='table table-light table-striped'>";
+                                        echo "<thead><tr><th scope='col'>Usuario</th><th scope='col'>Acentuación</th><th scope='col'>Uso de letras</th><th scope='col'>Concordancia</th><th scope='col'>Gramatica en general</th></tr></thead>";
+                                        echo "<tbody class='text-center'>";
+                                        foreach ($datosBasicos as $datos) {
+                                            echo "<tr>";
+                                            echo "<th scope='row'>" . $datos['usuario_nombre'] . "</th>";
+                                            echo "<td>" . $datos['tema1_medio'] . "%</td>";
+                                            echo "<td>" . $datos['tema2_medio'] . "%</td>";
+                                            echo "<td>" . $datos['tema3_medio'] . "%</td>";
+                                            echo "<td>" . $datos['tema4_medio'] . "%</td>";
+                                            echo "</tr>";
+                                        }
+                                        echo "</tbody>";
+                                        echo "</table>";
                                     }
-                                    echo "</tbody>";
-                                    echo "</table>";
+
+                                    // Verificar si df3 es true
+                                    if ($df3 === "true") {
+                                        // Mostrar tabla de dificultad Difícil
+                                        echo "<h5 class='text-center'>Estadísticas de todos los temas en su dificultad difícil.</h5>";
+                                        echo "<table border='1' class='table table-light table-striped'>";
+                                        echo "<thead><tr><th scope='col'>Usuario</th><th scope='col'>Acentuación</th><th scope='col'>Uso de letras</th><th scope='col'>Concordancia</th><th scope='col'>Gramatica en general</th></tr></thead>";
+                                        echo "<tbody class='text-center'>";
+                                        foreach ($datosBasicos as $datos) {
+                                            echo "<tr>";
+                                            echo "<th scope='row'>" . $datos['usuario_nombre'] . "</th>";
+                                            echo "<td>" . $datos['tema1_dificil'] . "%</td>";
+                                            echo "<td>" . $datos['tema2_dificil'] . "%</td>";
+                                            echo "<td>" . $datos['tema3_dificil'] . "%</td>";
+                                            echo "<td>" . $datos['tema4_dificil'] . "%</td>";
+                                            echo "</tr>";
+                                        }
+                                        echo "</tbody>";
+                                        echo "</table>";
+                                    }
                                 }
                             } else {
                                 echo "No se encontraron registros de estadísticas básicas para esta sala.";
@@ -190,18 +197,7 @@ if (!isset($_SESSION['usuario'])) {
         </div>
     </div>
 
-    <!-- <div class="container">
-        <div class="row">
-            <div class="col-12 text-center">
-                <a href="categoria.php" class="btn btn-outline-dark ">
-                    <i class="bi bi-box-arrow-left"></i>
-                    Regresar
-                </a>
-            </div>
-        </div>
-    </div> -->
-
-    <script src="assets/js/estaditicas.js"></script>
+    <script src="assets/js/estadisticas.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 
