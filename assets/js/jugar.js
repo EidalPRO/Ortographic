@@ -38,7 +38,7 @@ var ora;
 var posCorrect;
 var id;
 var acerto = 0;
-let preguntasRespondidas = 0;
+let preguntasRespondidas = 1;
 var porcentajeEfectividad;
 var porcentajeNivel;
 var tiempoTotal;
@@ -51,16 +51,12 @@ let numerosGenerados = [];
 var df1 = (localStorage.getItem('df1') === 'true') ? true : false;
 var df2 = (localStorage.getItem('df2') === 'true') ? true : false;
 var df3 = (localStorage.getItem('df3') === 'true') ? true : false;
-console.log(df1);
-console.log(df2);
-console.log(df3);
 
 
 // Función para obtener los datos de la tabla desde PHP
 function obtenerDatos() {
     // Obtenemos el valor de localStorage
     var miDato = localStorage.getItem('tema');
-    console.log(miDato);
     miDificultad = localStorage.getItem('dificultad');
     switch (miDato) {
         case "t1":
@@ -80,9 +76,6 @@ function obtenerDatos() {
             temaPorsentaje = "tema_4_porcentaje";
             break;
     }
-
-    // console.log(miDificultad);
-    // console.log(tema);
 
     fetch('bd/reactivos.php', {
         method: 'POST',
@@ -130,7 +123,7 @@ function cargarReactivo() {
         finalizarJuego();
         var dificultades = (df1 ? 1 : 0) + (df2 ? 1 : 0) + (df3 ? 1 : 0);
 
-        subirDatosUno(tiempoTotal, porcentajeEfectividad, miDificultad, dificultades);
+        subirDatosUno(tiempoTotal, porcentajeEfectividad, miDificultad, dificultades, df1, df2, df3);
     } else {
 
 
@@ -142,12 +135,6 @@ function cargarReactivo() {
 
         var n = Math.floor(Math.random() * 3);
         posCorrect = (n == 1) ? 'I' : (n == 2) ? 'M' : 'D';
-
-        // console.log(n);
-        // console.log(posCorrect);
-
-
-        // console.log(id);
 
         preg = reactivos[id].pregunta;
         res = reactivos[id].respuesta;
@@ -256,10 +243,9 @@ function mostrarRespuestaIncorrecta() {
 
 function avanzarBarraProgreso() {
     preguntasRespondidas++;
-    // console.log(preguntasRespondidas);
     const porcentaje = (preguntasRespondidas / reactivos.length) * 100;
     const progressBar = document.querySelector('.progress-bar');
-    progressBar.style.width = porcentaje + '%';
+    progressBar.style.width = (porcentaje) + '%';
     progressBar.setAttribute('aria-valuenow', porcentaje);
 }
 
@@ -277,13 +263,16 @@ function finalizarJuego() {
 }
 
 // Función para subir datos al servidor
-function subirDatosUno(tiempoTotal, porcentajeEfectividad, miDificultad, df) {
+function subirDatosUno(tiempoTotal, porcentajeEfectividad, miDificultad, df, df1, df2, df3) {
     const datos = {
         tiempoTotal: tiempoTotal,
         porcentajeEfectividad: porcentajeEfectividad,
         tema: temaPorsentaje,
         dificultad: miDificultad,
-        df: df
+        df: df,
+        df1: df1,
+        df2: df2,
+        df3: df3
     };
 
     const opciones = {
@@ -294,7 +283,7 @@ function subirDatosUno(tiempoTotal, porcentajeEfectividad, miDificultad, df) {
         body: JSON.stringify(datos)
     };
 
-    fetch('bd/subirDatos.php', opciones)
+    fetch('bd/subid_datos.php', opciones)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Ocurrió un error al realizar la solicitud.');

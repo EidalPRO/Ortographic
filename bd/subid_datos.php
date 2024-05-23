@@ -18,14 +18,16 @@ $datos = json_decode($datosJSON, true);
 // $logro = null;
 // $logroTema = null;
 
-// $dificultades = null;
-
-$tiempoTranscurridoNuevo = 10.00;
-$porcentajeEfectividad = 25;
-$tema = "tema_4_porcentaje";
-$dificultad = "dificil";
-$df = 1;
+$tiempoTranscurridoNuevo = $datos['tiempoTotal'] ?? null;
+$porcentajeEfectividad = $datos['porcentajeEfectividad'] ?? null;
+$tema = $datos['tema'] ?? null;
+$dificultad = $datos['dificultad'] ?? null;
+$df = 3;
+$df1 = $datos['df1'] ?? null;
+$df2 = $datos['df2'] ?? null;
+$df3 = $datos['df3'] ?? null;
 $tema2 = "";
+$tema3 = "";
 $logroConseguido = null;
 $logro = null;
 $logroTema = null;
@@ -39,6 +41,7 @@ switch ($tema) {
         } else {
             $tema2 = 'tema1_dificil';
         }
+        $tema3 = 'tema1';
         $logro = "logro1";
         $logroConseguido = "Maestro de la Acentuación";
         $logroTema = "Acentuación";
@@ -51,6 +54,7 @@ switch ($tema) {
         } else {
             $tema2 = 'tema2_dificil';
         }
+        $tema3 = 'tema2';
         $logro = "logro2";
         $logroTema = "Uso de letras";
         $logroConseguido = "Rey de las Letras";
@@ -63,6 +67,7 @@ switch ($tema) {
         } else {
             $tema2 = 'tema3_dificil';
         }
+        $tema3 = 'tema3';
         $logro = "logro3";
         $logroTema = "Concordancia";
         $logroConseguido = "Señor de la Concordancia";
@@ -75,6 +80,7 @@ switch ($tema) {
         } else {
             $tema2 = 'tema4_dificil';
         }
+        $tema3 = 'tema4';
         $logro = "logro4";
         $logroTema = "Gramatica general";
         $logroConseguido = "Experto en Gramática";
@@ -111,13 +117,50 @@ if ($tema2 !== null && $tiempoTranscurridoNuevo != null && $porcentajeEfectivida
                     $actualizarRes = $conexion->query($actualizar);
                     if ($actualizarRes) {
                         $response['success'] = true;
-                        $response['message'] = "Datos actualizados correctamente en la tabla Estadisticas.";
+                        $response['message'] = "Datos actualizados correctamente en la tabla Estadisticas una dificultad.";
                     } else {
                         $response['success'] = false;
                         $response['message'] = "Error al actualizar datos: " . $conexion->error;
                     }
-                } else if ($df === 2) {
-                } else {
+                } else if ($df >= 2) {
+                    // Si hay dos o más dificultades, realizar las operaciones según el tema y las dificultades
+                    $consultaBasica = "SELECT * FROM estadisticasbasicas WHERE codigo_sala = '$codigoSala' AND usuario_nombre = '$nombreUsuario'";
+                    $resultadoBasico = $conexion->query($consultaBasica);
+                    if ($resultadoBasico->num_rows > 0) {
+                        // Array para almacenar los datos
+                        $datosBasicos = $resultadoBasico->fetch_assoc();
+
+                        $sumaEstadisticas = 0;
+                        $countDificultades = 0;
+
+                        if ($df1) {
+                            $sumaEstadisticas += $datosBasicos[$tema3 . '_facil'];
+                            $countDificultades++;
+                        }
+
+                        if ($df2) {
+                            $sumaEstadisticas += $datosBasicos[$tema3 . '_medio'];
+                            $countDificultades++;
+                        }
+
+                        if ($df3) {
+                            $sumaEstadisticas += $datosBasicos[$tema3 . '_dificil'];
+                            $countDificultades++;
+                        }
+
+                        // Calcular el promedio de los porcentajes
+                        $promedioPorcentajes = $sumaEstadisticas / $countDificultades;
+
+                        $actualizar = "UPDATE estadisticas SET $tema = '$promedioPorcentajes', tiempo_total_practica = '$tiempoActualizado' WHERE codigo_sala = '$codigoSala' AND usuario_nombre ='$nombreUsuario'";
+                        $actualizarRes = $conexion->query($actualizar);
+                        if ($actualizarRes) {
+                            $response['success'] = true;
+                            $response['message'] = "Datos actualizados correctamente en la tabla Estadisticas ".$countDificultades." dificultades. ";
+                        } else {
+                            $response['success'] = false;
+                            $response['message'] = "Error al actualizar datos: " . $conexion->error;
+                        }
+                    }
                 }
             } else {
                 $response['success'] = false;
