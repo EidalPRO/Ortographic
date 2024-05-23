@@ -11,7 +11,7 @@ $datosJSON = file_get_contents('php://input');
 $datos = json_decode($datosJSON, true);
 
 $tema = $datos['tema'] ?? null;
-$codigoSala = $datos['codigo'] ?? null;
+$codigoSala = 'A0123';
 
 $logroConseguido = null;
 $logro = null;

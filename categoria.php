@@ -193,11 +193,10 @@ if (!isset($_SESSION['usuario'])) {
         df1 = getParameterByName('df1');
         df2 = getParameterByName('df2');
         df3 = getParameterByName('df3');
-        ronda = getParameterByName('ronda');
-        logro = getParameterByName('logro');
+       
 
-        localStorage.setItem('codigoSala', codigo);
         if ((codigo !== null) && (df1 !== null) && (df2 !== null) && (df3 !== null)) {
+            localStorage.setItem('codigoSala', codigo);
             localStorage.setItem('df1', df1);
             localStorage.setItem('df2', df2);
             localStorage.setItem('df3', df3);
@@ -231,9 +230,8 @@ if (!isset($_SESSION['usuario'])) {
         }
 
         if (codigo === 'A0123') {
-            console.log(codigo)
-            console.log(ronda)
-            console.log(logro)
+            // console.log(ronda)
+            // console.log(logro)
             t1.addEventListener("click", function() {
                 mostrarDificultad('t1');
             });
@@ -281,57 +279,6 @@ if (!isset($_SESSION['usuario'])) {
                 })
             }
 
-            var logroObtenido;
-            var logroAMostrar;
-            var logroTema;
-
-
-            // Llamar a la función en estadisticas.js pasando los valores de los parámetros
-            if ((ronda !== null) && (logro !== null)) {
-                enviarDatos();
-            }
-
-            function enviarDatos() {
-                const datos = {
-                    tema: logro,
-                    codigo: codigo
-                };
-
-                const opciones = {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(datos)
-                };
-
-                fetch('bd/obtenerLogros.php', opciones)
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
-                            logroTema = data.logroTema;
-                            logroObtenido = data.logro;
-                            logroAMostrar = (logroObtenido === "logro1") ? 'Maestro de la Acentuación' : (logroObtenido === "logro2") ? 'Rey de las Letras' : (logroObtenido === "logro3") ? 'Señor de la Concordancia' : 'Experto en Gramática';
-                            var logroImagen = (logroObtenido === "logro1") ? 'Acentuacion.webp' : (logroObtenido === "logro2") ? 'Logro-letras.webp' : (logroObtenido === "logro3") ? 'Concordancia.webp' : 'Gramatica.webp';
-                            Swal.fire({
-                                title: "Felicidades!",
-                                text: `Acabas de obtener el logro ${logroAMostrar}. 
-                            \n Por haber conseguido el 100% de efectividad en el tema de ${logroTema}.`,
-                                imageUrl: `assets/imagenes/logros/${logroImagen}`,
-                                imageWidth: 200,
-                                imageHeight: 200,
-                                imageAlt: "Custom image"
-                            });
-
-                            // Hacer algo con el logro obtenido
-                        } else {
-                            console.error('Error al actualizar el logro.', data.message);
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                    });
-            }
 
         } else {
 
