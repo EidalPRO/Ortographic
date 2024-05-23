@@ -63,7 +63,7 @@ switch ($tema) {
         break;
 }
 
-if ($tema2 && $tiempoTranscurridoNuevo !== null && $porcentajeEfectividad !== null) {
+if ($tema2 !== null && $tiempoTranscurridoNuevo !== null && $porcentajeEfectividad !== null) {
     $nombreUsuario = $_SESSION['usuario'] ?? null;
 
     if ($nombreUsuario !== null) {

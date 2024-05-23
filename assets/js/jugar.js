@@ -129,14 +129,8 @@ function cargarReactivo() {
 
         finalizarJuego();
         var dificultades = (df1 ? 1 : 0) + (df2 ? 1 : 0) + (df3 ? 1 : 0);
-        if (dificultades === 1) {
-            console.log(dificultades);
-        } else if (dificultades === 2) {
-            console.log(dificultades);
-        } else {
-            console.log(dificultades);
-            subirDatosUno(tiempoTotal, porcentajeEfectividad, miDificultad);
-        }
+
+        subirDatosUno(tiempoTotal, porcentajeEfectividad, miDificultad, dificultades);
     } else {
 
 
@@ -283,15 +277,13 @@ function finalizarJuego() {
 }
 
 // Función para subir datos al servidor
-function subirDatosUno(tiempoTotal, porcentajeEfectividad, miDificultad) {
+function subirDatosUno(tiempoTotal, porcentajeEfectividad, miDificultad, df) {
     const datos = {
         tiempoTotal: tiempoTotal,
         porcentajeEfectividad: porcentajeEfectividad,
         tema: temaPorsentaje,
         dificultad: miDificultad,
-        df1: df1,
-        df2: df2,
-        df3: df3
+        df: df
     };
 
     const opciones = {
