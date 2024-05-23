@@ -181,13 +181,20 @@ if (!isset($_SESSION['usuario'])) {
             return decodeURIComponent(results[2].replace(/\+/g, " "));
         }
 
+        var codigo;
+        var ronda;
+        var logro;
+        var df1;
+        var df2;
+        var df3;
+
         // Obtener los valores de los parámetros de la URL
-        var codigo = getParameterByName('codigoSala');
-        var ronda = getParameterByName('ronda');
-        var logro = getParameterByName('logro');
-        var df1 = getParameterByName('df1');
-        var df2 = getParameterByName('df2');
-        var df3 = getParameterByName('df3');
+        codigo = getParameterByName('codigoSala');
+        df1 = getParameterByName('df1');
+        df2 = getParameterByName('df2');
+        df3 = getParameterByName('df3');
+        ronda = getParameterByName('ronda');
+        logro = getParameterByName('logro');
 
         localStorage.setItem('codigoSala', codigo);
         if ((codigo !== null) && (df1 !== null) && (df2 !== null) && (df3 !== null)) {
@@ -203,7 +210,7 @@ if (!isset($_SESSION['usuario'])) {
             }
 
             const codigoSala = localStorage.getItem('codigoSala');
-            console.log(codigoSala);
+
 
 
             function obtenerCodigoSala() {
@@ -224,6 +231,9 @@ if (!isset($_SESSION['usuario'])) {
         }
 
         if (codigo === 'A0123') {
+            console.log(codigo)
+            console.log(ronda)
+            console.log(logro)
             t1.addEventListener("click", function() {
                 mostrarDificultad('t1');
             });
@@ -271,11 +281,10 @@ if (!isset($_SESSION['usuario'])) {
                 })
             }
 
-            console.log(codigo)
-            console.log(logro)
             var logroObtenido;
             var logroAMostrar;
             var logroTema;
+
 
             // Llamar a la función en estadisticas.js pasando los valores de los parámetros
             if ((ronda !== null) && (logro !== null)) {

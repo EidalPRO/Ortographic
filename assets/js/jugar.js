@@ -297,6 +297,7 @@ function subirDatosUno(tiempoTotal, porcentajeEfectividad, miDificultad, df, df1
                     title: 'Preguntas completadas',
                     text: `Este fue tu porcentaje de efectividad en la dificultad ${miDificultad}: ${porcentajeEfectividad}% \nTu tiempo total en responder las preguntas fue de ${tiempoTotal} segundos.`
                 }).then(() => {
+                    
                     window.location.href = `categoria.php?ronda=terminada&logro=${temaPorsentaje}`;
                 });
             } else {

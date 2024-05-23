@@ -6,6 +6,7 @@ include 'conexion_be.php';
 
 $nombreUsuario = $_SESSION['usuario'] ?? null;
 
+
 $datosJSON = file_get_contents('php://input');
 $datos = json_decode($datosJSON, true);
 
