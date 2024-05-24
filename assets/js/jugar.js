@@ -333,21 +333,36 @@ function enviarDatos() {
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
+                    var logroFinal = data.logroFinal;
                     logroTema = data.logroTema;
                     logroObtenido = data.logro;
                     logroAMostrar = (logroObtenido === "logro1") ? 'Maestro de la Acentuación' : (logroObtenido === "logro2") ? 'Rey de las Letras' : (logroObtenido === "logro3") ? 'Señor de la Concordancia' : 'Experto en Gramática';
                     var logroImagen = (logroObtenido === "logro1") ? 'Acentuacion.webp' : (logroObtenido === "logro2") ? 'Logro-letras.webp' : (logroObtenido === "logro3") ? 'Concordancia.webp' : 'Gramatica.webp';
-                    Swal.fire({
-                        title: "Felicidades!",
-                        text: `Acabas de obtener el logro ${logroAMostrar}. 
-                    \n Por haber conseguido el 100% de efectividad en el tema de ${logroTema}.`,
-                        imageUrl: `assets/imagenes/logros/${logroImagen}`,
-                        imageWidth: 200,
-                        imageHeight: 200,
-                        imageAlt: "Custom image"
-                    }).then(() => {
-                        window.location.href = `categoria.php?ronda=terminada&logro=${temaPorsentaje}`;
-                    });
+                    if (logroFinal) {
+                        Swal.fire({
+                            title: "Felicidades!",
+                            text: `Acabas de obtener el logro ${logroAMostrar}. 
+                        \n Por haber conseguido el 100% de efectividad en el tema de ${logroTema}.`,
+                            imageUrl: `assets/imagenes/logros/${logroImagen}`,
+                            imageWidth: 200,
+                            imageHeight: 200,
+                            imageAlt: "Custom image"
+                        }).then(() => {
+                            window.location.href = `categoria.php?ronda=terminada&logro=${logroAMostrar}`;
+                        });
+                    } else {
+                        Swal.fire({
+                            title: "Felicidades!",
+                            text: `Acabas de obtener el logro Sabio Ortográfico. 
+                        \n Por haber conseguido el 100% de efectividad todos los temas.`,
+                            imageUrl: `assets/imagenes/logros/logro-final.webp`,
+                            imageWidth: 200,
+                            imageHeight: 200,
+                            imageAlt: "Custom image"
+                        }).then(() => {
+                            window.location.href = `categoria.php?ronda=terminada&logro=Sabio-Ortográfico`;
+                        });
+                    }
 
                     // Hacer algo con el logro obtenido
                 } else {
