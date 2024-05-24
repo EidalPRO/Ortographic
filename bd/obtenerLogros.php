@@ -11,6 +11,7 @@ $datosJSON = file_get_contents('php://input');
 $datos = json_decode($datosJSON, true);
 
 $tema = $datos['tema'] ?? null;
+
 $codigoSala = 'A0123';
 
 $logroConseguido = null;
@@ -39,7 +40,7 @@ if ($tema !== null) {
             break;
         case 'tema_4_porcentaje':
             $logro = "logro4";
-            $logroTema = "Gramatica general";
+            $logroTema = "Gramática general";
             $logroConseguido = "Experto en Gramática";
             break;
     }
@@ -78,6 +79,7 @@ if ($tema !== null) {
                         break;
                 }
 
+                $sumaTotal = (($datosBasicos['tema1_facil'] + $datosBasicos['tema1_medio'] + $datosBasicos['tema1_dificil']) / 3) + (($datosBasicos['tema2_facil'] + $datosBasicos['tema2_medio'] + $datosBasicos['tema2_dificil']) / 3) + (($datosBasicos['tema3_facil'] + $datosBasicos['tema3_medio'] + $datosBasicos['tema3_dificil']) / 3) + (($datosBasicos['tema4_facil'] + $datosBasicos['tema4_medio'] + $datosBasicos['tema4_dificil']) / 3);
                 // Verificar si la suma de estadísticas es igual a 100
                 if ($sumaEstadisticas == 100) {
                     // Actualizar el logro a 'completado'
@@ -86,9 +88,42 @@ if ($tema !== null) {
 
                     // Verificar si la actualización fue exitosa
                     if ($conexion->affected_rows > 0) {
-                        $response['success'] = true;
-                        $response['logro'] = $logro;
-                        $response['logroTema'] = $logroTema;
+                        $obtenerLogroFin = "SELECT logroFinal FROM logros WHERE usuario = '$nombreUsuario'";
+                        $result = $conexion->query($obtenerLogroFin);
+                        if ($result) {
+
+                            $resultadoFin = $result->fetch_assoc();
+                            $logroFinEstado = $resultadoFin["logroFinal"];
+
+                            if ($logroFinEstado != 'completado') {
+                                if ($sumaTotal == 400) {
+                                    $consultaActualizarLogro2 = "UPDATE logros SET logroFinal = 'completado' WHERE usuario = '$nombreUsuario'";
+                                    $conexion->query($consultaActualizarLogro2);
+                                    if ($conexion->affected_rows > 0) {
+                                        $response['logroFinal'] = true;
+                                        $response['success'] = true;
+                                        $response['logro'] = $logro;
+                                        $response['logroTema'] = $logroTema;
+                                    } else {
+                                        $response['success'] = false;
+                                        $response['message'] = "No se pudo actualizar el logro Final para el usuario '$nombreUsuario'.";
+                                    }
+                                } else {
+                                    $response['logroFinal'] = false;
+                                    $response['success'] = true;
+                                    $response['logro'] = $logro;
+                                    $response['logroTema'] = $logroTema;
+                                }
+                            } else {
+                                $response['logroFinal'] = false;
+                                $response['success'] = true;
+                                $response['logro'] = $logro;
+                                $response['logroTema'] = $logroTema;
+                            }
+                        } else {
+                            $response['success'] = false;
+                            $response['message'] = "Error al obtener el logro FInal";
+                        }
                     } else {
                         $response['success'] = false;
                         $response['message'] = "No se pudo actualizar el logro '$logroConseguido' para el usuario '$nombreUsuario'.";
