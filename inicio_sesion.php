@@ -9,7 +9,7 @@
     <!--CSS-->
     <link rel="stylesheet" href="assets/css/login2.css">
     <link rel="shortcut icon" href="assets/imagenes/logoOrtographic.webp" type="image/x-icon">
-    <title>Ortographic - ¿Crees tener buena ortografía?</title>
+    <title>Ortographic - Donde las letras se vuelven tu juego.</title>
 </head>
 
 <body>

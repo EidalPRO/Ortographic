@@ -6,6 +6,7 @@
     font-size: 18px;
     /* background: #f5f6f7; */
     box-sizing: border-box;
+    user-select: none;
 }
 
 html {
@@ -156,10 +157,19 @@ h3 {
     position: absolute;
     right: 0;
     bottom: 0;
+    background-color: white;
+    border-radius: 50%;
+    transition: 1.5s;
+}
+#btn-subirImg i {
+    text-align: center;
+    font-size: 20px;
 }
 
 #btn-subirImg:hover {
-    background-color: transparent;
+    transform: scale(0.9);
+    background-color: #000;
+    color: white;
 }
 
 .card {

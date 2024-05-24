@@ -349,20 +349,11 @@ function enviarDatos() {
                         imageAlt: "Custom image"
                     }).then(() => {
                         if (logroFinal) {
-                            Swal.fire({
-                                title: "Felicidades!",
-                                text: `Acabas de obtener el logro Sabio Ortográfico. 
-                            \n Por haber conseguido el 100% de efectividad todos los temas.`,
-                                imageUrl: `assets/imagenes/logros/logro-final.webp`,
-                                imageWidth: 200,
-                                imageHeight: 200,
-                                imageAlt: "Custom image"
-                            }).then(() => {
-                                window.location.href = `categoria.php?ronda=terminada&logro=Sabio-Ortográfico`;
-                            });
+                            mostrarLogroFinal();
                         } else {
                             window.location.href = `categoria.php?ronda=terminada&logro=${logroAMostrar}`;
                         }
+
                     });
 
                     // Hacer algo con el logro obtenido
@@ -379,4 +370,18 @@ function enviarDatos() {
         window.location.href = `categoria.php?ronda=terminada`;
     }
 
+}
+
+function mostrarLogroFinal() {
+    Swal.fire({
+        title: "Felicidades!",
+        text: `Acabas de obtener el logro Sabio Ortográfico. 
+    \n Por haber conseguido el 100% de efectividad todos los temas.`,
+        imageUrl: `assets/imagenes/logros/logro-final.webp`,
+        imageWidth: 200,
+        imageHeight: 200,
+        imageAlt: "Custom image"
+    }).then(() => {
+        window.location.href = `categoria.php?ronda=terminada&logro=Sabio-Ortográfico`;
+    });
 }

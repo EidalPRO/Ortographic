@@ -220,7 +220,7 @@
                                 <a class="image-container">
                                     <img src="bd/<?php echo $usuario['foto']; ?>" class="img-fluid" alt="Foto de perfil" width="100px">
                                 </a>
-                                <button type="button" class="btn btn-outline-dark" id="btn-subirImg" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                <button type="button" class="btn btn-light text-center" id="btn-subirImg" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                                     <dfn title="Nueva foto de perfil.">
                                         <i class="bi bi-upload"></i>
                                     </dfn>

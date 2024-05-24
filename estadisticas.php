@@ -6,7 +6,7 @@ if (!isset($_SESSION['usuario'])) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -17,7 +17,7 @@ if (!isset($_SESSION['usuario'])) {
     <!-- CSS personalizado -->
     <link rel="stylesheet" href="assets/css/estadisticas.css">
     <link rel="shortcut icon" href="assets/imagenes/logoOrtographic.webp" type="image/x-icon">
-    <title>Ortographic - ¿Crees tener buena ortografía?</title>
+    <title>Ortographic - Donde las letras se vuelven tu juego.</title>
 </head>
 
 <body>
