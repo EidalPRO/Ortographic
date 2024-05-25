@@ -7,20 +7,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function verificarContrasenas() {
         if (contrasena1.value !== '' || contrasena2.value !== '') {
-            if (contrasena1.value.length >= 8 && contrasena1.value === contrasena2.value) {
-                contrasena1.style.backgroundColor = '#00ff2223';
-                contrasena2.style.backgroundColor = '#00ff2223';
+            if (contrasena1.value.length >= 8) {
+                contrasena1.style.color = 'green';
+            } else {
+                contrasena1.style.color = 'red';
+            }
+            if (contrasena1.value === contrasena2.value) {
+                contrasena2.style.color = 'green';
                 if (user.value !== '' && correo.value !== '') {
                     botonAceptar.disabled = false;
                 }
             } else {
-                contrasena1.style.backgroundColor = '#ff000042';
-                contrasena2.style.backgroundColor = '#ff000042';
+                contrasena2.style.color = 'red';
                 botonAceptar.disabled = true;
             }
         } else {
-            contrasena1.style.backgroundColor = '';
-            contrasena2.style.backgroundColor = '';
+            contrasena1.style.color = '';
+            contrasena2.style.color = '';
             botonAceptar.disabled = true;
         }
     }
@@ -39,10 +42,18 @@ const container = document.getElementById('container');
 const registerBtn = document.getElementById('register');
 const loginBtn = document.getElementById('login');
 
-registerBtn.addEventListener('click', () => {
-    container.classList.add("active");
-});
+const btnSignIn = document.getElementById("sign-in"),
+    btnSignUp = document.getElementById("sign-up"),
+    containerFormRegister = document.querySelector(".register"),
+    containerFormLogin = document.querySelector(".login");
 
-loginBtn.addEventListener('click', () => {
-    container.classList.remove("active");
-});
+btnSignIn.addEventListener("click", e => {
+    containerFormRegister.classList.add("hide");
+    containerFormLogin.classList.remove("hide")
+})
+
+
+btnSignUp.addEventListener("click", e => {
+    containerFormLogin.classList.add("hide");
+    containerFormRegister.classList.remove("hide")
+})
