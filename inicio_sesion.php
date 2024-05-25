@@ -19,10 +19,13 @@
             <form action="bd/login_usuario.php" method="POST" class="formulario">
                 <h3>Nueva cuenta</h3>
                 <!-- <span>or use your email for registeration</span> -->
-                <input type="text" placeholder="Nombre de usuario" name="usuario">
-                <input type="email" placeholder="Correo electronico" name="correo">
+                <input type="text" placeholder="Nombre de usuario" name="usuario" id="user">
+                <input type="email" placeholder="Correo electronico" name="correo" id="correo">
                 <input type="password" placeholder="Contraseña" name="contrasena" id="con1">
                 <input type="password" placeholder="Confirmar contraseña" name="contrasena2" id="con2">
+                <span id="con1" class="form-text" style="font-size: 18px;">
+                    Al menos 8 caracteres.
+                </span>
                 <input type="hidden" name="accion" value="btn-registro">
                 <button id="boton-reg" disabled>Registrarse</button>
             </form>
