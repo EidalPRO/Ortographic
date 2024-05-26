@@ -61,7 +61,7 @@
         <div class="form-information">
             <div class="form-information-childs">
                 <h2>Crear una Cuenta</h2>
-                
+
                 <!-- <p>Regístrate para poder poner en práctica tu ortografía.</p> -->
                 <form class="form form-register" action="bd/login_usuario.php" method="POST" novalidate>
                     <div>
@@ -124,6 +124,11 @@
                             <input type="password" placeholder="Contraseña" name="contrasena">
                         </label>
                     </div>
+                    <div>
+                        <a href="" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                            ¿Olvidaste tu contraseña?
+                        </a>
+                    </div>
 
 
                     <input type="hidden" name="accion" value="btn-login">
@@ -133,7 +138,25 @@
             </div>
         </div>
     </div>
-    ¿
+
+    <div class="modal fade" id="staticBackdrop" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <form action="recuperacion-contraseña.php" method="POST">
+                        <div class="subscribe">
+                            <p>Ingresa el correo electronico <br> con el que te registraste.</p>
+                            <input type="hidden" name="action" value="correo_ingresado">
+                            <input placeholder="ejemplo@gmail.com" class="subscribe-input" name="email" type="email">
+                            <br>
+                            <input type="submit" class="submit-btn" value="Aceptar"></input>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="assets/js/registro.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
