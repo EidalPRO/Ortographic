@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -12,13 +15,47 @@
     <link rel="stylesheet" href="assets/css/miPerfil.css">
     <link rel="stylesheet" href="assets/css/404.css">
     <link rel="shortcut icon" href="assets/imagenes/logoOrtographic.webp" type="image/x-icon">
+    <link rel="stylesheet" href="assets/css/loader.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <title>Ortographic - Donde las letras se vuelven tu juego.</title>
 </head>
 
-<body>
+<body class="oculto">
+    <section class="loader" id="loader">
+        <svg xmlns="http://www.w3.org/2000/svg" height="200px" width="200px" viewBox="0 0 200 200" class="pencil">
+            <defs>
+                <clipPath id="pencil-eraser">
+                    <rect height="30" width="30" ry="5" rx="5"></rect>
+                </clipPath>
+            </defs>
+            <circle transform="rotate(-113,100,100)" stroke-linecap="round" stroke-dashoffset="439.82" stroke-dasharray="439.82 439.82" stroke-width="2" stroke="currentColor" fill="none" r="70" class="pencil__stroke" style="color: white;"></circle>
+            <g transform="translate(100,100)" class="pencil__rotate">
+                <g fill="none">
+                    <circle transform="rotate(-90)" stroke-dashoffset="402" stroke-dasharray="402.12 402.12" stroke-width="30" stroke="hsl(223,90%,50%)" r="64" class="pencil__body1"></circle>
+                    <circle transform="rotate(-90)" stroke-dashoffset="465" stroke-dasharray="464.96 464.96" stroke-width="10" stroke="hsl(223,90%,60%)" r="74" class="pencil__body2"></circle>
+                    <circle transform="rotate(-90)" stroke-dashoffset="339" stroke-dasharray="339.29 339.29" stroke-width="10" stroke="hsl(223,90%,40%)" r="54" class="pencil__body3"></circle>
+                </g>
+                <g transform="rotate(-90) translate(49,0)" class="pencil__eraser">
+                    <g class="pencil__eraser-skew">
+                        <rect height="30" width="30" ry="5" rx="5" fill="hsl(223,90%,70%)"></rect>
+                        <rect clip-path="url(#pencil-eraser)" height="30" width="5" fill="hsl(223,90%,60%)"></rect>
+                        <rect height="20" width="30" fill="hsl(223,10%,90%)"></rect>
+                        <rect height="20" width="15" fill="hsl(223,10%,70%)"></rect>
+                        <rect height="20" width="5" fill="hsl(223,10%,80%)"></rect>
+                        <rect height="2" width="30" y="6" fill="hsla(223,10%,10%,0.2)"></rect>
+                        <rect height="2" width="30" y="13" fill="hsla(223,10%,10%,0.2)"></rect>
+                    </g>
+                </g>
+                <g transform="rotate(-90) translate(49,-30)" class="pencil__point">
+                    <polygon points="15 0,30 30,0 30" fill="hsl(33,90%,70%)"></polygon>
+                    <polygon points="15 0,6 30,0 30" fill="hsl(33,90%,50%)"></polygon>
+                    <polygon points="15 0,20 10,10 10" fill="hsl(223,10%,10%)"></polygon>
+                </g>
+            </g>
+        </svg>
+    </section>
 
     <div class="hero">
         <div class="container-fluid text-center img-contenedor">
@@ -34,7 +71,6 @@
                 <div class="col-6 col-md-4 col-lg-2">
                     <div class="cir d-flex flex-wrap align-items-center justify-content-center">
                         <?php
-                        session_start();
                         if (isset($_SESSION['usuario'])) {
                             echo '<a type="button"  data-bs-toggle="modal" data-bs-target="#MiPerfil">
                                     <i class="bi bi-person"></i>
@@ -501,37 +537,37 @@
                                                     while ($logro2 = mysqli_fetch_assoc($consultaLogros2)) {
                                                         // Verifica si cada logro contiene la palabra "completado"
                                                         if (strpos($logro2['logroInicio'], 'completado') !== false) {
-                                                            echo '<div class="col-12 col-sm-4">';
+                                                            echo '<div class="col-6 col-sm-4 m-0">';
                                                             echo '<p>Bienvenido a Ortographic.</p>';
                                                             echo '<img src="assets/imagenes/logros/logroInicio.webp" alt="Logro Inicio" width="50">';
                                                             echo '</div>';
                                                         }
                                                         if (strpos($logro2['logro1'], 'completado') !== false) {
-                                                            echo '<div class="col-12 col-sm-4">';
+                                                            echo '<div class="col-6 col-sm-4 m-0">';
                                                             echo '<p>Maestro de la Acentuación.</p>';
                                                             echo '<img src="assets/imagenes/logros/Acentuacion.webp" alt="Logro 1" width="50">';
                                                             echo '</div>';
                                                         }
                                                         if (strpos($logro2['logro2'], 'completado') !== false) {
-                                                            echo '<div class="col-12 col-sm-4">';
+                                                            echo '<div class="col-6 col-sm-4 m-0">';
                                                             echo '<p>Rey de las Letras.</p>';
                                                             echo '<img src="assets/imagenes/logros/Logro-letras.webp" alt="Logro 2" width="50">';
                                                             echo '</div>';
                                                         }
                                                         if (strpos($logro2['logro3'], 'completado') !== false) {
-                                                            echo '<div class="col-12 col-sm-4">';
+                                                            echo '<div class="col-6 col-sm-4 m-0">';
                                                             echo '<p>Señor de la Concordancia.</p>';
                                                             echo '<img src="assets/imagenes/logros/Concordancia.webp" alt="Logro 3" width="50">';
                                                             echo '</div>';
                                                         }
                                                         if (strpos($logro2['logro4'], 'completado') !== false) {
-                                                            echo '<div class="col-12 col-sm-4">';
+                                                            echo '<div class="col-6 col-sm-4 m-0">';
                                                             echo '<p>Experto en Gramática.</p>';
                                                             echo '<img src="assets/imagenes/logros/Gramatica.webp" alt="Logro 4" width="50">';
                                                             echo '</div>';
                                                         }
                                                         if (strpos($logro2['logroFinal'], 'completado') !== false) {
-                                                            echo '<div class="col-12 col-sm-4">';
+                                                            echo '<div class="col-6 col-sm-4 m-0">';
                                                             echo '<p>Sabio Ortográfico.</p>';
                                                             echo '<img src="assets/imagenes/logros/logro-final.webp" alt="Logro Final" width="50">';
                                                             echo '</div>';
@@ -732,6 +768,7 @@
     </footer>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="assets/js/loader.js"></script>
     <script src="assets/js/index.js"></script>
     <script>
         //aqui la alerta y verificcion
